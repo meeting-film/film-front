@@ -5,6 +5,10 @@
 </template>
 
 <style>
+h1{
+  color: red;
+}
+
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -49,4 +53,94 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: #f6f6f6;
+  font: 12px/1.5 tahoma, arial, Microsoft YaHei, sans-serif;
+}
+li{
+  list-style: none;
+}
+img{
+  display: block;
+  border: none;
+}
+label{
+  cursor: pointer;
+}
+input[type='checkbox']{
+  cursor: pointer;
+}
+
+/* 定宽布局 */
+.w{
+  width: 1080px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* panel */
+.panel{
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+.panel .panel-title{
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+.panel .panel-body{
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* 全局通用样式 */
+/* 隐藏类 */
+.hide{
+  display: none;
+}
+/* 超链样式 */
+.link{
+  color: #999;
+  cursor: pointer;
+  text-decoration: none;
+}
+.link:hover{
+  color: #e80012;
+}
+.link-text{
+  color: #999;
+  text-decoration: none;
+}
+/* btn */
+.btn{
+  display: inline-block;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  border: none;
+  background: #c60023;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-mini{
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+  padding: 0 10px;
+}
+
 </style>
