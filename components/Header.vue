@@ -1,68 +1,49 @@
 <template>
-  <div class="header">
-    <div class="header-inner w">
-      <a href="" class="meeting-logo"></a>
-      <div class="nav">
-        <ul class="navbar">
-          <li>
-            <a href="/" data-val="home-click" class="active">首页</a>
-          </li>
-          <li>
-            <a href="/films" data-val="home-click">电影</a>
-          </li>
-          <li>
-            <a href="/cinemas" data-val="cinemas-click">影院</a>
-          </li>
-          <li>
-            <a href="/board" data-val="board-click">榜单</a>
-          </li>
-          <li>
-            <a href="/news" data-val="news-click">热点</a>
-          </li>
-        </ul>
+  <!-- navigation -->
+  <nav class="nav has-shadow">
+    <div class="container">
+      <div class="nav-left">
+        <nuxt-link to="/" class="link nav-logo nav-item">
+          Meeting-Film
+        </nuxt-link>
+        <nuxt-link active-class="is-active" to="/" class="link nav-item is-tab" exact>首页</nuxt-link>
+        <nuxt-link active-class="is-active" to="/films" class="link nav-item is-tab" exact>电影</nuxt-link>
+        <nuxt-link active-class="is-active" to="/cinemas" class="link nav-item is-tab" exact>影院</nuxt-link>
+        <nuxt-link active-class="is-active" to="/board" class="link nav-item is-tab" exact>榜单</nuxt-link>
+        <nuxt-link active-class="is-active" to="/news" class="link nav-item is-tab" exact>热点</nuxt-link>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 <style>
-  /*head区整体设置*/
-  .header{
-    z-index: 999;
+
+  /*定义导航条部分*/
+  .nav{
+    margin: 0 auto;
+    width: 1200px;
     height: 80px;
-    width: 100%;
-    min-width: 1200px;
-    background-color: #fff;
-    border-bottom: 1px solid #d8d8d8;
   }
 
-  .header input, .header li, .header ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    border: none;
-  }
-
-  li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-  }
-
-  /*head-nav导航区域*/
-  .header .nav {
+  .nav .nav-item{
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 20px;
+    color: #000;
     display: inline-block;
-    background-color: #fff;
-    overflow: hidden;
-    margin-left: 40px;
-    float: left;
+    text-align: center;
   }
 
-  /*logo区域*/
-  .meeting-logo{
-    display: block;
-    width: 280px;
-    height: 80px;
-    background-image: url("../assets/img/Meeting-logo.jpg");
+  .nav .nav-logo{
+    width: 260px;
   }
 
+  .nav .nav-item:hover{
+    color: red;
+  }
 
+  .nav .nav-item.is-active{
+    color: #f7f8fb;
+    background-color: #f00;
+  }
 </style>

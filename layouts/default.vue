@@ -1,14 +1,10 @@
 <template>
   <div>
+    <Header/>
     <nuxt/>
   </div>
 </template>
-
 <style>
-h1{
-  color: red;
-}
-
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -144,3 +140,12 @@ input[type='checkbox']{
 }
 
 </style>
+<script>
+  import Header from '~/components/Header.vue'
+
+  export default {
+    components: {
+      Header
+    }
+  }
+</script>
