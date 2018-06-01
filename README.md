@@ -1,6 +1,6 @@
 # meeting_film_front
 
-> Meeting_film前端应用程序 123
+> Meeting_film前端应用程序
 
 ## Build Setup
 
