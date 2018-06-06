@@ -1,15 +1,18 @@
 <template>
-  <div>
-    <h1>123</h1>
-  </div>
+  <section class="container">
+    <div>
+      <div class="header-placeholder" style="height: 81px;"></div>
+      <quick-search />
+    </div>
+  </section>
 </template>
 
 <script>
-  import Header from '~/components/Header.vue'
+  import QuickSearch from '~/components/films/QuickSearch.vue'
 
   export default {
     components: {
-      Header
+      QuickSearch
     }
   }
 </script>

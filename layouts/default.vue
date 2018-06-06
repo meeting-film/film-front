@@ -2,6 +2,7 @@
   <div>
     <Header/>
     <nuxt/>
+    <Footer/>
   </div>
 </template>
 <style>
@@ -141,11 +142,13 @@ input[type='checkbox']{
 
 </style>
 <script>
-  import Header from '~/components/Header.vue'
+  import Header from '~/components/common/Header.vue'
+  import Footer from '~/components/common/Footer.vue'
 
   export default {
     components: {
-      Header
+      Header,
+      Footer
     }
   }
 </script>
