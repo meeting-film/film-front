@@ -48,7 +48,7 @@
         top: {
           num: 1040.57,
           name: '哆啦A梦：大雄的金银岛',
-          img: 'http://p1.meituan.net/movie/6d59148862aa9f480a4770599bf1123f152133.jpg@120w_80h_1e_1c'
+          img: 'http://img.meetingshop.cn/films/index/dx.jpg'
 
         },
         movieList: [{

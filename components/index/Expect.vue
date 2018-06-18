@@ -37,7 +37,7 @@
               <i class="ranking-index" style="color: #fff!important">2</i>
 
               <span class="img-link">
-                <img class="ranking-img default-img" src="">
+                <img class="ranking-img default-img" src="http://img.meetingshop.cn/films/index/aqgy.jpg">
               </span>
               <div class="name-link ranking-movie-name">爱情公寓</div>
 

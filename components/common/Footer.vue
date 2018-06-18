@@ -53,7 +53,7 @@
     padding: 56px 0;
     margin: 0 auto;
     min-width: 1200px;
-    margin-top: 82px;
+    margin-top: 5px;
     /* visibility: hidden; */
   }
 

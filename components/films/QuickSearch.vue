@@ -12,16 +12,16 @@
       <li class="tags-line">
         <div class="tags-title">区域</div>
         <ul class="tags">
-          <li v-for="(type,index) in typeList" :key="type.catId" :class="{active:type.isActive}" @click="isActive(index)">
-            <a :href="type.hrefStr">{{type.tagName}}</a>
+          <li v-for="(area,index) in areaList" :key="area.catId" :class="{active:area.isActive}" @click="isActive(index)">
+            <a :href="area.hrefStr">{{area.tagName}}</a>
           </li>
         </ul>
       </li>
       <li class="tags-line">
         <div class="tags-title">年代</div>
         <ul class="tags">
-          <li v-for="(type,index) in typeList" :key="type.catId" :class="{active:type.isActive}" @click="isActive(index)">
-            <a :href="type.hrefStr">{{type.tagName}}</a>
+          <li v-for="(time,index) in timeList" :key="time.catId" :class="{active:time.isActive}" @click="isActive(index)">
+            <a :href="time.hrefStr">{{time.tagName}}</a>
           </li>
         </ul>
       </li>
@@ -70,6 +70,17 @@
   .tags li a:hover {
     color: #f00;
   }
+
+  .tags li.active{
+    padding: 3px 0 3px 12px;
+    text-align: center;
+    border:1px solid red;
+    border-radius:10px;
+    background-color: #f00;
+  }
+  .tags li.active a{
+    color:#fff;
+  }
 </style>
 <script>
 export default {
@@ -78,7 +89,7 @@ export default {
       typeList:[
         {
           tagName:"全部",
-          hrefStr:"?showType=1&catId=2&sourceId=3",
+          hrefStr:"?showType=1",
           isActive:true
         },{
           tagName:"爱情",
@@ -103,7 +114,7 @@ export default {
         },{
           tagName:"惊悚",
           hrefStr:"?showType=1&catId=2&sourceId=3",
-          isActive:false
+          isActive:true
         },{
           tagName:"科幻",
           hrefStr:"?showType=1&catId=2&sourceId=3",
@@ -183,6 +194,20 @@ export default {
         },{
           tagName:"其他",
           hrefStr:"?showType=1&catId=2&sourceId=3",
+          isActive:false
+        }
+      ],
+      areaList:[
+        {
+          tagName:"全部",
+          hrefStr:"?catId=2",
+          isActive:false
+        }
+      ],
+      timeList:[
+        {
+          tagName:"全部",
+          hrefStr:"?catId=2",
           isActive:false
         }
       ]
