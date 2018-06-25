@@ -29,8 +29,16 @@
   </div>
 </template>
 <style>
+  a{
+    color:#333;
+    text-decoration:none;
+  }
+  ul,li{
+    list-style:none;
+  }
   .tags-panel{
-    margin: 30px auto 0 auto;
+    margin:0 auto;
+    margin-top:50px;
     width: 1120px;
     height: 230px;
     border: 1px solid #ddd;
@@ -59,24 +67,25 @@
   }
 
   .tags li{
-    margin-left: 15px;
-    float: left;
+    float:left;
+    height:20px;
+    line-height:20px;
+    text-align:center;
+    margin-left: 10px;
+    padding: 0 10px 5px 10px;
+    border-radius:10px 10px;
   }
   .tags li a {
-    color: #333;
-    font-size: 14px;
-    text-decoration: none;
+    display:inline-block;
+    width:100%;
+    height:100%;
   }
   .tags li a:hover {
     color: #f00;
   }
 
   .tags li.active{
-    padding: 3px 0 3px 12px;
-    text-align: center;
-    border:1px solid red;
-    border-radius:10px;
-    background-color: #f00;
+    background:red;
   }
   .tags li.active a{
     color:#fff;
@@ -114,7 +123,7 @@ export default {
         },{
           tagName:"惊悚",
           hrefStr:"?showType=1&catId=2&sourceId=3",
-          isActive:true
+          isActive:false
         },{
           tagName:"科幻",
           hrefStr:"?showType=1&catId=2&sourceId=3",
@@ -180,10 +189,6 @@ export default {
           hrefStr:"?showType=1&catId=2&sourceId=3",
           isActive:false
         },{
-          tagName:"全部",
-          hrefStr:"?showType=1&catId=2&sourceId=3",
-          isActive:false
-        },{
           tagName:"短片",
           hrefStr:"?showType=1&catId=2&sourceId=3",
           isActive:false
@@ -202,11 +207,119 @@ export default {
           tagName:"全部",
           hrefStr:"?catId=2",
           isActive:false
+        },{
+          tagName:"大陆",
+          hrefStr:"?catId=2",
+          isActive:true
+        },{
+          tagName:"美国",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"韩国",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"日本",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"中国香港",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"中国台湾",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"泰国",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"印度",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"法国",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"英国",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"俄罗斯",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"意大利",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"西班牙",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"德国",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"波兰",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"澳大利亚",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"伊朗",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"其他",
+          hrefStr:"?catId=2",
+          isActive:false
         }
       ],
       timeList:[
         {
           tagName:"全部",
+          hrefStr:"?catId=2",
+          isActive:true
+        },{
+          tagName:"2018以后",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2018",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2017",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2016",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2015",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2014",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2013",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2012",
+          hrefStr:"?catId=2",
+          isActive:false
+        },{
+          tagName:"2011",
           hrefStr:"?catId=2",
           isActive:false
         }
