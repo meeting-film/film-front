@@ -22,13 +22,8 @@
       </div>
       <div class="user-info">
         <div class="user-avatar">
-          <img src="../../assets/img/avatar.png" alt="">
-          <span class="caret"></span>
-          <ul class="user-menu">
-            <li>
-              <a href="">登录</a>
-            </li>
-          </ul>
+          <nuxt-link active-class="is-active" to="/login" class="link" exact>登陆</nuxt-link>
+          | 注册
         </div>
       </div>
       <form action="" class="search-form">
@@ -141,48 +136,11 @@
   }
 
   .header .user-info .user-avatar {
-    display: block;
-    border: 1px solid transparent;
-    border-top: none;
-    border-bottom: none;
     padding: 0 10px;
-    width: 56px;
+    width: 100px;
     height: 100%;
   }
 
-  .header .user-info .user-avatar img {
-    margin-top: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .header .user-info .user-avatar .caret {
-    position: absolute;
-    top: 39px;
-    right: -10px;
-  }
-
-  .header .user-info .user-avatar:hover .caret {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-
-  .header .user-info .user-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 80px;
-    border: 1px solid #d8d8d8;
-    background-color: #fff;
-    font-size: 14px;
-    color: #333;
-    text-align: right;
-    padding: 15px 26px 5px;
-    text-align: center;
-  }
 
   .header form {
     float: right;

@@ -16,6 +16,10 @@
   </div>
 </template>
 <style>
+  .cinema-list{
+    margin: 40px auto 0 auto;
+    width: 1120px;
+  }
   .cinema-list-header{
     height: 20px;
     line-height: 20px;
