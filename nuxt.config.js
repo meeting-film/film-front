@@ -54,7 +54,18 @@ module.exports = {
         })
       }
     }
+  },
+  plugins:  [
+    '~/plugins/axios',
+    '~/plugins/validate',
+  ],
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api': {
+      target: 'meetingshop.cn',
+      pathRewrite: { '^/api': '' }
+    }
   }
-
-
-}
+};
