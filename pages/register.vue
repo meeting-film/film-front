@@ -43,45 +43,8 @@
   </section>
 </template>
 <script>
-  import { mapState, mapMutations } from 'vuex';
-  //验证用户名
-  const _check = (store, params) => {
-    let _this = this;
-    return new Promise(resolve => {
-      store.dispatch('check', params).then(res => {
-        if (res.data) {
-          if (res.data.status) {
-            if (res.data.status == 1 || res.data.status == 999) {
-              _this.showErrorTip = true;
-              _this.errorMsg = res.data.msg;
-            }else {
-              _this.showErrorTip = false;
-              _this.errorMsg = '';
-            }
-          }
-        }
+  import API from '../server/register/register'
 
-      })
-    }, reject => {
-    })
-  }
-  //注册
-  const _register = (store, params) => {
-    let _this = this;
-    return new Promise(resolve => {
-      store.dispatch('register', params).then(res => {
-        if (res.data.status) {
-          if (res.data.status == 0) {
-            _this.$router.push({path: '/login'});
-          }else if (res.data.status == 1 && res.data.status == 999) {
-            _this.showErrorTip = false;
-            _this.errorMsg = res.msg;
-          }
-        }
-      })
-    }, reject => {
-    })
-  }
   export default {
     head () {
       return {
@@ -107,15 +70,31 @@
     methods: {
       //用户名验证
       checkUsername() {
+        let _this = this;
         let params = {
           username: this.form.username
         };
-        _check(this.$store, params);
+        API.check(params).then(res => {
+          if (res) {
+            let _res = res.data;
+            if (_res.status == 0) {
+              _this.showErrorTip = true;
+              _this.errorMsg = _res.msg;
+            }else {
+              _this.showErrorTip = false;
+              _this.errorMsg = '';
+              if (_res.msg) {
+                alert(_res.msg);
+              }
+            }
+          }
+        })
       },
       //注册提交
       registerFormSubmit () {
         this.$validator.validateAll().then((result) => {
           if (result) {
+            let _this = this;
             let params = {
               username: this.form.username,
               password: this.form.password,
@@ -123,8 +102,18 @@
               email: this.form.email,
               address: this.form.address,
             };
-            _register(this.$store, params);
-            return;
+            API.register(params).then(res => {
+              if (res) {
+                let _res = res.data;
+                if (_res.status == 0) {
+                  _this.$router.push({path: '/login'});
+                }else {
+                  if (_res.msg) {
+                    alert(_res.msg);
+                  }
+                }
+              }
+            })
           }
         });
       },

@@ -3,14 +3,14 @@
     <div class="header-inner">
       <!-- <a href="" class="meeting-logo"></a> -->
       <a href="" class="logo" data-act="icon-click"></a>
-      <div class="city-container">
-        <div class="city-selected">
-          <div class="city-name">
-            北京
-          </div>
-          <span class="caret"></span>
-        </div>
-      </div>
+      <!--<div class="city-container">-->
+        <!--<div class="city-selected">-->
+          <!--<div class="city-name">-->
+            <!--北京-->
+          <!--</div>-->
+          <!--<span class="caret"></span>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="nav">
         <ul class="navbar">
           <nuxt-link active-class="is-active" to="/" class="link nav-item is-tab" exact>首页</nuxt-link>
@@ -23,21 +23,21 @@
       <div class="user-info">
         <div class="user-avatar">
           <nuxt-link active-class="is-active" to="/login" class="link" exact>登陆</nuxt-link>
-          | 注册
+          | <nuxt-link active-class="is-active" to="/register" class="link" exact>注册</nuxt-link>
         </div>
       </div>
       <form action="" class="search-form">
         <input name="kw" class="search" type="search" maxlength="32" placeholder="找影视剧、影人、影院" autocomplete="off">
         <input class="submit" type="submit" value="">
       </form>
-      <div class="app-download">
-        <a href="">
-          <span class="iphone-icon"></span>
-          <span class="apptext">APP下载</span>
-          <span class="caret"></span>
-          <!-- <div class="download-icon"></div> -->
-        </a>
-      </div>
+      <!--<div class="app-download">-->
+        <!--<a href="">-->
+          <!--<span class="iphone-icon"></span>-->
+          <!--<span class="apptext">APP下载</span>-->
+          <!--<span class="caret"></span>-->
+          <!--&lt;!&ndash; <div class="download-icon"></div> &ndash;&gt;-->
+        <!--</a>-->
+      <!--</div>-->
     </div>
   </div>
 </template>
@@ -141,6 +141,10 @@
     height: 100%;
   }
 
+  .header .user-info .user-avatar .link {
+    font-size: 14px;
+    line-height: 6;
+  }
 
   .header form {
     float: right;

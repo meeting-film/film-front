@@ -1,4 +1,4 @@
-export default {
-  counter: 2,
-  isPhone: false
-}
+const state = {
+  TOKEN: '' //login token
+};
+export default state

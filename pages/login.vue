@@ -49,33 +49,8 @@
   </section>
 </template>
 <script>
-  import { mapState, mapMutations } from 'vuex'
-  //登录
-  const _auth = (store, params) => {
-    let _this = this;
-    return new Promise(resolve => {
-      store.dispatch('auth', params).then(res => {
-        if (!res.data) return;
-        if (res.data) {
-          if (res.data.status) {
-            if (res.data.status == 0) {
-              _this.$router.push({path: '/'});
-              if (res.data.token && res.data.token != '') {
-                sessionStorage.setItem('token', res.data.token);
-              }
-            }else if (res.data.status == 1 || res.data.status == 999) {
-              _this.showErrorTip = true;
-              _this.errorMsg = res.data.msg;
-            } else  {
-              _this.showErrorTip = false;
-              _this.errorMsg = '';
-            }
-          }
-        }
-      })
-    }, reject => {
-    })
-  }
+  import API from '../server/login/login'
+
   export default {
     head () {
       return {
@@ -99,12 +74,26 @@
       validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
           if (result) {
+            let _this = this;
             let params = {
               username: this.form.username,
               password: this.form.password,
-            }
-            _auth(this.$store, params);
-            return;
+            };
+            API.auth(params).then(res => {
+              if (res) {
+                let _res = res.data;
+                if (_res.status == 0) {
+                  _this.$router.push({path: '/'});
+                  if (_res.token && _res.token != '') {
+                    sessionStorage.setItem('token', _res.token);
+                  }
+                }else{
+                  if (_res.msg ){
+                    alert(_res.msg)
+                  }
+                }
+              }
+            })
           }
         });
       },

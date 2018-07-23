@@ -62,10 +62,16 @@ module.exports = {
   axios: {
     proxy: true
   },
-  proxy: {
+  env: {
+    baseUrl: 'https://www.easy-mock.com/mock/5b52fdd00a35bc5c5ece0613/film' || 'http://localhost:3000'
+  },
+  proxyTable: {
     '/api': {
-      target: 'meetingshop.cn',
-      pathRewrite: { '^/api': '' }
+      target: '',
+      changeOrigin: true,
+      pathRewrite: {
+        '/api': '/'
+      }
     }
   }
 };

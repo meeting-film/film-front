@@ -1,7 +1,6 @@
-export function INCREMENT (state) {
-  state.counter++
-}
-
-export function PCORPHONE (state, bool) {
-  state.isPhone = bool
-}
+const mutations = {
+  SET_TOKEN(state, TOKEN) {
+    console.log(state.TOKEN)
+    state.TOKEN = TOKEN;
+  }
+};

@@ -29,87 +29,65 @@
                 </div>
                 <!-- 更换头像 end -->
                 <!-- 表单信息 start -->
-                <form id="J-userexinfo-form" class="form-profile">
+                <form id="form-profile" ref="form-profile" class="form-profile" @submit.prevent="updateUserInfo">
                     <div class="form-group" data-before="昵称：">
-                        <input type="text" name="nickName" class="form-control" placeholder="2-15个字，支持中英文、数字" value="xhdong">
+                        <input type="text" name="nickName" class="form-control" v-model="form.nickname" placeholder="2-15个字，支持中英文、数字">
                     </div>
                     <div class="form-group" data-before="性别：">
                         <div class="radio-group">
                             <div class="custom-radio">
-                                <input type="radio" name="gender" id="userexinfo-form-gender-1" value="1" class="ui-radio radio-first">
-                                <label for="userexinfo-form-gender-1">男</label>
+                                <input type="radio" name="sex" id="sex-male" value="0" v-model="form.sex" class="ui-radio radio-first">
+                                <label for="sex-male">男</label>
                             </div>
                             <div class="custom-radio">
-                                <input type="radio" name="gender" id="userexinfo-form-gender-2" value="2" checked="" class="ui-radio">
-                                <label for="userexinfo-form-gender-2">女</label>
+                                <input type="radio" name="sex" id="sex-famale"  value="1" v-model="form.sex" checked="" class="ui-radio">
+                                <label for="sex-famale">女</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group date-picker" data-before="生日：">
                         <div class="select-group">
-                            <select name="year" class="form-control">
-                                <option>--</option>
-                                <option value="2018">2018</option>
-                            </select>
-                            <span class="txt">年</span>
-                            <select name="month" class="form-control">
-                                <option>--</option>
-                                <option value="1">1</option>
-                            </select>
-                            <span class="txt">月</span>
-                            <select name="day" class="form-control">
-                                <option>--</option>
-                                <option value="1">1</option>
-                            </select>
-                            <span class="txt">日</span>
+                          <span>{{form.birthday}}</span>
+                            <!--<select name="year" class="form-control">-->
+                                <!--<option>&#45;&#45;</option>-->
+                                <!--<option value="2018">2018</option>-->
+                            <!--</select>-->
+                            <!--<span class="txt">年</span>-->
+                            <!--<select name="month" class="form-control">-->
+                                <!--<option>&#45;&#45;</option>-->
+                                <!--<option value="1">1</option>-->
+                            <!--</select>-->
+                            <!--<span class="txt">月</span>-->
+                            <!--<select name="day" class="form-control">-->
+                                <!--<option>&#45;&#45;</option>-->
+                                <!--<option value="1">1</option>-->
+                            <!--</select>-->
+                            <!--<span class="txt">日</span>-->
                         </div>
                     </div>
 
                     <div class="form-group" data-before="生活状态：">
                         <div class="radio-group">
                             <div class="custom-radio">
-                                <input type="radio" name="marriage" id="userexinfo-form-merriage-1" value="单身" class="ui-radio radio-first">
-                                <label for="userexinfo-form-merriage-1">单身</label>
+                                <input type="radio" name="marriage" id="lifeState-0" value="0" v-model="form.lifeState" class="ui-radio radio-first">
+                                <label for="lifeState-0">单身</label>
                             </div>
                             <div class="custom-radio">
-                                <input type="radio" name="marriage" id="userexinfo-form-merriage-2" value="热恋中" class="ui-radio">
-                                <label for="userexinfo-form-merriage-2">热恋中</label>
+                                <input type="radio" name="marriage" id="lifeState-1" value="1" v-model="form.lifeState" class="ui-radio">
+                                <label for="lifeState-1">热恋中</label>
                             </div>
                             <div class="custom-radio">
-                                <input type="radio" name="marriage" id="userexinfo-form-merriage-3" value="已婚" class="ui-radio">
-                                <label for="userexinfo-form-merriage-3">已婚</label>
+                                <input type="radio" name="marriage" id="lifeState-2" value="2" v-model="form.lifeState" class="ui-radio">
+                                <label for="lifeState-2">已婚</label>
                             </div>
                             <div class="custom-radio">
-                                <input type="radio" name="marriage" id="userexinfo-form-merriage-4" value="为人父母" class="ui-radio">
-                                <label for="userexinfo-form-merriage-4">为人父母</label>
+                                <input type="radio" name="marriage" id="lifeState-3" value="3" v-model="form.lifeState" class="ui-radio">
+                                <label for="lifeState-3">为人父母</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group" data-before="从事行业：">
-                        <div class="select-group">
-                            <select id="job" name="job" class="form-control">
-                                <option value="信息技术">信息技术</option>
-                            </select>
-                            <select id="subjob" name="occupation" class="form-control"><option value="其他">其他</option></select>
-                        </div>
-                    </div>
-                    <div class="form-group" data-before="兴趣：">
-                        <div class="checkbox-group">
-                            <div class="custom-checkbox">
-                                <input type="checkbox" name="interest[]" id="userexinfo-form-interest-1" value="美食" class="ui-checkbox">
-                                <label for="userexinfo-form-interest-1">美食</label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" name="interest[]" id="userexinfo-form-interest-2" value="动漫" class="ui-checkbox">
-                                <label for="userexinfo-form-interest-2">动漫</label>
-                            </div>
-                        </div>
-                        <div class="form-tips">
-                            <p class="txt">选择你的兴趣使你获得个性化的电影推荐哦</p>
                         </div>
                     </div>
                     <div class="form-group" data-before="个性签名：">
-                        <input type="text" name="signature" class="form-control" placeholder="20个字以内" value="">
+                        <input type="text" name="signature" class="form-control" placeholder="20个字以内"  v-model="form.personalityLable">
                     </div>
                     <div class="btn-group">
                         <input type="submit" class="btn-save" value="保存">
@@ -121,6 +99,100 @@
         </div>
     </section>
 </template>
+
+<script>
+  import API from '../server/profile/profile'
+  export default {
+    head () {
+      return {
+        title: '个人信息',
+        meta: [
+          { hid: 'profile', name: 'profile', content: 'profile' }
+        ]
+      }
+    },
+    data () {
+      return {
+        years: [],
+        months: [],
+        days: [],
+        form: {
+          id:'',
+          username: '',//用户名称
+          nickname:'',//昵称
+          email: "aaa@163.com",//邮箱
+          phone: '',
+          sex: 0,//性别--[0-男，1-女]
+          birthday: '',//生日
+          lifeState: 0,//生活状态--[0-单身，1-热恋中，2-已婚，3-为人父母]
+          personalityLable:'',//从事行业
+          address:'',//地址
+          headAddress:'',
+          createTime:'',//创建时间
+          updateTime:''//更新时间
+        }
+      }
+    },
+    created () {
+
+    },
+    mounted () {
+      //初始化个人信息
+      this.getUserInfo();
+    },
+    methods: {
+      getUserInfo () {
+        let _this = this, token, headers;
+        //在SSR中，created生命周期在服务端执行，node环境中没有sessionStorage所以会报错，将需要使用sessionStorage的代码放到浏览器使用的生命周期(mounted)中。
+        token = sessionStorage.getItem('token');
+
+        if (token) {
+          headers = {
+            'Authorization':token
+          }
+        }
+
+        API.getUserInfo({
+          headers: headers
+        }).then(res => {
+          if (res) {
+            let _res = res.data;
+            if (_res.status == 0) {
+              _this.form.id = _res.data.id;
+              _this.form.username = _res.data.username;
+              _this.form.nickname = _res.data.nickname;
+              _this.form.email = _res.data.email;
+              _this.form.phone = _res.data.phone;
+              _this.form.sex = _res.data.sex;
+              _this.form.birthday = _res.data.birthday;
+              _this.form.lifeState = _res.data.lifeState;
+              _this.form.personalityLable = _res.data.personalityLable;
+              _this.form.address = _res.data.address;
+              _this.form.headAddress = _res.data.headAddress;
+              _this.form.createTime = _res.data.createTime;
+              _this.form.updateTime = _res.data.updateTime;
+            }else {
+              if (_res.msg) {
+                alert(_res.msg)
+              }
+            }
+          }
+        })
+      },
+      updateUserInfo () {
+        let params = this.form;
+        API.updateUserInfo(params).then(res => {
+          if (res) {
+            let _res = res.data;
+            if (_res.msg) {
+              alert(_res.msg);
+            }
+          }
+        })
+      }
+    }
+  }
+</script>
 <style lang="scss" scoped>
     .profile-container {
         width: 1200px;
