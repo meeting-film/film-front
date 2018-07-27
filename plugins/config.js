@@ -1,13 +1,14 @@
+//设置axios请求头配置
 import http from 'http'
 import https from 'https'
-
 export default {
   // 自定义的请求头
   headers: {
     post: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     },
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': ''
   },
   // 超时设置
   timeout: 10000,

@@ -43,7 +43,7 @@
   </section>
 </template>
 <script>
-  import API from '../server/register/register'
+  import API from '../api/register/register'
 
   export default {
     head () {

@@ -1,4 +1,4 @@
-import API from '~/server'
+import API from '../../plugins/axios'
 export default {
   auth: params => {
     return API.post(process.env.baseUrl + '/auth', params);

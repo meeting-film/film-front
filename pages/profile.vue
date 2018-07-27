@@ -101,7 +101,7 @@
 </template>
 
 <script>
-  import API from '../server/profile/profile'
+  import API from '../api/profile/profile'
   export default {
     head () {
       return {

@@ -15,7 +15,7 @@
             <span class="txt">{{errorMsg}}</span>
           </div>
           <!--普通方式登录 start-->
-          <form ref="form-normal" class="form form-common" @submit.prevent="validateBeforeSubmit">
+          <form ref="form-normal" class="form form-common" @submit.prevent="loginSubmit">
             <p class="login-type">
               <a class="link" href="javascript:;">普通方式登录<i class="icon icon-user"></i></a>
               <span class="txt">账号登录</span>
@@ -30,17 +30,16 @@
               <input class="form-control" name="password" v-model="form.password" v-validate="'required|password'" :class="{'form-control': true, 'is-danger': errors.has('password') }" type="password" placeholder="密码">
               <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
             </div>
-            <div class="form-field form-check">
-              <a href="javascript:;" class="forget-password">忘记密码？</a>
-              <input type="checkbox" value="1" name="auto_login" id="autologin" class="form-check ">
-              <label class="normal" for="autologin">7天内自动登录</label>
-            </div>
+            <!--<div class="form-field form-check">-->
+              <!--<a href="javascript:;" class="forget-password">忘记密码？</a>-->
+              <!--<input type="checkbox" value="1" name="auto_login" id="autologin" class="form-check ">-->
+              <!--<label class="normal" for="autologin">7天内自动登录</label>-->
+            <!--</div>-->
             <div class="btn-group">
               <button type="submit" class="btn-login" >登录</button>
             </div>
             <p class="signup-guide">还没有账号？<nuxt-link to="/register" class="link">免费注册</nuxt-link></p>
           </form>
-
           <!--普通方式登录 end-->
           <!--登录表单 end-->
         </div>
@@ -49,8 +48,6 @@
   </section>
 </template>
 <script>
-  import API from '../server/login/login'
-
   export default {
     head () {
       return {
@@ -71,34 +68,24 @@
       }
     },
     methods: {
-      validateBeforeSubmit() {
+      loginSubmit() {
+        let params = {
+          username: this.form.username,
+          password: this.form.password
+        }
         this.$validator.validateAll().then((result) => {
           if (result) {
-            let _this = this;
-            let params = {
-              username: this.form.username,
-              password: this.form.password,
-            };
-            API.auth(params).then(res => {
-              if (res) {
-                let _res = res.data;
-                if (_res.status == 0) {
-                  _this.$router.push({path: '/'});
-                  if (_res.token && _res.token != '') {
-                    sessionStorage.setItem('token', _res.token);
-                  }
-                }else{
-                  if (_res.msg ){
-                    alert(_res.msg)
-                  }
-                }
-              }
-            })
+            try {
+              this.$store.dispatch('login', params);
+              this.$router.push('/');
+              this.errorMsg = null;
+            } catch (e) {
+              this.errorMsg = e.message;
+            }
           }
         });
       },
     },
-
   }
 </script>
 <style lang="scss" scoped>

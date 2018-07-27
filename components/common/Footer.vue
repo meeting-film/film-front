@@ -5,17 +5,17 @@
     </p>
     <p class="friendly-links">
       友情链接 :
-      <a href="" data-query="utm_source=wwwmaoyan" target="_blank" class="meituan">美团网</a>
+      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>美团网</nuxt-link>
       <span style="margin:  0 10px;">|</span>
-      <a href="" data-query="utm_source=wwwmaoyan" target="_blank" class="meituan">美团下载</a>
+      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>美团下载</nuxt-link>
     </p>
     <p>
       ©2016 猫眼电影 maoyan.com
-      <a href="" target="_blank">京ICP证160733号</a>
-      <a href="" target="_blank">京ICP备16022489号-1</a>
+      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>京ICP证160733号</nuxt-link>
+      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>京ICP备16022489号-1</nuxt-link>
       京公网安备 11010502030881号
-      <a href="" target="_blank">网络文化经营许可证</a>
-      <a href="" target="_blank">电子公告服务规则</a>
+      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>网络文化经营许可证</nuxt-link>
+      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>电子公告服务规则</nuxt-link>
     </p>
     <p>北京猫眼文化传媒有限公司</p>
   </div>
@@ -24,37 +24,27 @@
 
 
 </script>
-<style scoped>
-  .meituan {
-    color: #ef4238 !important;
-  }
-
-  .footer p,
-  .footer p a {
-    color: #666;
-  }
-
-  .footer p {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .footer p a {
-    cursor: pointer;
-    text-decoration: none;
-
-  }
-
-  .footer {
+<style lang="scss" scoped>
+  .footer  {
     background-color: #262426;
     padding: 56px 0;
     margin: 0 auto;
     min-width: 1200px;
     margin-top: 5px;
-    /* visibility: hidden; */
+    p {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-size: 14px;
+      line-height: 20px;
+      color: #666;
+      a {
+        color: #666;
+        &.meituan {
+          color: #ef4238;
+        }
+      }
+    }
   }
 
 </style>

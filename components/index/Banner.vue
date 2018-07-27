@@ -3,14 +3,10 @@
     <div class="slider slider-banner">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <a href="" class="bk1" style="display:block;height: 100%;width: 100%;"></a>
-          </div>
-          <div class="swiper-slide">
-            <a href="" class="bk2" style="display:block;height: 100%;width: 100%;"></a>
-          </div>
-          <div class="swiper-slide">
-            <a href="" class="bk3" style="display:block;height: 100%;width: 100%;"></a>
+          <div class="swiper-slide" v-for="(item, index) in banners" :key="index">
+            <nuxt-link active-class="is-active" :to=item.bannerUrl class="bk1" style="display:block;height: 100%;width: 100%;" exact>
+              <img :src=item.bannerAddress alt="">
+            </nuxt-link>
           </div>
         </div>
         <div class="swiper-button-prev"></div>
@@ -27,8 +23,10 @@
   export default {
     name: 'Banner',
     props: {
-
-
+      banners: {
+        type: Array,
+        default: () => []
+      }
     },
     data() {
       return {
@@ -53,47 +51,30 @@
   }
 
 </script>
-<style lang="css">
-  /* .wrapper .swiper-pagination-bullet-active {
-    background: green;
-  } */
-
-  .bk1 {
-    background: url('../../assets/img/swiper/bk1.jpg') no-repeat;
-    /* background-size: 100% 100%; */
-    background-position: center;
-  }
-  .bk2 {
-    background: url('../../assets/img/swiper/bk2.jpg') no-repeat;
-    /* background-size: 100% 100%; */
-    background-position: center;
-  }
-
-  .bk3 {
-    background: url('../../assets/img/swiper/bk3.jpg') no-repeat;
-    /* background-size: 100% 100%; */
-    background-position: center;
-  }
-</style>
-<style scoped>
+<style lang="scss" scoped>
   .banner {
     width: 100%;
     min-width: 1200px;
+    .slider-banner {
+      position: relative;
+      z-index: 1;
+      display: block;
+      height: 440px;
+      width: 100%;
+      margin-bottom: 88px;
+      .swiper-container {
+        height: 100%;
+        max-width: 1600px;
+        .bk1 {
+          background: url('../../assets/img/swiper/bk1.jpg') center no-repeat;
+        }
+        .bk2 {
+          background: url('../../assets/img/swiper/bk2.jpg') center no-repeat;
+        }
+        .bk3 {
+          background: url('../../assets/img/swiper/bk3.jpg') center no-repeat;
+        }
+      }
+    }
   }
-
-  .slider-banner.slider {
-    position: relative;
-    z-index: 1;
-    display: block;
-    height: 440px;
-    width: 100%;
-    margin-bottom: 88px !important;
-  }
-
-  .swiper-container {
-    height: 100%;
-    max-width: 1600px;
-  }
-
-
 </style>

@@ -1,0 +1,16 @@
+[
+  {
+    "filmId": "001",
+    "filmType": 1,
+    "imgAddress": "img/film/001.jpg",
+    "filmName": "我不是药神",
+    "filmScore": "8.3"
+  },
+  {
+    "filmId": "002",
+    "filmType": 4,
+    "imgAddress": "img/film/002.jpg",
+    "filmName": "摩天营救",
+    "filmScore": "9.0"
+  }
+]

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content">
       <div class="aside">
-        <Today></Today>
+        <Today :boxRanking="homeData.boxRanking"></Today>
         <div class="box-total-wrapper clearfix">
           <h3>今日大盘</h3>
           <div>
@@ -21,20 +21,17 @@
           </div>
         </div>
         <div class="most-expect-wrapper">
-          <Expect>
-          </Expect>
+          <Expect :expectRanking="homeData.expectRanking"></Expect>
         </div>
         <div class="top100-wrapper">
-          <Top100></Top100>
+          <Top100 :top100="homeData.top100"></Top100>
         </div>
       </div>
       <div class="main">
         <div class="movie-grid">
-          <div class="panel">
-            <Hot></Hot>
-            <Recent></Recent>
-            <Hot-movie></Hot-movie>
-          </div>
+          <Hot :hotFilms="homeData.hotFilms"></Hot>
+          <Recent :soonFilms="homeData.soonFilms"></Recent>
+          <Hot-movie :boxRanking="homeData.boxRanking"></Hot-movie>
         </div>
       </div>
     </div>
@@ -50,6 +47,12 @@
 
   export default {
     name: 'Container',
+    props: {
+      homeData: {
+        type: Object,
+        default: () => {}
+      }
+    },
     components: {
       Today,
       Expect,
@@ -61,168 +64,77 @@
   }
 
 </script>
-<style scoped>
+<style lang="scss" scoped>
   .container {
     width: 1200px;
     margin: 0 auto;
+    .content {
+      background-color: #fff;
+      &:after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+      .main {
+        padding: 0 18px;
+        margin-right: 363px;
+      }
+      .aside {
+        float: right;
+        width: 360px;
+        .most-expect-wrapper {
+          margin-top: 80px;
+        }
+        .box-total-wrapper {
+          margin-top: 29px;
+          padding-bottom: 11px;
+          background-color: #fdfdfd;
+          border: 1px solid #efefef;
+          padding-right: 15px;
+          box-sizing: content-box;
+          &.pull-right {
+            float: right !important;
+          }
+          > div {
+            font-size: 14px;
+            margin-left: 54px;
+            color: #ef4238;
+            padding-top: 20px;
+            box-sizing: content-box;
+            a.more[href] {
+              color: #ef4238;
+              margin-top: 13px;
+              float: right;
+              line-height: 16px;
+            }
+            .meta-info {
+              color: #999;
+              margin-top: 6px;
+            }
+            .num {
+              font-size: 30px;
+              font-weight: 700;
+              margin-right: 2px;
+            }
+          }
+          h3 {
+            box-sizing: content-box;
+            float: left;
+            width: 20px;
+            height: 83px;
+            padding: 10px;
+            color: #fff;
+            background-color: #ef4238;
+            text-align: center;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 21px;
+          }
+        }
+      }
+    }
   }
 
-  .aside {
-    float: right;
-    width: 360px;
-  }
 
-  .main {
-    padding: 0 18px;
-    margin-right: 363px;
-  }
-
-  .box-total-wrapper {
-    margin-top: 29px;
-    padding-bottom: 11px;
-    background-color: #fdfdfd;
-    border: 1px solid #efefef;
-    padding-right: 15px;
-    box-sizing: content-box;
-  }
-
-  .clearfix:after,
-  .clearfix:before {
-    content: " ";
-    display: table;
-  }
-
-  .box-total-wrapper>h3 {
-    box-sizing: content-box;
-    float: left;
-    width: 20px;
-    height: 83px;
-    padding: 10px;
-    color: #fff;
-    background-color: #ef4238;
-    text-align: center;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 21px;
-  }
-
-  dd,
-  dl,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  li,
-  p,
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  user agent stylesheet h3 {
-    display: block;
-    font-size: 1.17em;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    font-weight: bold;
-  }
-
-  .box-total-wrapper>div {
-    font-size: 14px;
-    margin-left: 54px;
-    color: #ef4238;
-    padding-top: 20px;
-    box-sizing: content-box;
-  }
-
-  .box-total-wrapper>div .num {
-    font-size: 30px;
-    font-weight: 700;
-    margin-right: 2px;
-  }
-
-  .box-total-wrapper>div .num {
-    font-size: 30px;
-    font-weight: 700;
-    margin-right: 2px;
-  }
-
-  .box-total-wrapper>div {
-    font-size: 14px;
-    margin-left: 54px;
-    color: #ef4238;
-    padding-top: 20px;
-  }
-
-  .box-total-wrapper>div a.more[href] {
-    color: #ef4238;
-    margin-top: 13px;
-    float: right;
-    line-height: 16px;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  .panel-arrow-red {
-    background: url('../../assets/img/arrow-red.png') top no-repeat;
-  }
-
-  .panel-arrow {
-    display: inline-block;
-    width: 8px;
-    height: 14px;
-    vertical-align: top;
-  }
-
-  .box-total-wrapper>div a.more[href] {
-    color: #ef4238;
-    margin-top: 13px;
-    float: right;
-    line-height: 16px;
-  }
-
-  .box-total-wrapp.pull-right {
-    float: right !important;
-  }
-
-  .box-total-wrapper>div .meta-info {
-    color: #999;
-    margin-top: 6px;
-  }
-
-  .box-total-wrapper>div {
-    font-size: 14px;
-    margin-left: 54px;
-    color: #ef4238;
-    padding-top: 20px;
-  }
-
-  .aside .most-expect-wrapper {
-    margin-top: 80px;
-  }
-
-  .aside .top100-wrapper {
-    margin-top: 100px;
-  }
-
-  .movie-grid {
-    margin-top: -62px;
-  }
-
-  .movie-grid .panel {
-    /* margin: 62px 0 0; */
-    width: 750px;
-  }
-
-  .content {
-    background-color: #fff;
-  }
 
 </style>
