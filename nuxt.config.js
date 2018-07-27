@@ -1,9 +1,5 @@
 module.exports = {
-
-
   // plugins: ['~plugins/vue-awesome-swiper'],
-
-
   /*
    ** Headers of the page
    */
@@ -28,6 +24,9 @@ module.exports = {
       href: '/favicon.ico'
     }]
   },
+  css: [
+    '~/assets/css/global.css'
+  ],
   /*
    ** Customize the progress bar color
    */
@@ -56,7 +55,8 @@ module.exports = {
     }
   },
   plugins:  [
-    '~/plugins/axios',
+    '~plugins/config',
+    '~plugins/axios',
     '~/plugins/validate',
   ],
   axios: {
