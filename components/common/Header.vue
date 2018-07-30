@@ -21,9 +21,14 @@
         </ul>
       </div>
       <div class="user-info">
-        <div class="user-avatar">
+        <!--如果getters有值显示退出-->
+        <!--否则显示登录-->
+        <div class="user-avatar" v-if="isGuest">
           <nuxt-link active-class="is-active" to="/login" class="link" exact>登陆</nuxt-link>
           | <nuxt-link active-class="is-active" to="/register" class="link" exact>注册</nuxt-link>
+        </div>
+        <div class="user-avatar" v-else>
+          <a href="javascript:;" @click="logout" class="link" exact>退出</a>
         </div>
       </div>
       <form @submit.prevent="getFilms" class="search-form">
@@ -44,8 +49,9 @@
 </template>
 <script>
   export default {
-    data () {
-      return {
+    computed: {
+      isGuest () {
+        return this.$store.getters.TOKEN === null || this.$store.getters.TOKEN === undefined
       }
     },
     methods: {
@@ -60,6 +66,10 @@
         };
         this.$store.dispatch('getFilms', params);
         this.$router.push('/query');
+      },
+      logout () {
+        this.$store.dispatch('logout');
+        this.$router.replace('/login');
       }
     }
   }

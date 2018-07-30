@@ -12,7 +12,6 @@
   import Banner from '~/components/index/Banner.vue'
   import API from '../api/home/home'
 
-
   export default {
     head () {
       return {
@@ -45,7 +44,7 @@
       .catch((e) => {
         // error({ statusCode: 404, message: 'Post not found' })
       })
-    },
+    }
   }
 
 </script>

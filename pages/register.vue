@@ -4,7 +4,7 @@
     <div class="register-container">
       <div class="rc-form-wrapper">
         <!--注册表单 start-->
-        <form @submit.prevent="registerFormSubmit">
+        <form @submit.prevent="registerFormSubmit" autocomplete="off">
           <div class="form-field form-field--username" data-before="用户名：">
             <i class="icon icon-user"></i>
             <input name="username" v-model="form.username" v-validate="'required|username'" :class="{'form-control': true, 'is-danger': errors.has('username') }" @change="checkUsername" type="text" placeholder="用户名">

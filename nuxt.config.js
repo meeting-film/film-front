@@ -57,7 +57,7 @@ module.exports = {
   plugins:  [
     '~plugins/config',
     '~plugins/axios',
-    '~/plugins/validate',
+    '~plugins/validate',
   ],
   axios: {
     proxy: true

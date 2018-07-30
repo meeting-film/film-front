@@ -7,8 +7,7 @@ export default {
     post: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     },
-    'X-Requested-With': 'XMLHttpRequest',
-    'Authorization': ''
+    'X-Requested-With': 'XMLHttpRequest'
   },
   // 超时设置
   timeout: 10000,

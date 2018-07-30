@@ -15,7 +15,7 @@
             <span class="txt">{{errorMsg}}</span>
           </div>
           <!--普通方式登录 start-->
-          <form ref="form-normal" class="form form-common" @submit.prevent="loginSubmit">
+          <form ref="form-normal" class="form form-common" @submit.prevent="loginSubmit" autocomplete="off">
             <p class="login-type">
               <a class="link" href="javascript:;">普通方式登录<i class="icon icon-user"></i></a>
               <span class="txt">账号登录</span>

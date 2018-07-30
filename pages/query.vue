@@ -87,7 +87,7 @@
           "catId": "",
           "sourceId": "",
           "yearId": "",
-          "offset": 0,
+          "offset": 0
         };
         this.$store.dispatch('getFilms', params);
         this.$router.push('/query');

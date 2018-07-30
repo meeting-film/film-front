@@ -72,7 +72,6 @@
         if (res && res.data) {
           let _res = res.data;
           if (_res.status == 0) {
-            console.log(_res.data)
             return { filmItem: _res.data }
           }
         }

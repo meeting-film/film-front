@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="home-container">
     <div class="content">
       <div class="aside">
         <Today :boxRanking="homeData.boxRanking"></Today>
@@ -65,11 +65,11 @@
 
 </script>
 <style lang="scss" scoped>
-  .container {
-    width: 1200px;
-    margin: 0 auto;
+  .home-container {
+    background-color: #fff;
     .content {
-      background-color: #fff;
+      width: 1200px;
+      margin: 0 auto;
       &:after {
         content: '';
         display: table;

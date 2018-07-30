@@ -1,16 +1,11 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import qs from 'qs'
-import config from './config'
-import store from '../store/index'
-if (process.server) {
-  config.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3010}`
-}
-const service = axios.create(config);
+const service = axios.create();
 // POST 传参序列化
 service.interceptors.request.use(
   config => {
-    let token = store().state.TOKEN;
-    config.headers.Authorization = 'ssss'
+    let token = Cookies.get('token');
     if (token) {
       config.headers.Authorization = token
     }
@@ -33,24 +28,22 @@ service.interceptors.response.use(
   }
 )
 
-// export default service;
-
 export default {
-  post (url, data) {
+  post(url, data) {
     return service({
       method: 'post',
       url,
       params: data
     })
   },
-  get (url, data) {
+  get(url, data) {
     return service({
       method: 'get',
       url,
       params: data
     })
   },
-  delete (url, data) {
+  delete(url, data) {
     return service({
       methods: 'delete',
       url,
@@ -58,4 +51,3 @@ export default {
     })
   }
 }
-

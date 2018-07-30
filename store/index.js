@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import config from '../plugins/config'
+import Cookies from 'js-cookie'
 Vue.use(Vuex)
+
 
 const store = () => new Vuex.Store({
   state: {
     TOKEN: '', //存储登录token,用来写入到header头的Authorization中
     filmList: []
+  },
+  getters: {
+    TOKEN (state) {
+      return state.TOKEN
+    },
   },
   mutations: {
     SET_TOKEN: (state, token) => {
@@ -14,7 +20,7 @@ const store = () => new Vuex.Store({
     },
     GET_FILMSLIST: (state, data) => {
       state.filmList = data;
-    },
+    }
   },
   actions: {
     nuxtServerInit({commit}, {req}) {
@@ -42,16 +48,18 @@ const store = () => new Vuex.Store({
         })
     },
     login: ({commit}, {username, password}) => {
-      fetch(process.env.baseUrl + '/auth', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username,
-          password
-        })
-      }).then((res) => {
+      fetch(process.env.baseUrl + '/auth',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username,
+            password
+          })
+        }
+        ).then((res) => {
           if (res.status === 401) {
             throw new Error('Bad credentials')
           } else {
@@ -60,9 +68,11 @@ const store = () => new Vuex.Store({
         })
         .then((res) => {
           if (res && res.data) {
-            if (res.data.status == 0) {
-              if (res.data.token) {
-                commit('SET_TOKEN', res.data.token);
+            let _res = res.data;
+            if (_res.status == 0) {
+              if (_res.data.token) {
+                commit('SET_TOKEN', _res.data.token);
+                Cookies.set('token', _res.data.token);
               }
             }
           }
@@ -70,12 +80,27 @@ const store = () => new Vuex.Store({
     },
     logout({commit}) {
       return fetch(process.env.baseUrl + '/meetingfilm/user/logout', {
-        // Send the client cookies to the server
         credentials: 'same-origin',
-        method: 'POST'
+        method: 'GET'
       })
-        .then(() => {
-          commit('SET_TOKEN', null)
+        .then((res) => {
+          if (res.status === 401) {
+            throw new Error('Bad credentials')
+          } else {
+            return res.json()
+          }
+        }).then((res) => {
+          if (res) {
+            let _res = res.data;
+            if(_res && _res.status == 0) {
+              commit('SET_TOKEN', null);
+              Cookies.remove('token');
+            }else {
+              if (_res.data.msg) {
+                alert(_res.data.msg)
+              }
+            }
+          }
         })
     }
   }

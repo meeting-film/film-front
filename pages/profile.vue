@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="form-group" data-before="个性签名：">
-                        <input type="text" name="signature" class="form-control" placeholder="20个字以内"  v-model="form.personalityLable">
+                        <input type="text" name="signature" class="form-control" placeholder="20个字以内"  v-model="form.biography">
                     </div>
                     <div class="btn-group">
                         <input type="submit" class="btn-save" value="保存">
@@ -125,7 +125,7 @@
           sex: 0,//性别--[0-男，1-女]
           birthday: '',//生日
           lifeState: 0,//生活状态--[0-单身，1-热恋中，2-已婚，3-为人父母]
-          personalityLable:'',//从事行业
+          biography:'',//从事行业
           address:'',//地址
           headAddress:'',
           createTime:'',//创建时间
@@ -142,19 +142,8 @@
     },
     methods: {
       getUserInfo () {
-        let _this = this, token, headers;
-        //在SSR中，created生命周期在服务端执行，node环境中没有sessionStorage所以会报错，将需要使用sessionStorage的代码放到浏览器使用的生命周期(mounted)中。
-        token = sessionStorage.getItem('token');
-
-        if (token) {
-          headers = {
-            'Authorization':token
-          }
-        }
-
-        API.getUserInfo({
-          headers: headers
-        }).then(res => {
+        let _this = this;
+        API.getUserInfo().then(res => {
           if (res) {
             let _res = res.data;
             if (_res.status == 0) {
@@ -166,7 +155,7 @@
               _this.form.sex = _res.data.sex;
               _this.form.birthday = _res.data.birthday;
               _this.form.lifeState = _res.data.lifeState;
-              _this.form.personalityLable = _res.data.personalityLable;
+              _this.form.biography = _res.data.biography;
               _this.form.address = _res.data.address;
               _this.form.headAddress = _res.data.headAddress;
               _this.form.createTime = _res.data.createTime;
@@ -351,9 +340,10 @@
                     }
                 }
                 .form-control {
-                    height: 30px;
-                    line-height: 30px;
-                    padding:0 5px;
+                  width: 300px;
+                  height: 30px;
+                  line-height: 30px;
+                  padding:0 5px;
                 }
             }
         }
