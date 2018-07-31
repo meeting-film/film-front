@@ -145,36 +145,38 @@
         let _this = this;
         API.getUserInfo().then(res => {
           if (res) {
-            let _res = res.data;
-            if (_res.status == 0) {
-              _this.form.id = _res.data.id;
-              _this.form.username = _res.data.username;
-              _this.form.nickname = _res.data.nickname;
-              _this.form.email = _res.data.email;
-              _this.form.phone = _res.data.phone;
-              _this.form.sex = _res.data.sex;
-              _this.form.birthday = _res.data.birthday;
-              _this.form.lifeState = _res.data.lifeState;
-              _this.form.biography = _res.data.biography;
-              _this.form.address = _res.data.address;
-              _this.form.headAddress = _res.data.headAddress;
-              _this.form.createTime = _res.data.createTime;
-              _this.form.updateTime = _res.data.updateTime;
+            if (res.status == 0) {
+              if (res.data) {
+                _this.form.id = res.data.id;
+                _this.form.username = res.data.username;
+                _this.form.nickname = res.data.nickname;
+                _this.form.email = res.data.email;
+                _this.form.phone = res.data.phone;
+                _this.form.sex = res.data.sex;
+                _this.form.birthday = res.data.birthday;
+                _this.form.lifeState = res.data.lifeState;
+                _this.form.biography = res.data.biography;
+                _this.form.address = res.data.address;
+                _this.form.headAddress = res.data.headAddress;
+                _this.form.createTime = res.data.createTime;
+                _this.form.updateTime = res.data.updateTime;
+              }
             }else {
-              if (_res.msg) {
-                alert(_res.msg)
+              if (res.msg) {
+                alert(res.msg)
               }
             }
           }
         })
       },
       updateUserInfo () {
-        let params = this.form;
+        let params = this.form, _this = this;
         API.updateUserInfo(params).then(res => {
           if (res) {
-            let _res = res.data;
-            if (_res.msg) {
-              alert(_res.msg);
+            console.log(res)
+            if (res.msg) {
+              alert(res.msg);
+              _this.$router.push('/');
             }
           }
         })

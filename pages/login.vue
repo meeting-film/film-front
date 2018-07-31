@@ -72,15 +72,16 @@
         let params = {
           username: this.form.username,
           password: this.form.password
-        }
+        },
+          _this = this;
         this.$validator.validateAll().then((result) => {
           if (result) {
             try {
-              this.$store.dispatch('login', params);
-              this.$router.push('/');
-              this.errorMsg = null;
+              _this.$store.dispatch('login', params);
+              _this.$router.push('/');
+              _this.errorMsg = null;
             } catch (e) {
-              this.errorMsg = e.message;
+              _this.errorMsg = e.message;
             }
           }
         });

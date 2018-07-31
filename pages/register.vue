@@ -76,15 +76,14 @@
         };
         API.check(params).then(res => {
           if (res) {
-            let _res = res.data;
-            if (_res.status == 0) {
+            if (res.status == 0) {
               _this.showErrorTip = true;
-              _this.errorMsg = _res.msg;
+              _this.errorMsg = res.msg;
             }else {
               _this.showErrorTip = false;
               _this.errorMsg = '';
-              if (_res.msg) {
-                alert(_res.msg);
+              if (res.msg) {
+                alert(res.msg);
               }
             }
           }
@@ -104,12 +103,11 @@
             };
             API.register(params).then(res => {
               if (res) {
-                let _res = res.data;
-                if (_res.status == 0) {
+                if (res.status == 0) {
                   _this.$router.push({path: '/login'});
                 }else {
-                  if (_res.msg) {
-                    alert(_res.msg);
+                  if (res.msg) {
+                    alert(res.msg);
                   }
                 }
               }

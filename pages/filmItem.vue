@@ -79,10 +79,15 @@
         searchType: searchType
       }
       return API.films(params).then((res) => {
-        if (res && res.data) {
-          let _res = res.data;
-          if (_res.status == 0) {
-            return { filmItem: _res.data }
+        if (res) {
+          if (res.status == 0) {
+            if (res.data) {
+              return { filmItem: res.data }
+            }
+          } else {
+            if (res.msg) {
+              alert(res.msg)
+            }
           }
         }
       })

@@ -1,16 +1,40 @@
-[
-  {
-    "filmId": "001",
-    "filmType": 1,
-    "imgAddress": "img/film/001.jpg",
-    "filmName": "我不是药神",
-    "filmScore": "8.3"
-  },
-  {
-    "filmId": "002",
-    "filmType": 4,
-    "imgAddress": "img/film/002.jpg",
-    "filmName": "摩天营救",
-    "filmScore": "9.0"
-  }
+{
+  "status": 0,
+  "imgPre":"http://img.meetingshop.cn/",
+"data": {
+  "cinemaInfo":{
+"cinemaId": 123594,
+"imgUrl":"cinemas/123.jpg",
+"cinemaName":"大地影院",
+"cinemaAdress":" 顺义区新顺南大街11号隆华购物中心6F",
+"cinemaPhone":" 010-89472732"
+},
+"filmInfo":{
+"filmName":"我不是药神",
+"timeLength":"117分钟",
+"filmType":"剧情",
+"actor":"徐峥,周一围,王传君",
+"dateList":[
+{
+"data": "2018-07-31",
+"dataStr":"今天 7月31",
+"isActive": true
+},{
+"data": "2018-08-01",
+"dataStr":"明天 8月1",
+"isActive":false
+}
+],
+"filmField":[
+{
+"fieldId": 1,
+"beginTime":"09:30",
+"endTime":"11:20",
+"language":"中文2D",
+"hallName":"4号厅(激光)",
+"price":"60"
+}
 ]
+}
+}
+}

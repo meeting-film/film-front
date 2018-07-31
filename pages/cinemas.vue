@@ -24,6 +24,14 @@ import CinemasItems from '~/components/cinemas/CinemasItems.vue'
 import QuickSearch from '~/components/cinemas/QuickSearch.vue'
 
 export default {
+  head () {
+    return {
+      title: '影院',
+      meta: [
+        { hid: '影院', name: '影院', content: '影院' }
+      ]
+    }
+  },
   components: {
     CinemasItems,
     QuickSearch

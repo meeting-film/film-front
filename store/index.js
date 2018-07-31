@@ -38,11 +38,15 @@ const store = () => new Vuex.Store({
           }
         })
         .then((res) => {
-          if (res && res.data) {
-            if (res.data.status == 0) {
-              commit('GET_FILMSLIST', res.data.data);
+          if (res) {
+            if (res.status == 0) {
+              if (res.data) {
+                commit('GET_FILMSLIST', res.data);
+              }
             }else {
-
+              if (res.msg) {
+                alert(res.msg)
+              }
             }
           }
         })
@@ -67,12 +71,15 @@ const store = () => new Vuex.Store({
           }
         })
         .then((res) => {
-          if (res && res.data) {
-            let _res = res.data;
-            if (_res.status == 0) {
-              if (_res.data.token) {
-                commit('SET_TOKEN', _res.data.token);
-                Cookies.set('token', _res.data.token);
+          if (res) {
+            if (res.status == 0) {
+              if (res.data && res.data.token) {
+                commit('SET_TOKEN', res.data.token);
+                Cookies.set('token', res.data.token);
+              }
+            } else {
+              if (res.msg) {
+                alert(res.msg)
               }
             }
           }
@@ -91,13 +98,12 @@ const store = () => new Vuex.Store({
           }
         }).then((res) => {
           if (res) {
-            let _res = res.data;
-            if(_res && _res.status == 0) {
+            if(res.status == 0) {
               commit('SET_TOKEN', null);
               Cookies.remove('token');
             }else {
-              if (_res.data.msg) {
-                alert(_res.data.msg)
+              if (res.msg) {
+                alert(res.msg)
               }
             }
           }
