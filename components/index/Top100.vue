@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="ranking-item" :class="'ranking-index-'+(index+2)" v-for="(movie,index) in top100" :key="index">
-            <a href="" data-act="ticketList-movie-click">
+            <nuxt-link :to="{path:'/filmItem/'+movie.filmId}" target="_blank">
               <span class="normal-link">
                 <i class="ranking-index">{{index + 2}}</i>
                 <span class="ranking-movie-name">{{movie.filmName}}</span>
@@ -40,7 +40,7 @@
                   <span class="stonefont">{{movie.score}}</span>分
                 </span>
               </span>
-            </a>
+            </nuxt-link>
           </li>
         </ul>
       </div>

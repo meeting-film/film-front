@@ -15,7 +15,7 @@
       <dl class="movie-list">
         <dd v-for="(item, index) in hotFilms.filmInfo" :key="index">
           <div class="movie-item">
-            <a href="" target="_blank" data-act="playingMovie-click" data-val="{movieid:1207042}">
+            <nuxt-link :to="{path:'/filmItem/'+item.filmId}" target="_blank">
               <div class="movie-poster">
                 <img class="poster-default" :src=item.imgAddress>
                 <img :src=item.imgAddress>
@@ -29,7 +29,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </nuxt-link>
             <div class="movie-detail movie-detail-strong movie-sale">
               <a href="/cinemas?movieId=1207042" class="active" target="_blank" data-act="salePlayingMovie-click" data-val="{movieid:1207042}">购 票</a>
             </div>

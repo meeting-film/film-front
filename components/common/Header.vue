@@ -33,7 +33,7 @@
       </div>
       <form @submit.prevent="getFilms" class="search-form">
       <!--<form class="search-form">-->
-        <input class="search" type="search" placeholder="找影视剧、影人、影院" autocomplete="off">
+        <input class="search" type="search" v-model="form.search" placeholder="找影视剧、影人、影院" autocomplete="off">
         <input class="submit" type="submit" value="">
       </form>
       <!--<div class="app-download">-->
@@ -54,8 +54,15 @@
         return this.$store.getters.TOKEN === null || this.$store.getters.TOKEN === undefined
       }
     },
+    data() {
+      return {
+        form: {
+          search:''
+        }
+      }
+    },
     methods: {
-      getFilms () {
+      getFilms() {
         let params = {
           "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
           "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
@@ -65,7 +72,7 @@
           "offset": 0,
         };
         this.$store.dispatch('getFilms', params);
-        this.$router.push('/query');
+        this.$router.push('/query?kw=' + this.form.search);
       },
       logout () {
         this.$store.dispatch('logout');

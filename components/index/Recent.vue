@@ -15,7 +15,7 @@
       <dl class="movie-list">
         <dd v-for="(item, index) in soonFilms.filmInfo" :key="index">
           <div class="movie-item">
-            <a href="/films/1220970" target="_blank" data-act="upcomingMovie-click" data-val="{movieid:1220970}">
+            <nuxt-link :to="{path:'/filmItem/'+item.filmId}" target="_blank">
               <div class="movie-poster">
                 <img class="poster-default" :src=item.imgAddress>
                 <img :src=item.imgAddress>
@@ -25,7 +25,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </nuxt-link>
             <div class="movie-detail movie-wish">
               <span class="stonefont">{{item.expectNum}}</span>人想看</div>
             <div class="movie-detail movie-detail-strong movie-presale">

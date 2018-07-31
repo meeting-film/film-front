@@ -30,7 +30,7 @@
       <dl class="movie-list">
         <dd v-for="(item, index) in boxRanking" :key="index">
           <div class="movie-item">
-            <a href="/films/78197" target="_blank" data-act="hotMovie-click" data-val="{movieid:78197}">
+            <nuxt-link :to="{path:'/filmItem/'+item.filmId}" target="_blank">
               <div class="movie-poster movie-poster-long">
                 <img :src=item.imgAddress>
                 <img :src=item.imgAddress>
@@ -43,7 +43,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </nuxt-link>
             <div class="movie-ver"></div>
           </div>
         </dd>

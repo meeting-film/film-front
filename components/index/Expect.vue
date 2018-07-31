@@ -58,7 +58,7 @@
             </a>
           </li>
           <li class="ranking-item" :class="'ranking-index-'+(index+4)" v-for="(movie,index) in expectRanking" :key="index">
-            <a href="" data-act="ticketList-movie-click">
+            <nuxt-link :to="{path:'/filmItem/'+movie.filmId}">
               <span class="normal-link">
                 <i class="ranking-index">{{index + 4}}</i>
                 <span class="ranking-movie-name">{{movie.filmName}}</span>
@@ -66,7 +66,7 @@
                   <span class="stonefont">{{movie.expectNum}}</span>人想看
                 </span>
               </span>
-            </a>
+            </nuxt-link>
           </li>
         </ul>
       </div>

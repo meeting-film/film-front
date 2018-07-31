@@ -2,7 +2,7 @@
   <section class="container">
     <div class="search-box">
       <form @submit.prevent="getFilms" class="search-form">
-        <input class="kw" type="text" name="kw" maxlength="32" value="11" placeholder="找影视剧、影人、影院" autocomplete="off">
+        <input class="kw" type="text" name="kw" maxlength="32" v-model="form.search" placeholder="找影视剧、影人、影院" autocomplete="off">
         <button class="submit" type="submit"></button>
       </form>
     </div>
@@ -79,8 +79,15 @@
         ]
       }
     },
+    data() {
+      return {
+        form: {
+          search:''
+        }
+      }
+    },
     methods: {
-      getFilms () {
+      getFilms() {
         let params = {
           "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
           "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
@@ -90,7 +97,7 @@
           "offset": 0
         };
         this.$store.dispatch('getFilms', params);
-        this.$router.push('/query');
+        this.$router.push('/query?kw=' + this.form.search);
       }
     }
   }

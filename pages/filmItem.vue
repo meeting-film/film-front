@@ -67,8 +67,18 @@
       FilmDetail,
       News
     },
-    asyncData () {
-      return API.films().then((res) => {
+    asyncData (context) {
+      let searchType,params;
+      if (context.route.params.id) {
+        searchType = 0;
+      } else {
+        searchType = 1;
+      }
+      params = {
+        id: context.route.params.id,
+        searchType: searchType
+      }
+      return API.films(params).then((res) => {
         if (res && res.data) {
           let _res = res.data;
           if (_res.status == 0) {
