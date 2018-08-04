@@ -23,6 +23,8 @@
       <div class="user-info">
         <!--如果getters有值显示退出-->
         <!--否则显示登录-->
+        <!--{{$store.getters}}-->
+        <!--{{isGuest}}-->
         <div class="user-avatar" v-if="isGuest">
           <nuxt-link active-class="is-active" to="/login" class="link" exact>登陆</nuxt-link>
           | <nuxt-link active-class="is-active" to="/register" class="link" exact>注册</nuxt-link>

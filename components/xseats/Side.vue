@@ -1,0 +1,357 @@
+<template>
+  <div class="side">
+    <div class="movie-info clearfix">
+      <div class="poster">
+        <img src="http://p0.meituan.net/movie/9cf86d0cbd3861c9dbc3f1e3189b32251042527.jpg@115w_158h_1e_1c">
+      </div>
+      <div class="content">
+        <p class="name text-ellipsis">西虹市首富</p>
+        <div class="info-item">
+          <span>类型 :</span>
+          <span class="value">喜剧</span>
+        </div>
+        <div class="info-item">
+          <span>时长 :</span>
+          <span class="value">118分钟</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="show-info">
+      <div class="info-item">
+        <span>影院 :</span>
+        <span class="value text-ellipsis">青春光线电影院</span>
+      </div>
+      <div class="info-item">
+        <span>影厅 :</span>
+        <span class="value text-ellipsis">1号厅</span>
+      </div>
+      <div class="info-item">
+        <span>版本 :</span>
+        <span class="value text-ellipsis">国语2D</span>
+      </div>
+      <div class="info-item">
+        <span>场次 :</span>
+        <span class="value text-ellipsis screen">今天 8月2 18:45</span>
+      </div>
+      <div class="info-item">
+        <span>票价 :</span>
+        <span class="value text-ellipsis">￥48/张</span>
+      </div>
+    </div>
+
+    <div class="ticket-info">
+      <div class="has-ticket" v-if="$store.getters.selectedSeatList && $store.getters.selectedSeatList.length > 0">
+        <span class="text">座位：</span>
+        <div class="ticket-container">
+          <span class="ticket" v-for="(item, index) in $store.getters.selectedSeatList" v-if="item.selected == true" :key="index">
+            {{item.row}}排{{item.column}}座
+          </span>
+        </div>
+      </div>
+      <div class="no-ticket" v-else>
+        <p class="buy-limit">座位：一次最多选5个座位</p>
+        <p class="no-selected">请<span>点击左侧</span>座位图选择座位</p>
+      </div>
+
+      <div class="total-price">
+        <span>总价 :</span>
+        <span class="price">0</span>
+      </div>
+    </div>
+
+    <div class="confirm-order">
+      <form class="login-form">
+        <input type="text" class="input-phone" placeholder="输入手机号">
+        <div class="captcha" style="display:none">
+          <input type="text" class="input-captcha" placeholder="验证码">
+          <img class="captcha-pic" src="http://www.meituan.com/account/appcaptcha?uuid=BE3F13A0946611E8B0D39564008C52497973942AF35240E19D0CEB9EF2B39E60&amp;captchaHash=1533199343605">
+          <span class="change-captcha">看不清楚？换一张</span>
+        </div>
+        <div class="code-inputer">
+          <input type="text" class="input-code" placeholder="填写验证码">
+          <span class="send-code disable">获取验证码</span>
+        </div>
+      </form>
+
+      <div class="confirm-btn disable" data-act="confirm-click" data-bid="b_0a0ep6pp">确认选座</div>
+    </div>
+    <div class="modal-container" v-show="showDialogFlag">
+      <div class="modal">
+        <span class="icon"></span>
+
+        <p class="tip">一次最多购买5张票</p>
+
+        <div class="ok-btn btn" @click="hideDialog">我知道了</div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        showDialogFlag: false
+      }
+    },
+    computed: {
+      // showDialog () {
+        // return this.$store.getters.selectedSeatList.length > 4;
+      // }
+    },
+    methods: {
+      hideDialog () {
+        this.showDialog = false;
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+  .side {
+    width: 378px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    display: inline-block;
+    .movie-info {
+      overflow: hidden;
+      .poster {
+        width: 115px;
+        height: 158px;
+        border: 2px solid #fff;
+        -webkit-box-shadow: 0 2px 7px 0 hsla(0, 0%, 53%, .5);
+        box-shadow: 0 2px 7px 0 hsla(0, 0%, 53%, .5);
+        float: left;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .content {
+        margin-left: 140px;
+        .text-ellipsis {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .name {
+          font-size: 20px;
+          font-weight: 700;
+          color: #333;
+          margin: 0 0 14px;
+        }
+        .info-item {
+          font-size: 12px;
+          color: #999;
+          margin-bottom: 4px;
+          .value {
+            color: #151515;
+            margin-left: 2px;
+          }
+        }
+      }
+    }
+    .show-info {
+      margin-top: 20px;
+      .info-item {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 9px;
+        > span {
+          display: inline-block;
+          vertical-align: top;
+          font-size: 14px;
+        }
+        .text-ellipsis {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .value {
+          width: 85%;
+          color: #151515;
+          margin-left: 2px;
+        }
+        .screen {
+          color: #f03d37;
+        }
+      }
+    }
+    .ticket-info {
+      padding: 20px 0 10px;
+      border-top: 1px dashed #e5e5e5;
+      border-bottom: 1px dashed #e5e5e5;
+      .no-ticket {
+        .buy-limit {
+          font-size: 14px;
+          color: #999;
+          margin: 0;
+        }
+        .no-selected {
+          font-size: 14px;
+          color: #333;
+          text-align: center;
+          margin: 28px 0 39px;
+          span {
+            color: #f03d37;
+          }
+        }
+      }
+      .text {
+        font-size: 14px;
+        color: #999;
+        float: left;
+      }
+      .ticket-container {
+        margin-left: 42px;
+        margin-bottom: 20px;
+        position: relative;
+        top: -5px;
+        .ticket {
+          cursor: default;
+          position: relative;
+          font-size: 12px;
+          color: #f03d37;
+          display: inline-block;
+          width: 60px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          margin: 0 12px 10px 0;
+          background: url("../../assets/img/bg-seat.png") no-repeat;
+          &:hover {
+            &:after {
+              content: "";
+              background: url(../../assets/img/icon-close.png) no-repeat;
+              width: 16px;
+              height: 16px;
+              background-size: 16px;
+              position: absolute;
+              top: -7px;
+              right: -7px
+            }
+          }
+        }
+      }
+    }
+    .total-price {
+      font-size: 14px;
+      color: #333;
+      .price {
+        color: #f03d37;
+        font-size: 24px;
+        &:before {
+          content: "\FFE5";
+          font-size: 14px;
+        }
+      }
+    }
+    .confirm-order {
+      padding: 20px 0;
+      text-align: center;
+      .login-form {
+        display: inline-block;
+        width: 260px;
+        input {
+          width: 218px;
+          height: 40px;
+          border: 1px solid #e5e5e5;
+          border-radius: 50px;
+          margin-bottom: 6px;
+          padding: 0 20px;
+          font-size: 14px;
+          color: #333;
+        }
+        .captcha {
+          width: 300px;
+          .input-captcha {
+            width: 48px;
+            display: inline-block;
+            margin-left: -20px;
+          }
+        }
+        .code-inputer {
+          display: inline-block;
+          line-height: 42px;
+          position: relative;
+          .send-code {
+            font-size: 14px;
+            position: absolute;
+            top: 0;
+            right: 10px;
+            cursor: pointer;
+            color: #f03d37;
+            &.disable {
+              color: #ccc;
+            }
+          }
+        }
+      }
+      .confirm-btn {
+        cursor: default;
+        width: 260px;
+        height: 42px;
+        line-height: 42px;
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 21px;
+        position: relative;
+        left: 50%;
+        margin: 38px 0 0 -130px;
+        background-color: #f03d37;
+        -webkit-box-shadow: 0 2px 10px -2px #f03d37;
+        box-shadow: 0 2px 10px -2px #f03d37;
+      }
+    }
+  }
+  .modal-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0,0,0,.4);
+    .modal {
+      width: 460px;
+      height: 215px;
+      padding: 30px 0;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #fff;
+      text-align: center;
+      .icon {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: url("../../assets/img/icon-warn.png") no-repeat;
+      }
+      .tip {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 26px;
+        margin-top: 12px;
+      }
+      .btn {
+        display: inline-block;
+        border-radius: 100px;
+        height: 42px;
+        line-height: 42px;
+        font-size: 16px;
+        width: 260px;
+        padding: 0;
+        cursor: default;
+        &.ok-btn {
+          color: #fff;
+          background-color: #f03d37;
+          -webkit-box-shadow: 0 2px 10px -2px #f03d37;
+          box-shadow: 0 2px 10px -2px #f03d37;
+        }
+      }
+    }
+  }
+</style>

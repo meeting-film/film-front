@@ -1,16 +1,16 @@
 <template>
   <div class="cinema-list">
     <h2 class="cinema-list-header">影院列表</h2>
-    <div v-for="(cinema,index) in cinemaList" :key="index" class="cinema-cell">
+    <div v-for="(cinema,index) in cinemasData.cinemas" :key="index" class="cinema-cell">
       <div class="cinema-info">
-        <a :href="cinema.cinemaUrlPre/cinema.uuid" class="cinema-name">{{cinema.cinemaName}}</a>
-        <p class="cinema-address">地址：{{cinema.cinemaAddress}}</p>
+        <nuxt-link :to="{path:'/cinema/'+cinema.uuid}" class="cinema-name">{{cinema.cinemaName}}</nuxt-link>
+        <p class="cinema-address">地址：{{cinema.address}}</p>
       </div>
       <div class="buy-btn">
         <a href="">选座购票</a>
       </div>
       <div class="price">
-        <span>￥{{cinema.cinemaPrice}}</span>起
+        <span>￥{{cinema.minimumPrice}}</span>起
       </div>
     </div>
   </div>
@@ -86,101 +86,10 @@
 </style>
 <script>
 export default {
-  data() {
-    return {
-      cinemaList:[
-        {
-          uuid            : '1',
-          cinemaName     : '青春光影电影院',
-          cinemaAddress  : '东城区滨河路乙1号雍和航星园74-76号楼',
-          cinemaPrice    : '48',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '2',
-          cinemaName     : '万达影院(京港城店)',
-          cinemaAddress  : '丰台区光彩路京港城生活广场6楼（京深海鲜市场对面）',
-          cinemaPrice    : '30',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '2',
-          cinemaName     : '万达影院(京港城店)',
-          cinemaAddress  : '丰台区光彩路京港城生活广场6楼（京深海鲜市场对面）',
-          cinemaPrice    : '30',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '3',
-          cinemaName     : '百誉朗克影城',
-          cinemaAddress  : '朝阳区林萃西里16号楼华创生活广场F1层',
-          cinemaPrice    : '33',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '4',
-          cinemaName     : '门头沟影剧院',
-          cinemaAddress  : '门头沟区新桥大街12号',
-          cinemaPrice    : '33',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '5',
-          cinemaName     : '大观楼电影院',
-          cinemaAddress  : '西城区前门大街大栅栏街36号',
-          cinemaPrice    : '34',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '6',
-          cinemaName     : 'SFC上影影城(房山绿地店)',
-          cinemaAddress  : '房山区黄辛庄路口绿地缤纷城3层',
-          cinemaPrice    : '24',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '7',
-          cinemaName     : '良乡影剧院',
-          cinemaAddress  : '房山区良乡拱辰大街31号',
-          cinemaPrice    : '23',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '8',
-          cinemaName     : '枫花园汽车电影院(朝阳公园店)',
-          cinemaAddress  : '朝阳区亮马桥路21号（朝阳公园北门对面）',
-          cinemaPrice    : '51',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '9',
-          cinemaName     : '百老汇电影中心(万国城店)',
-          cinemaAddress  : '东城区香河园路1号当代MOMA北区T4座（近东直门公交枢纽）',
-          cinemaPrice    : '45',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '10',
-          cinemaName     : '百尚影城',
-          cinemaAddress  : '通州区马驹桥镇百尚生活广场3楼',
-          cinemaPrice    : '36',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '11',
-          cinemaName     : 'DMG国际影城(悦秀店)',
-          cinemaAddress  : '丰台区开阳路8号悦秀城6层',
-          cinemaPrice    : '27',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        },
-        {
-          uuid            : '12',
-          cinemaName     : '百丽宫影城(国贸店)',
-          cinemaAddress  : '朝阳区建国门外大街1号国贸商城北区B1层B120',
-          cinemaPrice    : '45',
-          cinemaUrlPre   : 'http://www.meetingshop.cn/cinemas/'
-        }
-      ]
+  props: {
+    cinemasData: {
+      type: Object,
+      default: () => {}
     }
   }
 }

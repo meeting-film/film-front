@@ -117,7 +117,7 @@
         months: [],
         days: [],
         form: {
-          id:'',
+          uuid:'',
           username: '',//用户名称
           nickname:'',//昵称
           email: "aaa@163.com",//邮箱
@@ -147,7 +147,7 @@
           if (res) {
             if (res.status == 0) {
               if (res.data) {
-                _this.form.id = res.data.id;
+                _this.form.uuid = res.data.uuid;
                 _this.form.username = res.data.username;
                 _this.form.nickname = res.data.nickname;
                 _this.form.email = res.data.email;

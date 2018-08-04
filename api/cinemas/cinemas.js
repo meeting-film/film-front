@@ -6,10 +6,11 @@ export default {
   },
   //影院标签列表
   cinemaTags: params => {
-    return API.get(process.env.baseUrl + '/meetingfilm/cinemas', params);
+    return API.get(process.env.baseUrl + '/meetingfilm/cinemaTags', params);
   },
   //在线选座
   cinema: params => {
-    return API.get(process.env.baseUrl + '/meetingfilm/cinema', params);
+    return API.post(process.env.baseUrl + '/meetingfilm/cinema', params);
   }
 }
+
