@@ -15,7 +15,6 @@
       </div>
     </div>
 
-
     <div class="seats-block" data-cols="11" data-section-id="1" data-section-name="全区" data-seq-no="201808020114812">
       <div class="row-id-container">
         <span class="row-id">1</span>
@@ -33,9 +32,26 @@
         </div>
 
         <div class="seats-wrapper">
-          {{$store.state}}
-          <div class="row" v-for="(items, rowIndex) in $store.state.seatList" :key="items.rowIndex">
-            <span class="seat" :class="item ? 'sold' : item.selected ? 'selected' : ''" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),columnIndex, item)">{{item}}{{item.status}}</span>
+          <!--<div class="row" v-for="(items, rowIndex) in $store.state.seatInfo.seatList" :key="items.rowIndex">-->
+            <!--<span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>-->
+          <!--</div>-->
+          <div class="row"
+               v-if="$store.state.seatInfo.seatCharts.single"
+               v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.single"
+               :key="items.rowIndex">
+            <span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>
+          </div>
+          <div class="row"
+               v-if="$store.state.seatInfo.seatCharts.couple"
+               v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.couple"
+               :key="items.rowIndex">
+            <span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>
+          </div>
+          <div class="row"
+               v-if="$store.state.seatInfo.seatCharts.couple"
+               v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.couple"
+               :key="rowIndex">
+            <span :class="(columnIndex % 2 == 0) ? 'seat lover lover-left selectable' : 'seat lover lover-right selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>
           </div>
         </div>
       </div>
@@ -48,27 +64,51 @@
   export default {
     data () {
       return {
-        styles: '',
-        flag: false
       }
     },
     computed: {
-
     },
     methods: {
       selectSeat (rowIndex, columnIndex, item) {
-        if (item.status == 'sold') {
+        let params = {};
+        //如果座位号已售出不可选
+        if (item.isSold == true) {
           return false;
         } else {
-          item.selected = !item.selected;
-          let params = {
-            row: rowIndex,
-            column: columnIndex,
-            selected: item.selected
-          };
-          console.log(item.selected)
-          this.$store.dispatch('addToSeatList', params);
+          //1.座位选择最多不能超过5个
+          //2.给选中的座位添加高亮状态
+          //3.将选中的座位号添加到选择座位事件中，座位号由行-列索引拼接
+          if (typeof item.selected == 'undefined') {
+            this.$set(item, 'selected', true);
+            //当item.selected为true时，selectedSeatList数组里才会添加座位，而此时item.selected还未设置，selectedSeatList的长度为0
+            //所以当添加了5个座位，selectedSeatList的长度还是为4--待优化
+            if (this.$store.state.selectedSeatList && this.$store.state.selectedSeatList.length > 4) {
+              this.$set(item, 'selected', '');
+            }
+            params = {
+              seatNo: rowIndex+'-'+columnIndex,
+              selected: item.selected
+            };
+          } else {
+            item.selected = !item.selected;
+            if (this.$store.state.selectedSeatList && this.$store.state.selectedSeatList.length > 4) {
+              this.$set(item, 'selected', '');
+            }
+            params = {
+              seatNo: rowIndex+'-'+columnIndex,
+              selected: item.selected
+            };
+          }
+          //为选中的座位设置编号，供删除时使用
+          if (item.selected == true) {
+            if (typeof item.seatNo == 'undefined'){
+              this.$set(item, 'seatNo', params.seatNo);
+            }
+          } else {
+            this.$set(item, 'seatId', '');
+          }
         }
+        this.$store.dispatch('addToSeatList', params);
       }
     }
   }
@@ -175,6 +215,18 @@
               }
               &.selected {
                 background: url("../../assets/img/selected-seat.png") no-repeat;
+              }
+              &.lover {
+                width: 35px;
+                background: url("../../assets/img/couple-selectable-seat.png") no-repeat;
+                &.lover-left {
+                  background-position: 1px 0;
+                  margin-right: 0;
+                }
+                &.lover-right {
+                  background-position: -34px 0;
+                  margin-left: 0;
+                }
               }
             }
           }

@@ -7,7 +7,7 @@
         <p class="cinema-address">地址：{{cinema.address}}</p>
       </div>
       <div class="buy-btn">
-        <a href="">选座购票</a>
+        <nuxt-link :to="{path:'/cinema/'+cinema.uuid}" class="cinema-name">选座购票</nuxt-link>
       </div>
       <div class="price">
         <span>￥{{cinema.minimumPrice}}</span>起

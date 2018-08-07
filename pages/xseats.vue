@@ -24,12 +24,16 @@
         </div>
       </div>
 
-
+      <ul>
+        <li style="display: inline-block; margin: 0 10px;" :class="{checked: item.checked == true}" v-for="(item, index) in testArr" :key="index" @click="checkItem(item)">{{item.value}}</li>
+      </ul>
+      <ul>
+        <li style="display: inline-block; margin: 0 10px;" v-for="(item, index) in selectedArr" :key="index">{{item.value}}</li>
+      </ul>
       <div class="main clearfix">
         <Hall></Hall>
         <Side></Side>
       </div>
-
 
 
     </div>
@@ -42,7 +46,23 @@
 export default {
   data () {
     return {
-      selected: ''
+      selected: '',
+      showDialogFlag: false,
+      checked: false,
+      testArr: [{
+        id: 0,
+        value: '测试1'
+      },{
+        id: 1,
+        value: '测试2'
+      },{
+        id: 2,
+        value: '测试3'
+      },{
+        id: 3,
+        value: '测试4'
+      }],
+      selectedArr: []
     }
   },
   head () {
@@ -61,10 +81,31 @@ export default {
 
   },
   methods: {
+    checkItem (item) {
+      if (typeof item.checked == 'undefined') {
+        this.$set(item, 'checked', true);
+        if (item.checked == true) {
+          this.selectedArr.push(item);
+        }
+      } else {
+        item.checked = !item.checked;
+        if (item.checked == true) {
+          this.selectedArr.push(item);
+        } else {
+          this.selectedArr = this.selectedArr.filter(item1 => {
+            return item.id != item1.id
+          });
+        }
+        console.log(this.selectedArr)
+      }
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
+  .checked {
+    color: #f00;
+  }
   .xseats-wrapper {
     background-color: #fff;
     padding-top: 81px;

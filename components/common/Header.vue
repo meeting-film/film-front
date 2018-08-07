@@ -65,13 +65,16 @@
     },
     methods: {
       getFilms() {
+        // let params = {
+        //   "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
+        //   "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
+        //   "catId": "",
+        //   "sourceId": "",
+        //   "yearId": "",
+        //   "offset": 0,
+        // };
         let params = {
-          "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
-          "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
-          "catId": "",
-          "sourceId": "",
-          "yearId": "",
-          "offset": 0,
+          "kw": this.form.search,
         };
         this.$store.dispatch('getFilms', params);
         this.$router.push('/query?kw=' + this.form.search);

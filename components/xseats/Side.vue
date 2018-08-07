@@ -36,16 +36,17 @@
       </div>
       <div class="info-item">
         <span>票价 :</span>
-        <span class="value text-ellipsis">￥48/张</span>
+        <span class="value text-ellipsis">￥{{$store.state.seatInfo.price}}/张</span>
       </div>
     </div>
 
     <div class="ticket-info">
-      <div class="has-ticket" v-if="$store.getters.selectedSeatList && $store.getters.selectedSeatList.length > 0">
+      <div class="has-ticket" v-if="$store.state.selectedSeatList && $store.state.selectedSeatList.length > 0">
         <span class="text">座位：</span>
         <div class="ticket-container">
-          <span class="ticket" v-for="(item, index) in $store.getters.selectedSeatList" v-if="item.selected == true" :key="index">
-            {{item.row}}排{{item.column}}座
+          <span class="ticket" v-for="(item, index) in $store.state.selectedSeatList" :key="index">
+            <i class="btn-delete" @click="handleDeleteSeat(item)"></i>
+            {{item.seatNo[0]}}排{{item.seatNo[2]}}座
           </span>
         </div>
       </div>
@@ -56,7 +57,7 @@
 
       <div class="total-price">
         <span>总价 :</span>
-        <span class="price">0</span>
+        <span class="price">{{$store.getters.totalPrice}}</span>
       </div>
     </div>
 
@@ -74,14 +75,13 @@
         </div>
       </form>
 
-      <div class="confirm-btn disable" data-act="confirm-click" data-bid="b_0a0ep6pp">确认选座</div>
+      <div class="confirm-btn" v-if="$store.state.selectedSeatList && $store.state.selectedSeatList.length > 0" @click="handleConfirmSeat">确认选座</div>
+      <div class="confirm-btn disable" v-else @click="handleConfirmSeat">确认选座</div>
     </div>
-    <div class="modal-container" v-show="showDialogFlag">
+    <div class="modal-container" v-show="$store.state.showDialogFlag">
       <div class="modal">
         <span class="icon"></span>
-
         <p class="tip">一次最多购买5张票</p>
-
         <div class="ok-btn btn" @click="hideDialog">我知道了</div>
       </div>
     </div>
@@ -91,17 +91,23 @@
   export default {
     data () {
       return {
-        showDialogFlag: false
       }
     },
     computed: {
-      // showDialog () {
-        // return this.$store.getters.selectedSeatList.length > 4;
-      // }
+
     },
     methods: {
+      //确认选座
+      handleConfirmSeat () {
+        let params = {};
+      },
+      //删除座位
+      handleDeleteSeat (params) {
+        this.$store.dispatch('deleteSeat', params)
+      },
+      //隐藏弹窗
       hideDialog () {
-        this.showDialog = false;
+        this.$store.state.showDialogFlag = false;
       }
     }
   }
@@ -219,15 +225,15 @@
           margin: 0 12px 10px 0;
           background: url("../../assets/img/bg-seat.png") no-repeat;
           &:hover {
-            &:after {
-              content: "";
+            .btn-delete {
               background: url(../../assets/img/icon-close.png) no-repeat;
               width: 16px;
               height: 16px;
               background-size: 16px;
               position: absolute;
               top: -7px;
-              right: -7px
+              right: -7px;
+              cursor: pointer;
             }
           }
         }
@@ -301,6 +307,11 @@
         background-color: #f03d37;
         -webkit-box-shadow: 0 2px 10px -2px #f03d37;
         box-shadow: 0 2px 10px -2px #f03d37;
+        &.disable {
+          background-color: #dedede;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
       }
     }
   }

@@ -2,29 +2,13 @@ export const getters = {
   TOKEN (state) {
     return state.TOKEN
   },
-  // seatList: state => state.seatList,//座位列表
-  //选择之后的座位列表
-  selectedSeatList: state => {
-    return state.selectedSeats.map((items) => {
-      console.log(items)
-      return {
-        ...items
-      }
-    })
-  },
+  seatList: state => state.seatInfo.seatList,//默认的座位列表
+  selectedSeatList: state => state.selectedSeatList,//选中的座位列表
   //计算座位总价
-  totalPrice: (state, getters) => {
+  totalPrice: (state) => {
     let total = 0;
-    getters.selectedSeatList.forEach(n => {
-      total += n.price * n.num;
-    })
-    return total;
-  },
-  //计算座位总数
-  totalNum: (state, getters) => {
-    let total = 0;
-    getters.selectedSeatList.forEach(n => {
-      total += n.num;
+    state.selectedSeatList.forEach((item, index) => {
+      total = state.seatInfo.price * (index+1);
     })
     return total;
   }

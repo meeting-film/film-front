@@ -53,6 +53,14 @@ export const actions = {
         }
       })
   },
+  //添加到选择的座位列表
+  addToSeatList ({commit}, params) {
+    commit('ADD_SEAT', params);
+  },
+  //删除选中的座位
+  deleteSeat ({commit}, params) {
+    commit('DELETE_SEAT', params)
+  },
   //登录
   login: ({commit}, {username, password}) => {
     fetch(process.env.baseUrl + '/auth',
@@ -112,20 +120,6 @@ export const actions = {
           }
         }
       })
-  },
-  //添加到选择的座位列表
-  addToSeatList ({commit}, params) {
-    // debugger
-    commit('ADD_SEAT', {
-      row: params.row,
-      column: params.column,
-      selected: params.selected
-    });
-    console.log(params)
-  },
-  //删除选中的座位
-  deleteSeat ({commit}, seat) {
-    commit('DELETE_SEAT', seat)
   }
 }
 export default actions

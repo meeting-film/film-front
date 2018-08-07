@@ -30,16 +30,18 @@
         <dl class="movie-list" v-if="$store.state.filmList && $store.state.filmList.length > 0">
           <dd v-for="(item, index) in $store.state.filmList" :key="index">
             <div class="movie-item">
-              <a href="/films/824111" target="_blank" data-act="movie-click" data-val="{movieid:824111}">
+              <nuxt-link :to="{path:'/filmItem/'+item.filmId}" target="_blank">
                 <div class="movie-poster">
                   <img class="poster-default" :src=item.imgAddress>
                   <img :src=item.imgAddress>
                 </div>
-              </a>
+              </nuxt-link>
               <div class="movie-ver"></div>
             </div>
             <div class="channel-detail movie-item-title" title="11">
-              <a href="/films/824111" target="_blank" data-act="movies-click" data-val="{movieId:824111}">11</a>
+              <nuxt-link :to="{path:'/filmItem/'+item.filmId}" target="_blank">
+                11
+              </nuxt-link>
             </div>
             <div class="movie-item-subtitle">11</div>
             <div class="absolute-info">

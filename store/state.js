@@ -2,78 +2,110 @@ export const state = () => ({
   TOKEN: '', //存储登录token,用来写入到header头的Authorization中
   filmList: [],
   cinemaTags: {},
-  seatList: [//所有座位列表
-    [
-      {
-        id: '0',
-        status: 'sold',
-        selected: true
-      }, {
-        id: '1',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '2',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '3',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '4',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '5',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '6',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '7',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '8',
-        status: 'selectable',
-        selected: false
-      }
-    ],
-    [
-      {
-        id: '0',
-        status: 'sold',
-        selected: true
-      }, {
-        id: '1',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '2',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '3',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '4',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '5',
-        status: 'selectable',
-        selected: false
-      }, {
-        id: '6',
-        status: 'selectable',
-        selected: false
-      }
-    ],
-  ],
-  selectedSeats: [],//选中的座位列表
+  seatInfo: {
+    price: 80,
+    quantity: 1,
+    seatCharts: {//座位分布图
+      single: [
+        [
+          {
+            isSold: false,
+            seatNo: 7
+          }, {
+            isSold: false,
+            seatNo: 6
+          }, {
+            isSold: false,
+            seatNo: 5
+          }, {
+            isSold: false,
+            seatNo: 4
+          }, {
+            isSold: false,
+            seatNo: 3
+          }, {
+            isSold: false,
+            seatNo: 2
+          },
+          {
+            isSold: true,
+            seatNo: 1
+          }
+        ],
+        [
+          {
+            isSold: false,
+            seatNo: 7
+          }, {
+            isSold: false,
+            seatNo: 6
+          }, {
+            isSold: false,
+            seatNo: 5
+          }, {
+            isSold: false,
+            seatNo: 4
+          }, {
+            isSold: false,
+            seatNo: 3
+          }, {
+            isSold: false,
+            seatNo: 2
+          },
+          {
+            isSold: true,
+            seatNo: 1
+          }
+        ]
+      ],
+      couple: [
+        [
+          {
+            isSold: true,
+            seatNo: 6
+          }, {
+            isSold: false,
+            seatNo: 5
+          }, {
+            isSold: false,
+            seatNo: 4
+          }, {
+            isSold: false,
+            seatNo: 3
+          }, {
+            isSold: false,
+            seatNo: 2
+          }, {
+            isSold: false,
+            seatNo: 1
+          }
+        ],
+        [
+          {
+            isSold: true,
+            seatNo: 6
+          }, {
+            isSold: false,
+            seatNo: 5
+          }, {
+            isSold: false,
+            seatNo: 4
+          }, {
+            isSold: false,
+            seatNo: 3
+          }, {
+            isSold: false,
+            seatNo: 2
+          }, {
+            isSold: false,
+            seatNo: 1
+          }
+        ]
+      ]
+    }
+  },
+  selectedSeatList:[],//选中的座位列表
+  setSeatSelected: false,
+  showDialogFlag: false,
 })
 export default state
