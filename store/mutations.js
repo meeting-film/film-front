@@ -15,16 +15,13 @@ export const mutations = {
   ADD_SEAT: (state, params) => {
     //1.将选中的座位添加到selectedSeatList数组中，给右侧展示用
     //2.选中的才可以添加
-    // debugger
     if (params.selected == true) {
-      // debugger
       state.selectedSeatList.push(params);
     } else {
       //取消选择座位需要将右侧选中的座位删掉
       state.selectedSeatList = state.selectedSeatList.filter((item) => {
         return item.seatNo != params.seatNo;
       });
-      console.log(state.selectedSeatList.length)
       if (state.selectedSeatList && state.selectedSeatList.length > 4) {
         state.showDialogFlag = true;
       }

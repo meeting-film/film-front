@@ -4,6 +4,6 @@ export default {
     return API.post(process.env.baseUrl + '/meetingfilm/user/register', params);
   },
   check: params => {
-    return API.post(process.env.baseUrl + '/meetingfilm/user/check', params);
+    return API.post(process.env.baseUrl + '/user/check', params);
   }
 }

@@ -79,7 +79,7 @@
             if (res.status == 0) {
               _this.showErrorTip = true;
               _this.errorMsg = res.msg;
-            }else {
+            } else {
               _this.showErrorTip = false;
               _this.errorMsg = '';
               if (res.msg) {

@@ -41,18 +41,12 @@
                :key="items.rowIndex">
             <span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>
           </div>
-          <div class="row"
-               v-if="$store.state.seatInfo.seatCharts.couple"
-               v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.couple"
-               :key="items.rowIndex">
-            <span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>
-          </div>
-          <div class="row"
-               v-if="$store.state.seatInfo.seatCharts.couple"
-               v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.couple"
-               :key="rowIndex">
-            <span :class="(columnIndex % 2 == 0) ? 'seat lover lover-left selectable' : 'seat lover lover-right selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>
-          </div>
+          <!--<div class="row"-->
+               <!--v-if="$store.state.seatInfo.seatCharts.couple"-->
+               <!--v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.couple"-->
+               <!--:key="rowIndex">-->
+            <!--<span :class="(columnIndex % 2 == 0) ? 'seat lover lover-left selectable' : 'seat lover lover-right selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectCoupleSeat(item)">{{item.status}}</span>-->
+          <!--</div>-->
         </div>
       </div>
 
@@ -61,6 +55,39 @@
   </div>
 </template>
 <script>
+  // const getSiblingsNodes = function(el) {
+  //   let node = el, nodeArr = [];
+  //   while (el = el.previousSibling) {
+  //     if (el.nodeType == 1) {
+  //       nodeArr.push(el);
+  //     }
+  //   }
+  //   let el = node;
+  //   while (el = el.nextSibling) {
+  //     if (el.nodeType == 1) {
+  //       nodeArr.push(el)
+  //     }
+  //   }
+  //
+  // };
+
+
+  function siblingElems(elem) {
+    var nodes = [];
+    var _elem = elem;
+    while ((elem = elem.previousSibling)) {
+      if (elem.nodeType == 1) {
+        nodes.push(elem);
+      }
+    }
+    var elem = _elem;
+    while ((elem = elem.nextSibling)) {
+      if (elem.nodeType == 1) {
+        nodes.push(elem);
+      }
+    }
+  }
+
   export default {
     data () {
       return {
@@ -109,6 +136,9 @@
           }
         }
         this.$store.dispatch('addToSeatList', params);
+      },
+      selectCoupleSeat () {
+
       }
     }
   }

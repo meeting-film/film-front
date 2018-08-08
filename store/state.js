@@ -9,96 +9,68 @@ export const state = () => ({
       single: [
         [
           {
-            isSold: false,
-            seatNo: 7
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 6
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 5
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 4
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 3
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 2
-          },
-          {
-            isSold: true,
-            seatNo: 1
+            isSold: false
+          }, {
+            isSold: true
           }
         ],
         [
           {
-            isSold: false,
-            seatNo: 7
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 6
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 5
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 4
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 3
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 2
-          },
-          {
-            isSold: true,
-            seatNo: 1
+            isSold: false
+          }, {
+            isSold: true
           }
         ]
       ],
       couple: [
         [
           {
-            isSold: true,
-            seatNo: 6
+            isSold: true
           }, {
-            isSold: false,
-            seatNo: 5
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 4
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 3
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 2
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 1
+            isSold: false
           }
         ],
         [
           {
-            isSold: true,
-            seatNo: 6
+            isSold: true
           }, {
-            isSold: false,
-            seatNo: 5
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 4
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 3
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 2
+            isSold: false
           }, {
-            isSold: false,
-            seatNo: 1
+            isSold: false
           }
         ]
       ]
