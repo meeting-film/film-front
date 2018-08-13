@@ -54,12 +54,20 @@ export const actions = {
       })
   },
   //添加到选择的座位列表
-  addToSeatList ({commit}, params) {
-    commit('ADD_SEAT', params);
+  addToSingleSeatList ({commit}, params) {
+    commit('ADD_SINGLE_SEAT', params);
+  },
+  //添加到选择的座位列表
+  addToCoupleSeatList ({commit}, params) {
+    commit('ADD_COUPLE_SEAT', params);
   },
   //删除选中的座位
-  deleteSeat ({commit}, params) {
-    commit('DELETE_SEAT', params)
+  deleteSingleSeat ({commit}, params) {
+    commit('DELETE_SINGLE_SEAT', params)
+  },
+  //删除选中的座位
+  deleteCoupleSeat ({commit}, params) {
+    commit('DELETE_COUPLE_SEAT', params)
   },
   //登录
   login: ({commit}, {username, password}) => {

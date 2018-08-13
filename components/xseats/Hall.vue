@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="seats-block" data-cols="11" data-section-id="1" data-section-name="全区" data-seq-no="201808020114812">
+    <div class="seats-block">
       <div class="row-id-container">
         <span class="row-id">1</span>
         <span class="row-id">2</span>
@@ -32,21 +32,30 @@
         </div>
 
         <div class="seats-wrapper">
-          <!--<div class="row" v-for="(items, rowIndex) in $store.state.seatInfo.seatList" :key="items.rowIndex">-->
-            <!--<span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>-->
-          <!--</div>-->
           <div class="row"
                v-if="$store.state.seatInfo.seatCharts.single"
                v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.single"
                :key="items.rowIndex">
-            <span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectSeat((rowIndex+1),(columnIndex+1), item)">{{item.status}}</span>
+            <span :class="item.isSold == true ? 'seat sold' : item.selected == true ? 'seat selected' : 'seat selectable'"
+                  v-for="(item, columnIndex) in items"
+                  :key="columnIndex"
+                  @click="selectSingleSeat(rowIndex,columnIndex, item)">
+              {{item.status}}
+            </span>
           </div>
-          <!--<div class="row"-->
-               <!--v-if="$store.state.seatInfo.seatCharts.couple"-->
-               <!--v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.couple"-->
-               <!--:key="rowIndex">-->
-            <!--<span :class="(columnIndex % 2 == 0) ? 'seat lover lover-left selectable' : 'seat lover lover-right selectable'" v-for="(item, columnIndex) in items" :key="columnIndex" @click="selectCoupleSeat(item)">{{item.status}}</span>-->
-          <!--</div>-->
+          <div class="row"
+               v-if="$store.state.seatInfo.seatCharts.couple"
+               v-for="(items, rowIndex) in $store.state.seatInfo.seatCharts.couple"
+               :key="rowIndex">
+            <span :class="(columnIndex % 2 == 0) ?
+                  item.selected == true ? 'seat lover lover-left selected' : 'seat lover lover-left selectable':
+                  item.selected == true ? 'seat lover lover-right selected' : 'seat lover lover-right selectable'"
+                  v-for="(item, columnIndex) in items"
+                  :key="columnIndex"
+                  @click="selectCoupleSeat(($store.state.seatInfo.seatCharts.single.length + rowIndex),columnIndex,items)">
+              {{item.status}}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -55,90 +64,90 @@
   </div>
 </template>
 <script>
-  // const getSiblingsNodes = function(el) {
-  //   let node = el, nodeArr = [];
-  //   while (el = el.previousSibling) {
-  //     if (el.nodeType == 1) {
-  //       nodeArr.push(el);
-  //     }
-  //   }
-  //   let el = node;
-  //   while (el = el.nextSibling) {
-  //     if (el.nodeType == 1) {
-  //       nodeArr.push(el)
-  //     }
-  //   }
-  //
-  // };
-
-
-  function siblingElems(elem) {
-    var nodes = [];
-    var _elem = elem;
-    while ((elem = elem.previousSibling)) {
-      if (elem.nodeType == 1) {
-        nodes.push(elem);
-      }
-    }
-    var elem = _elem;
-    while ((elem = elem.nextSibling)) {
-      if (elem.nodeType == 1) {
-        nodes.push(elem);
-      }
-    }
-  }
-
   export default {
-    data () {
-      return {
-      }
-    },
-    computed: {
-    },
     methods: {
-      selectSeat (rowIndex, columnIndex, item) {
+      /**
+       * 设置高亮状态
+       * item：需要设置高亮状态的项
+      * */
+      setSelectedFlag (item) {
+        if (typeof item.selected == 'undefined') {
+          this.$set(item, 'selected', true);
+        } else {
+          item.selected = !item.selected;
+        }
+        //如果单个座位大于3 或者情侣座位大于3 或者单排座+情侣座总共大于3不可以再选中
+        if ((this.$store.state.selectedSingleSeatList && this.$store.state.selectedSingleSeatList.length > 3) ||
+          (this.$store.state.selectedCoupleSeatList && this.$store.state.selectedCoupleSeatList.length > 3) ||
+          (this.$store.state.selectedSingleSeatList.length + this.$store.state.selectedCoupleSeatList.length > 3)) {
+          this.$set(item, 'selected', '');
+        }
+      },
+      /**
+       * 单个座选择事件
+       * rowIndex：排号
+       * columnIndex：座位号
+       * item：第几个座位
+      * */
+      selectSingleSeat(rowIndex, columnIndex, item) {
         let params = {};
         //如果座位号已售出不可选
         if (item.isSold == true) {
           return false;
         } else {
-          //1.座位选择最多不能超过5个
+          //1.座位选择最多不能超过4个
           //2.给选中的座位添加高亮状态
           //3.将选中的座位号添加到选择座位事件中，座位号由行-列索引拼接
-          if (typeof item.selected == 'undefined') {
-            this.$set(item, 'selected', true);
-            //当item.selected为true时，selectedSeatList数组里才会添加座位，而此时item.selected还未设置，selectedSeatList的长度为0
-            //所以当添加了5个座位，selectedSeatList的长度还是为4--待优化
-            if (this.$store.state.selectedSeatList && this.$store.state.selectedSeatList.length > 4) {
-              this.$set(item, 'selected', '');
-            }
-            params = {
-              seatNo: rowIndex+'-'+columnIndex,
-              selected: item.selected
-            };
-          } else {
-            item.selected = !item.selected;
-            if (this.$store.state.selectedSeatList && this.$store.state.selectedSeatList.length > 4) {
-              this.$set(item, 'selected', '');
-            }
-            params = {
-              seatNo: rowIndex+'-'+columnIndex,
-              selected: item.selected
-            };
-          }
-          //为选中的座位设置编号，供删除时使用
-          if (item.selected == true) {
-            if (typeof item.seatNo == 'undefined'){
-              this.$set(item, 'seatNo', params.seatNo);
-            }
-          } else {
-            this.$set(item, 'seatId', '');
-          }
+          this.setSelectedFlag(item);
+          params = {
+            row: rowIndex,
+            column: columnIndex,
+            selected: item.selected
+          };
+          //调用添加事件
+          this.$store.dispatch('addToSingleSeatList', params);
         }
-        this.$store.dispatch('addToSeatList', params);
       },
-      selectCoupleSeat () {
-
+      /**
+       * 情侣座选择事件
+       * rowIndex：排号
+       * columnIndex：座位号
+       * items：第几排
+      * */
+      selectCoupleSeat (rowIndex, columnIndex, items) {
+        let params = {};
+        // 给当前选中的元素设置样式
+        this.setSelectedFlag(items[columnIndex]);
+        // 如果当前选中的元素为偶数项，在该项的后一项添加高亮状态，
+        // 否则给前一项添加高亮状态
+        // 将选中的座位行号和列号放在数组中，给模板渲染
+        if (columnIndex % 2 == 0) {
+          this.setSelectedFlag(items[columnIndex + 1]);
+          params = {
+            coupleSelected: items[columnIndex].selected || items[columnIndex + 1].selected,
+            seatArr: [{
+              row: rowIndex,
+              column: columnIndex
+            }, {
+              row: rowIndex,
+              column: columnIndex + 1
+            }]
+          };
+        } else {
+          this.setSelectedFlag(items[columnIndex - 1]);
+          params = {
+            coupleSelected: items[columnIndex].selected || items[columnIndex - 1].selected,
+            seatArr: [{
+              row: rowIndex,
+              column: columnIndex - 1
+            }, {
+              row: rowIndex,
+              column: columnIndex
+            }]
+          };
+        }
+        //调用添加事件
+        this.$store.dispatch('addToCoupleSeatList', params);
       }
     }
   }
@@ -249,13 +258,16 @@
               &.lover {
                 width: 35px;
                 background: url("../../assets/img/couple-selectable-seat.png") no-repeat;
+                &.selected {
+                  background: url("../../assets/img/couple-selected-seat.png") no-repeat;
+                }
                 &.lover-left {
-                  background-position: 1px 0;
                   margin-right: 0;
+                  background-position: 1px 0;
                 }
                 &.lover-right {
-                  background-position: -34px 0;
                   margin-left: 0;
+                  background-position: -34px 0;
                 }
               }
             }

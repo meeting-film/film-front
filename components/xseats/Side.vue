@@ -41,17 +41,22 @@
     </div>
 
     <div class="ticket-info">
-      <div class="has-ticket" v-if="$store.state.selectedSeatList && $store.state.selectedSeatList.length > 0">
+      <div class="has-ticket" v-if="($store.state.selectedSingleSeatList && $store.state.selectedSingleSeatList.length > 0) ||
+        ($store.state.selectedCoupleSeatList && $store.state.selectedCoupleSeatList.length > 0)">
         <span class="text">座位：</span>
         <div class="ticket-container">
-          <span class="ticket" v-for="(item, index) in $store.state.selectedSeatList" :key="index">
-            <i class="btn-delete" @click="handleDeleteSeat(item)"></i>
-            {{item.seatNo[0]}}排{{item.seatNo[2]}}座
+          <span class="ticket" v-for="(item, indexSingle) in $store.state.selectedSingleSeatList" :key="indexSingle + '-single'">
+            <i class="btn-delete" @click="handleDeleteSingleSeat(item)"></i>
+            {{item.row + 1}}排{{item.column + 1}}座
+          </span>
+          <span class="ticket" v-for="(item, indexCouple) in $store.state.selectedCoupleSeatList" :key="indexCouple + '-couple'">
+            <i class="btn-delete" @click="handleDeleteCoupleSeat(indexCouple)"></i>
+            {{item.row + 1}}排{{item.column + 1}}座
           </span>
         </div>
       </div>
       <div class="no-ticket" v-else>
-        <p class="buy-limit">座位：一次最多选5个座位</p>
+        <p class="buy-limit">座位：一次最多选4个座位</p>
         <p class="no-selected">请<span>点击左侧</span>座位图选择座位</p>
       </div>
 
@@ -75,13 +80,15 @@
         </div>
       </form>
 
-      <div class="confirm-btn" v-if="$store.state.selectedSeatList && $store.state.selectedSeatList.length > 0" @click="handleConfirmSeat">确认选座</div>
-      <div class="confirm-btn disable" v-else @click="handleConfirmSeat">确认选座</div>
+      <div class="confirm-btn" v-if="($store.state.selectedSingleSeatList && $store.state.selectedSingleSeatList.length > 0) ||
+           ($store.state.selectedCoupleSeatList && $store.state.selectedCoupleSeatList.length > 0)"
+           @click="handleConfirmSelectSeat">确认选座</div>
+      <div class="confirm-btn disable">确认选座</div>
     </div>
     <div class="modal-container" v-show="$store.state.showDialogFlag">
       <div class="modal">
         <span class="icon"></span>
-        <p class="tip">一次最多购买5张票</p>
+        <p class="tip">一次最多购买4张票</p>
         <div class="ok-btn btn" @click="hideDialog">我知道了</div>
       </div>
     </div>
@@ -96,14 +103,37 @@
     computed: {
 
     },
+    created () {
+      // this.showDialog();
+    },
     methods: {
       //确认选座
-      handleConfirmSeat () {
+      handleConfirmSelectSeat () {
         let params = {};
       },
-      //删除座位
-      handleDeleteSeat (params) {
-        this.$store.dispatch('deleteSeat', params)
+      //删除单个座位
+      handleDeleteSingleSeat (params) {
+        this.$store.dispatch('deleteSingleSeat', params);
+      },
+      /**
+       * 删除情侣座位
+       * index:选中座位的索引
+       * 如果index%2结果为偶数，向后加1，否则向前减1
+      */
+      handleDeleteCoupleSeat (index) {
+        let params = {};
+        if (index % 2 == 0) {
+          params.seatArr = [
+            this.$store.state.selectedCoupleSeatList[index],
+            this.$store.state.selectedCoupleSeatList[index + 1]
+          ]
+        } else {
+          params.seatArr = [
+            this.$store.state.selectedCoupleSeatList[index],
+            this.$store.state.selectedCoupleSeatList[index - 1]
+          ]
+        }
+        this.$store.dispatch('deleteCoupleSeat', params);
       },
       //隐藏弹窗
       hideDialog () {
