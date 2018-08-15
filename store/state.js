@@ -79,6 +79,6 @@ export const state = () => ({
   selectedSingleSeatList:[],//选中的单个座位列表
   selectedCoupleSeatList:[],//选中的情侣座位列表
   setSeatSelected: false,
-  showDialogFlag: false,
-})
+  showDialogFlag: false
+});
 export default state

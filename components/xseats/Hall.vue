@@ -76,11 +76,12 @@
         } else {
           item.selected = !item.selected;
         }
-        //如果单个座位大于3 或者情侣座位大于3 或者单排座+情侣座总共大于3不可以再选中
+        //当座位选中之后才向数组里添加，在添加之前数组为空，所以这里数组长度为3时其实已经添加了4个座位
+        //如果单个座位的数组长度大于3 或者情侣座位的数组长度大于3 或者单排座+情侣座数组总和大于3都不可以再选中
         if ((this.$store.state.selectedSingleSeatList && this.$store.state.selectedSingleSeatList.length > 3) ||
           (this.$store.state.selectedCoupleSeatList && this.$store.state.selectedCoupleSeatList.length > 3) ||
           (this.$store.state.selectedSingleSeatList.length + this.$store.state.selectedCoupleSeatList.length > 3)) {
-          this.$set(item, 'selected', '');
+          this.$set(item, 'selected', false);
         }
       },
       /**

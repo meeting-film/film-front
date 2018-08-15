@@ -13,6 +13,7 @@ export const mutations = {
   },
   //添加单个座位
   ADD_SINGLE_SEAT: (state, params) => {
+    // debugger
     //1.将选中的座位添加到selectedSingleSeatList数组中，给右侧展示用
     //2.选中的才可以添加
     if (params.selected == true) {
@@ -24,7 +25,11 @@ export const mutations = {
           state.selectedSingleSeatList.splice(index, 1);
         }
       });
-      if (state.selectedSingleSeatList.length > 3 || (state.selectedSingleSeatList.length + state.selectedCoupleSeatList.length > 3)) {
+      //如果单个座大于3弹出提示框
+      //如果情侣座大于3弹出提示框
+      //如果情侣座大于3并且情侣座加单个座也大于3
+      if (state.selectedSingleSeatList.length > 3 ||
+        (state.selectedSingleSeatList.length + state.selectedCoupleSeatList.length > 3)) {
         state.showDialogFlag = true;
       }
     }
@@ -52,7 +57,7 @@ export const mutations = {
       }
     }
   },
-  //删除选中的座位
+  //删除单排座选中的座位
   DELETE_SINGLE_SEAT (state, params) {
     //删除选中的座位
     state.selectedSingleSeatList.forEach((item,index) => {
@@ -69,7 +74,7 @@ export const mutations = {
       })
     });
   },
-  //删除选中的座位
+  //删除情侣座选中的座位
   DELETE_COUPLE_SEAT (state, params) {
     params.seatArr.forEach((itemParams, indexParams) => {
       //删除选中的座位
