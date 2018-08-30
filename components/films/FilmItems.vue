@@ -3,7 +3,7 @@
     <ul class="film-items">
       <li v-if="$store.state.filmList && $store.state.filmList.length > 0" v-for="(film,index) in $store.state.filmList" :key="index" class="film-item">
         <nuxt-link :to="{path:'/filmItem/'+film.filmId}" target="_blank">
-          <img :src="film.url" :alt="film.filmName" />
+          <img :src="film.imgAddress" :alt="film.filmName" />
           <span class="film-name">{{ film.filmName }}</span>
         </nuxt-link>
         <span class="film-score">{{ film.filmScore }}</span>

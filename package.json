@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.279.1",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "child_process": "^1.0.2",
     "cookie-session": "^2.0.0-beta.3",
@@ -26,6 +27,7 @@
     "sass-resources-loader": "^1.3.3",
     "style-loader": "^0.21.0",
     "swiper": "^4.3.2",
+    "vee-validate": "^2.1.0-beta.8",
     "vue-calendar-component": "^2.6.6"
   },
   "devDependencies": {
