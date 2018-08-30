@@ -38,16 +38,18 @@
     },
     mounted() {
       var mySwiper = new Swiper('.swiper-container', {
-        autoplay: 1000,
+        autoplay: true,
         effect: 'fade',
         loop: true,
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
-        pagination: '.swiper-pagination',
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+        },
       })
     }
-
-
   }
 
 </script>
@@ -65,14 +67,12 @@
       .swiper-container {
         height: 100%;
         max-width: 1600px;
-        .bk1 {
-          background: url('../../assets/img/swiper/bk1.jpg') center no-repeat;
-        }
-        .bk2 {
-          background: url('../../assets/img/swiper/bk2.jpg') center no-repeat;
-        }
-        .bk3 {
-          background: url('../../assets/img/swiper/bk3.jpg') center no-repeat;
+        position: relative;
+        .swiper-pagination {
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          padding: 15px 0;
         }
       }
     }
