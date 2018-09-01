@@ -5,7 +5,7 @@
         <div class="tags-title">类型</div>
         <ul class="tags">
           <li v-for="(cat,index) in quickSearchData.catInfo" :key="index+'-cat'"  @click="setCurrentFlag(index)">
-            <nuxt-link :to=cat.catId >{{cat.catName}}</nuxt-link>
+            <nuxt-link :to="{path:'/films', query: {showType: showType, catId: cat.catId}}">{{cat.catName}}</nuxt-link>
           </li>
         </ul>
       </li>
@@ -13,7 +13,7 @@
         <div class="tags-title">区域</div>
         <ul class="tags">
           <li v-for="(source,index) in quickSearchData.sourceInfo" :key="index+'-source'"  @click="setCurrentFlag(index)">
-            <nuxt-link :to=source.sourceId >{{source.sourceName}}</nuxt-link>
+            <nuxt-link :to="{path:'/films', query: {showType: showType, sourceId: source.sourceId}}">{{source.sourceName}}</nuxt-link>
           </li>
         </ul>
       </li>
@@ -21,7 +21,7 @@
         <div class="tags-title">年代</div>
         <ul class="tags">
           <li v-for="(year,index) in quickSearchData.yearInfo" :key="index+'-year'"  @click="setCurrentFlag(index)">
-            <nuxt-link :to=year.yearId >{{year.yearName}}</nuxt-link>
+            <nuxt-link :to="{path:'/films', query: {showType: showType, yearId: year.yearId}}">{{year.yearName}}</nuxt-link>
           </li>
         </ul>
       </li>
@@ -82,8 +82,12 @@ export default {
   },
   data () {
     return {
-      isActive: ''
+      isActive: '',
+        showType:''
     }
+  },
+  created() {
+    this.showType = this.$router.history.current.query.showType;
   },
   methods:{
     setCurrentFlag: function (index) {

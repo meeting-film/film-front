@@ -64,19 +64,18 @@
 <style lang="scss" scoped>.movie-grid {
   .panel {
     width: 750px;
+    margin-bottom: 50px;
     box-sizing: content-box;
     .panel-header {
       width: 740px;
-      height: 26px;
-      line-height: 26px;
       overflow: hidden;
       .panel-more {
         font-size: 14px;
         line-height: 16px;
         float: right;
-        margin-top: 10px;
+        margin-top: 12px;
         .textcolor_red {
-          color: #ef4238;
+          color: #ff6637;
         }
         .panel-arrow {
           display: inline-block;
@@ -93,7 +92,7 @@
       }
       .panel-title {
         font-size: 26px;
-        color: #ef4238;
+        color: #ff6637;
       }
       .panel-subtitle {
         margin-left: 10px;
@@ -105,13 +104,16 @@
     }
     .panel-content {
       width: 100%;
-      margin-top: 23px;
       .movie-list {
         dd {
-          margin: 30px 0 0 30px;
+          margin-top: 15px;
+          margin-left: 30px;
           display: inline-block;
           vertical-align: top;
           position: relative;
+          &:first-child {
+            margin-left: 0;
+          }
           .movie-item {
             position: relative;
             border: 1px solid #efefef;

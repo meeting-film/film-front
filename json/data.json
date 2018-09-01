@@ -1,40 +1,94 @@
 {
   "status": 0,
-  "imgPre":"http://img.meetingshop.cn/",
-"data": {
-  "cinemaInfo":{
-"cinemaId": 123594,
-"imgUrl":"cinemas/123.jpg",
-"cinemaName":"大地影院",
-"cinemaAdress":" 顺义区新顺南大街11号隆华购物中心6F",
-"cinemaPhone":" 010-89472732"
-},
-"filmInfo":{
-"filmName":"我不是药神",
-"timeLength":"117分钟",
-"filmType":"剧情",
-"actor":"徐峥,周一围,王传君",
-"dateList":[
-{
-"data": "2018-07-31",
-"dataStr":"今天 7月31",
-"isActive": true
-},{
-"data": "2018-08-01",
-"dataStr":"明天 8月1",
-"isActive":false
-}
-],
-"filmField":[
-{
-"fieldId": 1,
-"beginTime":"09:30",
-"endTime":"11:20",
-"language":"中文2D",
-"hallName":"4号厅(激光)",
-"price":"60"
-}
-]
-}
-}
+  "imgPre": "http://img.meetingshop.cn/",
+  "data": {
+    "banners": [{
+      "bannerId": "001",
+      "bannerAddress": "//p0.meituan.net/mmc/ea935a7c88843c35004bc068dbb4c86f182339.jpg",
+      "bannerUrl": "http://www.meetingshop.cn/002.html"
+    },
+      {
+        "bannerId": "002",
+        "bannerAddress": "//p0.meituan.net/mmc/ea935a7c88843c35004bc068dbb4c86f182339.jpg",
+        "bannerUrl": "http://www.meetingshop.cn/002.html"
+      }
+    ],
+    "hotFilms": {
+      "filmNum": 28,
+      "filmInfo": [{
+        "filmId": "001",
+        "filmType": 1,
+        "imgAddress": "//p0.meituan.net/movie/238e2dc36beae55a71cabfc14069fe78236351.jpg@160w_220h_1e_1c",
+        "filmName": "我不是药神",
+        "filmScore": "8.3"
+      },
+        {
+          "filmId": "002",
+          "filmType": 4,
+          "imgAddress": "//p0.meituan.net/movie/ee2e68492504b2390ce246f1e8e6d8ba1550779.jpg@160w_220h_1e_1c",
+          "filmName": "摩天营救",
+          "filmScore": "9.0"
+        }
+      ]
+    },
+    "soonFilms": {
+      "filmNum": 295,
+      "filmInfo": [{
+        "filmId": "001",
+        "filmType": 1,
+        "imgAddress": "//p0.meituan.net/movie/238e2dc36beae55a71cabfc14069fe78236351.jpg@160w_220h_1e_1c",
+        "filmName": "我不是药神",
+        "expectNum": 283000,
+        "showTime": "2018-08-04"
+      },
+        {
+          "filmId": "002",
+          "filmType": 0,
+          "imgAddress": "//p1.meituan.net/movie/4a3c6b42b0fe39df4b50eca0ce9681fe6802322.jpg@160w_220h_1e_1c",
+          "filmName": "狄仁杰之四大天王",
+          "expectNum": 283000,
+          "showTime": "2018-09-04"
+        }
+      ]
+    },
+    "boxRanking": [{
+      "filmId": "002",
+      "imgAddress": "//p1.meituan.net/movie/4a3c6b42b0fe39df4b50eca0ce9681fe6802322.jpg@160w_220h_1e_1c",
+      "filmName": "狄仁杰之四大天王",
+      "boxNum": 231
+    },
+      {
+        "filmId": "003",
+        "imgAddress": "//p1.meituan.net/movie/abaa015a82219b069a337f06caa86828150617.jpg@160w_220h_1e_1c",
+        "filmName": "小猪佩奇",
+        "boxNum": 200
+      }
+    ],
+    "expectRanking": [{
+      "filmId": "002",
+      "imgAddress": "//p1.meituan.net/movie/4a3c6b42b0fe39df4b50eca0ce9681fe6802322.jpg@160w_220h_1e_1c",
+      "filmName": "狄仁杰之四大天王",
+      "expectNum": 231850
+    },
+      {
+        "filmId": "003",
+        "imgAddress": "//p1.meituan.net/movie/abaa015a82219b069a337f06caa86828150617.jpg@160w_220h_1e_1c",
+        "filmName": "小猪佩奇",
+        "expectNum": 200321
+      }
+    ],
+    "top100": [{
+      "filmId": "002",
+      "imgAddress": "//p1.meituan.net/movie/4a3c6b42b0fe39df4b50eca0ce9681fe6802322.jpg@160w_220h_1e_1c",
+      "filmName": "狄仁杰之四大天王",
+      "score": "9.3"
+    },
+      {
+        "filmId": "003",
+        "imgAddress": "//p1.meituan.net/movie/abaa015a82219b069a337f06caa86828150617.jpg@160w_220h_1e_1c",
+        "filmName": "小猪佩奇",
+        "score": "9.0"
+      }
+    ]
+  }
 }

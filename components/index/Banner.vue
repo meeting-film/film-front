@@ -63,7 +63,6 @@
       display: block;
       height: 440px;
       width: 100%;
-      margin-bottom: 88px;
       .swiper-container {
         height: 100%;
         max-width: 1600px;

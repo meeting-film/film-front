@@ -24,7 +24,7 @@
     height: 20px;
     line-height: 20px;
     padding-left: 5px;
-    border-left: 5px solid red;
+    border-left: 5px solid #ff6637;
   }
   .cinema-cell{
     height: 90px;
@@ -48,7 +48,7 @@
     margin-bottom: 10px;
   }
   .cinema-cell .cinema-info a:hover{
-    color: #ff0000;
+    color: #ff6637;
   }
   .cinema-cell .cinema-info p{
     display: inline-block;
@@ -67,12 +67,12 @@
     float: right;
     color: #fff;
     text-decoration:none;
-    background-color: #f03d37;
+    background-color: #ff6637;
     font-size: 14px;
     border-radius: 100px;
     text-align: center;
-    -webkit-box-shadow: 0 2px 10px -2px #f03d37;
-    box-shadow: 0 2px 10px -2px #f03d37;
+    -webkit-box-shadow: 0 2px 10px -2px #ff6637;
+    box-shadow: 0 2px 10px -2px #ff6637;
   }
   .cinema-cell .price{
     width: 90px;
@@ -80,7 +80,7 @@
     float: right;
   }
   .cinema-cell .price span{
-    color: #ff0000;
+    color: #ff6637;
     margin-right: 10px;
   }
 </style>

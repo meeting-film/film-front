@@ -56,7 +56,6 @@ html {
   padding: 0;
 }
 body{
-  background: #f6f6f6;
   font: 12px/1.5 tahoma, arial, Microsoft YaHei, sans-serif;
 }
 li{
@@ -82,23 +81,6 @@ input[type='checkbox']{
 }
 
 /* panel */
-.panel{
-  padding: 10px;
-  margin-bottom: 10px;
-  background: #fff;
-}
-.panel .panel-title{
-  padding: 10px;
-  font-size: 14px;
-  color: #666;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
-}
-.panel .panel-body{
-  padding: 10px;
-  overflow: hidden;
-}
-
 /* 全局通用样式 */
 /* 隐藏类 */
 .hide{

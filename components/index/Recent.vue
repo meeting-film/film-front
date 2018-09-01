@@ -62,6 +62,7 @@
   .movie-grid {
     .panel {
       width: 750px;
+      margin-bottom: 50px;
       box-sizing: content-box;
       .panel-header {
         width: 740px;
@@ -72,9 +73,9 @@
           font-size: 14px;
           line-height: 16px;
           float: right;
-          margin-top: 10px;
+          margin-top: 5px;
           .textcolor_blue {
-            color: #2d98f3;
+            color: #307ad5;
           }
           .panel-arrow {
             display: inline-block;
@@ -91,18 +92,21 @@
         }
         .panel-title {
           font-size: 26px;
-          color: #2d98f3;
+          color: #307ad5;
         }
       }
       .panel-content {
         width: 100%;
-        margin-top: 23px;
         .movie-list {
           dd {
-            margin: 30px 0 0 30px;
+            margin-left: 30px;
+            margin-top: 20px;
             display: inline-block;
             vertical-align: top;
             position: relative;
+            &:first-child {
+              margin-left: 0;
+            }
             .movie-item {
               position: relative;
               border: 1px solid #efefef;
@@ -133,7 +137,7 @@
                     bottom: 7px;
                     width: 100%;
                     .movie-score {
-                      color: #ffb400;
+                      color: #fdc735;
                       float: right;
                       margin-right: 10px;
                       .integer {
@@ -179,7 +183,7 @@
                 text-overflow: ellipsis;
                 &.movie-wish {
                   font-size: 14px;
-                  color: #ffb400;
+                  color: #fdc735;
                   background-color: #fbfbfb;
                   text-align: left;
                   padding-left: 10px;
@@ -200,9 +204,9 @@
                       border-right: 1px dotted #e5e5e5;
                     }
                     &.active {
-                      color: #2d98f3;
+                      color: #307ad5;
                       &:hover {
-                        background-color: #2d98f3;
+                        background-color: #307ad5;
                         color: #fff;
                       }
                     }

@@ -67,7 +67,7 @@
       padding: 0 10px 5px 10px;
       border-radius:10px 10px;
       &.active{
-        background:red;
+        background-color: #ff6637;
         a{
           color:#fff;
         }
@@ -78,7 +78,7 @@
         height:100%;
         color: #333;
         &:hover {
-          color: #f00;
+          color: #ff6637;
         }
       }
     }

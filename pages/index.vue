@@ -1,10 +1,7 @@
 <template>
   <section class="container">
-    <div>
-      <div class="header-placeholder" style="height: 81px;"></div>
-      <Banner :banners="homeData.banners"></Banner>
-      <Container :homeData="homeData"></Container>
-    </div>
+    <Banner :banners="homeData.banners"></Banner>
+    <Container :homeData="homeData"></Container>
   </section>
 </template>
 <script>
@@ -55,4 +52,7 @@
 </script>
 
 <style lang="scss" scoped>
+  .container {
+    padding-top: 81px;
+  }
 </style>

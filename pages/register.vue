@@ -145,7 +145,7 @@
         }
         .errorTip {
           display: block;
-          color: #f76120;
+          color: #ff6637;
         }
         .normal-tip {
           line-height:30px;
@@ -247,10 +247,10 @@
           color: #FFF;
           cursor: pointer;
           background: #ec454a;
-          background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ec454a),color-stop(100%,#e02025));
-          background: -webkit-linear-gradient(top,#ec454a 0,#e02025 100%);
-          background: linear-gradient(to bottom,#ec454a 0,#e02025 100%);
-          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec454a', endColorstr='#e02025', GradientType=0 );
+          background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ff6637),color-stop(100%,#ff6637));
+          background: -webkit-linear-gradient(top,#ec454a 0,#ff6637 100%);
+          background: linear-gradient(to bottom,#ec454a 0,#ff6637 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec454a', endColorstr='#ff6637', GradientType=0 );
         }
       }
       .link-wrapper {

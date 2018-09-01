@@ -225,7 +225,7 @@
                         text-decoration: none;
                         &.active {
                              color: #fff;
-                             background-color: #ed3931;
+                             background-color: #ff6637;
                          }
                     }
                 }
@@ -240,7 +240,7 @@
              content: attr(data-before);
              display: block;
              padding: 20px 0;
-             color: #ec443f;
+             color: #ff6637;
              font-size: 18px;
              border-bottom: 1px solid #e1e1e1;
              margin-bottom: 30px;
@@ -359,7 +359,7 @@
                 line-height: 40px;
                 border: none;
                 margin:0 100px;
-                background-color: #ed3931;
+                background-color: #ff6637;
                 padding: 0;
             }
         }

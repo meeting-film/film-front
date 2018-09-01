@@ -87,16 +87,13 @@
 </script>
 <style lang="scss" scoped>
   .ranking-box-wrapper {
-    margin-top: 0;
+    margin-bottom: 50px;
     .panel {
       padding: 0;
       .panel-header {
-        font-size: 14px;
-        line-height: 16px;
-        margin-top: 10px;
         .panel-title {
           font-size: 26px;
-          color: #ffb400;
+          color: #fdc735;
           border-bottom: 0;
           .textcolor_orange {
             color: #fdb863;
@@ -108,7 +105,7 @@
           float: right;
           margin-top: 10px;
           .textcolor_orange {
-            color: #ffb400;
+            color: #fdc735;
           }
           .panel-arrow {
             display: inline-block;
@@ -124,7 +121,7 @@
       .panel-content {
         overflow: hidden;
         width: 100%;
-        margin-top: 23px;
+        margin-top: 15px;
         .ranking-wrapper {
           .ranking-item {
             &:hover {
@@ -202,7 +199,7 @@
                   .ranking-top-wish {
                     margin-top: 12px;
                     font-size: 14px;
-                    color: #ffb400;
+                    color: #fdc735;
                   }
                 }
               }
@@ -229,7 +226,7 @@
                 width: 16px;
                 line-height: 20px;
                 color: #fff;
-                background-color: #ffb400;
+                background-color: #fdc735;
               }
               .ranking-img {
                 width: 100%;

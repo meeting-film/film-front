@@ -62,16 +62,20 @@
 </script>
 <style lang="scss" scoped>
   .ranking-box-wrapper {
-    margin-top: 0;
+    margin-bottom: 50px;
     .panel {
       margin: 0;
+      padding: 0;
       .panel-header {
+        height: 26px;
+        line-height: 26px;
         .panel-title {
+          display: block;
           padding: 0;
           border-bottom: 0;
           .textcolor_red {
             font-size: 26px;
-            color: #ef4238;
+            color: #ff6637;
           }
         }
       }
@@ -79,7 +83,7 @@
       .panel-content {
         overflow: hidden;
         width: 100%;
-        margin-top: 23px;
+        margin-top: 20px;
         .ranking-item {
           &:hover {
             background-color: #f7f7f7;
@@ -92,7 +96,7 @@
             display: inline-block;
             width: 20px;
             font-size: 18px;
-            color: #ef4238;
+            color: #ff6637;
             vertical-align: top;
           }
           .normal-link {
@@ -111,7 +115,7 @@
             vertical-align: top;
           }
           .ranking-num-info {
-            color: #ef4238;
+            color: #ff6637;
             font-size: 14px;
           }
           .ranking-top-left {
@@ -160,7 +164,7 @@
             .ranking-top-wish {
               margin-top: 12px;
               font-size: 14px;
-              color: #ef4238;
+              color: #ff6637;
             }
           }
         }

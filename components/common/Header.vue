@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-inner">
       <!-- <a href="" class="meeting-logo"></a> -->
-      <a href="" class="logo" data-act="icon-click"></a>
+      <a href="" class="logo" data-act="icon-click" style="font: 30px/80px 'arial'; color: #ff6637">Meeting</a>
       <!--<div class="city-container">-->
         <!--<div class="city-selected">-->
           <!--<div class="city-name">-->
@@ -13,11 +13,11 @@
       <!--</div>-->
       <div class="nav">
         <ul class="navbar">
-          <li><nuxt-link active-class="is-active" to="/" class="link nav-item is-tab" exact>首页</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" to="/films" class="link nav-item is-tab" exact>电影</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" to="/cinemas" class="link nav-item is-tab" exact>影院</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" to="/board" class="link nav-item is-tab" exact>榜单</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" to="/news" class="link nav-item is-tab" exact>热点</nuxt-link></li>
+          <li><nuxt-link active-class="is-active" :to="{path: '/'}" class="link nav-item is-tab" exact>首页</nuxt-link></li>
+          <li><nuxt-link active-class="is-active" :to="{path: '/films'}" class="link nav-item is-tab" exact>电影</nuxt-link></li>
+          <li><nuxt-link active-class="is-active" :to="{path: '/cinemas'}" class="link nav-item is-tab" exact>影院</nuxt-link></li>
+          <li><nuxt-link active-class="is-active" :to="{path: '/board'}" class="link nav-item is-tab" exact>榜单</nuxt-link></li>
+          <li><nuxt-link active-class="is-active" :to="{path: '/news'}" class="link nav-item is-tab" exact>热点</nuxt-link></li>
         </ul>
       </div>
       <div class="user-info">
@@ -103,7 +103,7 @@
         float: left;
         width: 133px;
         height: 80px;
-        background: url(../../assets/img/logo.png) no-repeat 0;
+        /*background: url(../../assets/img/logo.png) no-repeat 0;*/
         background-size: contain;
       }
     }
@@ -127,7 +127,7 @@
           font-size: 18px;
           &.active {
             color: #fff;
-            background-color: #ef4238;
+            background-color: #ff6637;
           }
           .nav-item{
             width: 80px;
@@ -138,11 +138,11 @@
             display: inline-block;
             text-align: center;
             &:hover{
-              color: red;
+              color: #ff6637;
             }
             &.is-active{
               color: #f7f8fb;
-              background-color: #f00;
+              background-color: #ff6637;
             }
           }
         }
@@ -188,6 +188,9 @@
         background-color: #faf8fa;
         overflow: hidden;
         color: #333;
+        &:focus {
+          border-color: #ff6637;
+        }
       }
       .submit {
         display: inline-block;
@@ -196,7 +199,7 @@
         top: 0;
         height: 40px;
         width: 40px;
-        background-color: #ef4238;
+        background-color: #ff6637;
         border-radius: 30px;
         background-image: url('../../assets/img/search.png');
         background-position: 10px;

@@ -24,6 +24,8 @@
           "catId": "",
           "sourceId": "",
           "yearId": "",
+          "nowPage":1,
+          "pageSize":18,
           "offset": 0
         };
         this.$store.dispatch('getFilms', params);

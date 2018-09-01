@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <p class="friendly-links">
-      违法和不良信息举报电话: 4006018900 举报邮箱: jubao.maoyan@maoyan.com
+      违法和不良信息举报电话: 4006018900
     </p>
     <p class="friendly-links">
       友情链接 :
@@ -10,14 +10,13 @@
       <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>美团下载</nuxt-link>
     </p>
     <p>
-      ©2016 猫眼电影 maoyan.com
+      ©2018 meetingshop.cn
       <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>京ICP证160733号</nuxt-link>
       <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>京ICP备16022489号-1</nuxt-link>
       京公网安备 11010502030881号
       <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>网络文化经营许可证</nuxt-link>
       <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>电子公告服务规则</nuxt-link>
     </p>
-    <p>北京猫眼文化传媒有限公司</p>
   </div>
 </template>
 <script>

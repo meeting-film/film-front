@@ -16,7 +16,7 @@
             </p>
             <p class="meta-info">
               北京时间 10:04:53
-              <span class="pull-right">猫眼专业版实时票房数据</span>
+              <span class="pull-right">专业版实时票房数据</span>
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@
     background-color: #fff;
     .content {
       width: 1200px;
-      margin: 0 auto;
+      margin: 50px auto;
       &:after {
         content: '';
         display: table;
@@ -82,12 +82,8 @@
       .aside {
         float: right;
         width: 360px;
-        .most-expect-wrapper {
-          margin-top: 80px;
-        }
         .box-total-wrapper {
-          margin-top: 29px;
-          padding-bottom: 11px;
+          margin-bottom: 50px;
           background-color: #fdfdfd;
           border: 1px solid #efefef;
           padding-right: 15px;
@@ -98,11 +94,11 @@
           > div {
             font-size: 14px;
             margin-left: 54px;
-            color: #ef4238;
+            color: #10c45c;
             padding-top: 20px;
             box-sizing: content-box;
             a.more[href] {
-              color: #ef4238;
+              color: #10c45c;
               margin-top: 13px;
               float: right;
               line-height: 16px;
@@ -110,6 +106,7 @@
             .meta-info {
               color: #999;
               margin-top: 6px;
+              margin-bottom: 10px;
             }
             .num {
               font-size: 30px;
@@ -124,7 +121,7 @@
             height: 83px;
             padding: 10px;
             color: #fff;
-            background-color: #ef4238;
+            background-color: #10c45c;
             text-align: center;
             font-weight: 400;
             font-size: 17px;

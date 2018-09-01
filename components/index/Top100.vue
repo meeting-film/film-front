@@ -68,20 +68,18 @@
 </script>
 <style lang="scss" scoped>
   .top100-wrapper {
-    margin-top: 100px;
+    margin-bottom: 50px;
     .panel {
       margin: 0;
       .panel-header {
         overflow: hidden;
-        height: 26px;
-        line-height: 26px;
         .panel-more {
           font-size: 14px;
           line-height: 16px;
           float: right;
           margin-top: 10px;
           .textcolor_orange {
-            color: #ffb400;
+            color: #fdc735;
           }
           &.panel-arrow-orange {
             background: url('../../assets/img/arrow-orange.png') top no-repeat;
@@ -89,13 +87,13 @@
         }
         .panel-title {
           font-size: 26px;
-          color: #ffb400;
+          color: #fdc735;
         }
       }
       .panel-content {
         overflow: hidden;
         width: 100%;
-        margin-top: 23px;
+        margin-top: 15px;
         .ranking-wrapper {
           overflow: hidden;
           .ranking-item {
@@ -124,7 +122,7 @@
               }
               .ranking-num-info {
                 float: right;
-                color: #fdb863;
+                color: #fdc735;
                 font-size: 14px;
               }
             }
@@ -168,14 +166,14 @@
                   .ranking-top-wish {
                     margin-top: 12px;
                     font-size: 14px;
-                    color: #ffb400;
+                    color: #fdc735;
                   }
                 }
               }
             }
             &.ranking-index-2, &.ranking-index-3 {
               .ranking-index {
-                color: #ffb400;
+                color: #fdc735;
               }
             }
           }

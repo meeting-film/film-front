@@ -2,14 +2,8 @@
   <div>
     <div class="subnav">
       <ul class="navbar">
-        <li>
-          <nuxt-link class="active" :to="{path:'/films?showType/1'}">正在热映</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link :to="{path:'/films?showType/2'}">即将上映</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link :to="{path:'/films?showType/3'}">经典影片</nuxt-link>
+        <li @click="tab(index+1)" v-for="(item, index) in navbarItem" :key="index">
+          <nuxt-link :class="{active: isActive == index + 1}" :to="{path: '/films', query: {showType: index+1}}">{{item.name}}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -38,7 +32,13 @@
     },
     data () {
       return {
-        isActive: '',
+        isActive: 1,
+          navbarItem: [
+              {name: '正在热映'},
+              {name: '即将上映'},
+              {name: '经典影片'},
+          ],
+          showType: 1,
         quickSearchData: {
           catInfo:[],
           sourceInfo:[],
@@ -51,7 +51,13 @@
       FilmItems
     },
     asyncData () {
-      return API.getConditionList().then((res) => {
+        let parmas = {
+            catId: 99,
+            sourceId: 99,
+            yearId: 99,
+        };
+
+      return API.getConditionList(parmas).then((res) => {
         if (res) {
           if (res.status == 0) {
             if (res.data) {
@@ -64,6 +70,9 @@
           // error({ statusCode: 404, message: 'Post not found' })
         })
     },
+      created() {
+          this.showType = this.$router.history.current.query.showType;
+      },
     methods: {
       tab (index) {
         this.isActive = index;
@@ -96,7 +105,7 @@
             color: #fff;
           }
           &.active {
-            color: #ef4238;
+            color: #ff6637;
             position: relative;
             cursor: default;
             &:before {
