@@ -62,12 +62,30 @@
                         <a href="/films/celebrity/467008" target="_blank" class="name">
                           {{item.directorName}}
                         </a>
+                        <span class="role">饰：{{item.roleName}}</span>
                       </div>
                     </li>
 
                   </ul>
                 </div>
 
+              </div>
+
+            </div>
+          </div>
+
+          <div class="module">
+            <div class="mod-title">
+              <h3>图集</h3>
+              <a class="more" href="#img" data-act="all-photo-click">全部</a>
+            </div>
+            <div class="mod-content">
+              <div class="album clearfix" data-act="movie-img-click">
+                <div class="img1"><img class="default-img" alt="" :src=filmItem.imgs.mainImg></div>
+                <div class="img2"><img class="default-img" alt="" :src=filmItem.imgs.img01></div>
+                <div class="img3"><img class="default-img" alt="" :src=filmItem.imgs.img02></div>
+                <div class="img4"><img class="default-img" alt="" :src=filmItem.imgs.img03></div>
+                <div class="img5"><img class="default-img" alt="" :src=filmItem.imgs.img04></div>
               </div>
 
             </div>
@@ -89,98 +107,6 @@
 
             </div>
           </div>
-        </div>
-        <div class="tab-celebrity tab-content">
-          <div class="celebrity-container">
-            <div class="celebrity-group">
-              <div class="celebrity-type">
-                导演
-                <span class="num">（1）</span>
-              </div>
-              <ul class="celebrity-list clearfix">
-                <li class="celebrity " data-act="celebrity-click" data-val="{celebrityid:30974}">
-                  <a href="/films/celebrity/30974" target="_blank" class="portrait">
-                    <img class="default-img" data-src="http://p0.meituan.net/movie/d2576cfdc6e0de69c28ca32c83063a3949394.jpg@128w_170h_1e_1c" alt="">
-                  </a>
-                  <div class="info">
-                    <a href="/films/celebrity/30974" target="_blank" class="name">
-                      方刚亮
-                    </a>
-                  </div>
-                </li>
-
-              </ul>
-            </div>
-
-            <div class="celebrity-group">
-              <div class="celebrity-type">
-                演员
-                <span class="num">（2）</span>
-              </div>
-              <ul class="celebrity-list clearfix">
-                <li class="celebrity actor" data-act="celebrity-click" data-val="{celebrityid:467008}">
-                  <a href="/films/celebrity/467008" target="_blank" class="portrait">
-                    <img class="default-img" data-src="http://p1.meituan.net/mmdb/3a2061d771d98566d3e5fa5c08c5e0b33685.png@128w_170h_1e_1c" alt="">
-                  </a>
-                  <div class="info">
-                    <a href="/films/celebrity/467008" target="_blank" class="name">
-                      李雷
-                    </a>
-                  </div>
-                </li>
-
-                <li class="celebrity actor" data-act="celebrity-click" data-val="{celebrityid:393439}">
-                  <a href="/films/celebrity/393439" target="_blank" class="portrait">
-                    <img class="default-img" data-src="http://p0.meituan.net/movie/e685cad847bcb8a7dacb5fb0f740bd48138307.jpg@128w_170h_1e_1c" alt="">
-                  </a>
-                  <div class="info">
-                    <a href="/films/celebrity/393439" target="_blank" class="name">
-                      姚岗
-                    </a>
-                  </div>
-                </li>
-
-              </ul>
-            </div>
-
-            <div class="celebrity-group">
-              <div class="celebrity-type">
-                编剧
-                <span class="num">（2）</span>
-              </div>
-              <ul class="celebrity-list clearfix">
-                <li class="celebrity " data-act="celebrity-click" data-val="{celebrityid:845865}">
-                  <a href="/films/celebrity/845865" target="_blank" class="portrait">
-                    <img class="default-img" data-src="http://p0.meituan.net/movie/59b2a52d62172c1c357a2a926b8d1be5206760.jpg@128w_170h_1e_1c" alt="">
-                  </a>
-                  <div class="info">
-                    <a href="/films/celebrity/845865" target="_blank" class="name">
-                      张小北
-                    </a>
-                  </div>
-                </li>
-
-                <li class="celebrity " data-act="celebrity-click" data-val="{celebrityid:30974}">
-                  <a href="/films/celebrity/30974" target="_blank" class="portrait">
-                    <img class="default-img" data-src="http://p0.meituan.net/movie/d2576cfdc6e0de69c28ca32c83063a3949394.jpg@128w_170h_1e_1c" alt="">
-                  </a>
-                  <div class="info">
-                    <a href="/films/celebrity/30974" target="_blank" class="name">
-                      方刚亮
-                    </a>
-                  </div>
-                </li>
-
-              </ul>
-            </div>
-
-          </div>
-        </div>
-        <div class="tab-award tab-content" data-val="{tabtype:'award'}">
-        </div>
-        <div class="tab-img tab-content" data-val="{tabtype:'img'}">
-          <ul class="clearfix">
-          </ul>
         </div>
       </div>
     </div>
@@ -222,8 +148,8 @@
           line-height: 100%;
           border-bottom: 2px solid transparent;
           &.active {
-            color: #ef4238;
-            border-bottom-color: #ef4238;
+            color: #ff6637;
+            border-bottom-color: #ff6637;
           }
           &.tab-disabled {
             color: #999;
@@ -233,7 +159,7 @@
       }
       .tab-content-container {
         .tab-desc {
-          margin-top: 40px;
+          margin-top: 20px;
           .dra {
             font-size: 14px;
             line-height: 26px;
@@ -257,7 +183,7 @@
                   width: 4px;
                   height: 18px;
                   margin-right: 6px;
-                  background-color: #ef4238;
+                  background-color: #ff6637;
                 }
               }
               .more {
@@ -270,7 +196,7 @@
               }
             }
             .mod-content {
-              margin-top: 20px;
+              margin-top: 10px;
               color: #333;
               &:after {
                 content: '';
@@ -313,7 +239,7 @@
                   }
                   .info {
                     .name, .role {
-                      display: inline-block;
+                      display: block;
                       width: 128px;
                       text-align: center;
                       padding-bottom: 1px;
@@ -323,8 +249,41 @@
                       white-space: nowrap;
                       margin-top: 8px;
                       line-height: 1.2;
+                    }
+                    .name {
                       color: #333;
                     }
+                    .role {
+                      color: #666;
+                    }
+                  }
+                }
+              }
+
+              .album {
+                .img1, .img2, .img3, .img4, .img5 {
+                  float: left;
+                  width: 126px;
+                  height: 126px;
+                  overflow: hidden;
+                  img {
+                    cursor: pointer;
+                    width: 126px;
+                    height: 126px;
+                  }
+                }
+                .img2, .img3, .img4, .img5 {
+                  margin-left: 6px;
+                }
+                .img4, .img5 {
+                  margin-top: 6px;
+                }
+                .img1 {
+                  width: 465px;
+                  height: 258px;
+                  img {
+                    width: 465px;
+                    height: 258px;
                   }
                 }
               }
@@ -368,23 +327,6 @@
                       height: 170px;
                     }
                   }
-                  .info {
-                    .name {
-                      margin-top: 8px;
-                      line-height: 1.2;
-                      color: #333;
-                    }
-                    .name, .role {
-                      display: inline-block;
-                      width: 128px;
-                      text-align: center;
-                      padding-bottom: 1px;
-                      margin-bottom: -1px;
-                      text-overflow: ellipsis;
-                      overflow: hidden;
-                      white-space: nowrap;
-                    }
-                  }
                 }
               }
             }
@@ -423,11 +365,15 @@
       height: 30px;
       padding: 0 10px;
       border-radius: 15px;
-      border: 1px solid #ef4238;
+      border: 1px solid #ff6637;
       text-align: center;
       font-size: 14px;
       line-height: 30px;
-      color: #ef4238;
+      color: #ff6637;
+      &:hover {
+        background-color: #ff6637;
+        color: #fff;
+      }
     }
   }
 </style>

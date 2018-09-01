@@ -30,15 +30,16 @@
 </template>
 <style lang="scss" scoped>
   .tags-panel{
-    margin: 0 auto;
+    margin: 30px auto 0;
     width: 1120px;
-    height: 230px;
     border: 1px solid #ddd;
-    border-top: 0;
     .tags-line{
       margin: 0 20px;
       padding: 16px 0;
-      border-bottom: 1px dashed #ddd;
+      border-top: 1px dashed #ddd;
+      &:first-child {
+        border-top: 0;
+      }
       .tags-title {
         height: 24px;
         line-height: 24px;

@@ -64,6 +64,7 @@
           text-overflow: ellipsis;
           text-align: center;
           font-size: 16px;
+          color: #666;
         }
         .film-score{
           display: inline-block;

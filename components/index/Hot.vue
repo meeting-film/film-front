@@ -107,10 +107,20 @@
               position: relative;
               border: 1px solid #efefef;
               margin: -1px;
+              -webkit-transition: all .2s ease .2s;
+              -moz-transition: all .2s ease .2s;
+              -ms-transition: all .2s ease .2s;
+              -o-transition: all .2s ease .2s;
+              transition: all .2s ease .2s;
               &:hover {
-                -moz-box-shadow:0 0 8px #fff,0 5px 13px rgba(0,0,0,.07);
-                -webkit-box-shadow:0 0 8px #fff,0 5px 13px rgba(0,0,0,.07);
-                box-shadow:0 0 8px #fff,0 5px 13px rgba(0,0,0,.07)
+                -webkit-transform: translateY(-5px);
+                -moz-transform: translateY(-5px);
+                -ms-transform: translateY(-5px);
+                -o-transform: translateY(-5px);
+                transform: translateY(-5px);
+                -moz-box-shadow:0 0 5px #fff,0 5px 10px rgba(0,0,0,.07);
+                -webkit-box-shadow:0 0 5px #fff,0 5px 10px rgba(0,0,0,.07);
+                box-shadow:0 0 5px #fff,0 5px 10px rgba(0,0,0,.07)
               }
               .movie-poster {
                 background-color: #fcfcfc;

@@ -116,7 +116,7 @@
           &:hover,
           &.active {
             color: #fff;
-            background-color: #f03d37;
+            background-color: #ff6637;
           }
         }
       }
@@ -157,7 +157,7 @@
               }
               .sell-price {
                 font-size: 18px;
-                color: #f03d37;
+                color: #ff6637;
                 font-weight: 700;
                 &:before {
                   content: "\FFE5";
@@ -170,16 +170,16 @@
                 width: 80px;
                 height: 30px;
                 color: #fff;
-                background-color: #f03d37;
+                background-color: #ff6637;
                 font-size: 14px;
                 line-height: 30px;
                 border-radius: 100px;
                 text-align: center;
                 &.normal {
-                  -webkit-box-shadow: 0 2px 10px -2px #f03d37;
-                  box-shadow: 0 2px 10px -2px #f03d37;
+                  -webkit-box-shadow: 0 2px 10px -2px #ff6637;
+                  box-shadow: 0 2px 10px -2px #ff6637;
                   &:hover{
-                    background-color:#ff5e59
+                    background-color:#f73f41
                   }
                 }
                 &.full {

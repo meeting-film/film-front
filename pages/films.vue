@@ -83,7 +83,7 @@
 
 <style lang="scss" scoped>
   .subnav {
-    margin-top: 81px;
+    margin-top: 61px;
     background-color: #47464a;
     height: 60px;
     width: 100%;

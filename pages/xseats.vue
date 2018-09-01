@@ -64,7 +64,7 @@ export default {
   }
   .xseats-wrapper {
     background-color: #fff;
-    padding-top: 81px;
+    padding-top: 61px;
     .xseats-container {
       width: 1200px;
       margin: 0 auto;

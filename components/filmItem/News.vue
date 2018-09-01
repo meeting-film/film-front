@@ -52,7 +52,7 @@
           width: 4px;
           height: 18px;
           margin-right: 6px;
-          background-color: #ef4238;
+          background-color: #ff6637;
         }
       }
     }
@@ -62,6 +62,9 @@
       .news-item {
         overflow: hidden;
         margin: 0 0 16px;
+        &:hover {
+          background-color: #fafafa;
+        }
         .news-img {
           background-color: #efefef;
           position: relative;

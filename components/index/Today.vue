@@ -86,7 +86,7 @@
         margin-top: 20px;
         .ranking-item {
           &:hover {
-            background-color: #f7f7f7;
+            background-color: #fafafa;
           }
           &.ranking-index-1 {
             margin-bottom: 11px;

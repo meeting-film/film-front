@@ -208,7 +208,7 @@
           margin-left: 2px;
         }
         .screen {
-          color: #f03d37;
+          color: #ff6637;
         }
       }
     }
@@ -228,7 +228,7 @@
           text-align: center;
           margin: 28px 0 39px;
           span {
-            color: #f03d37;
+            color: #ff6637;
           }
         }
       }
@@ -246,7 +246,7 @@
           cursor: default;
           position: relative;
           font-size: 12px;
-          color: #f03d37;
+          color: #ff6637;
           display: inline-block;
           width: 60px;
           height: 30px;
@@ -273,7 +273,7 @@
       font-size: 14px;
       color: #333;
       .price {
-        color: #f03d37;
+        color: #ff6637;
         font-size: 24px;
         &:before {
           content: "\FFE5";
@@ -315,7 +315,7 @@
             top: 0;
             right: 10px;
             cursor: pointer;
-            color: #f03d37;
+            color: #ff6637;
             &.disable {
               color: #ccc;
             }
@@ -334,9 +334,9 @@
         position: relative;
         left: 50%;
         margin: 38px 0 0 -130px;
-        background-color: #f03d37;
-        -webkit-box-shadow: 0 2px 10px -2px #f03d37;
-        box-shadow: 0 2px 10px -2px #f03d37;
+        background-color: #ff6637;
+        -webkit-box-shadow: 0 2px 10px -2px #ff6637;
+        box-shadow: 0 2px 10px -2px #ff6637;
         &.disable {
           background-color: #dedede;
           -webkit-box-shadow: none;
@@ -388,9 +388,9 @@
         cursor: default;
         &.ok-btn {
           color: #fff;
-          background-color: #f03d37;
-          -webkit-box-shadow: 0 2px 10px -2px #f03d37;
-          box-shadow: 0 2px 10px -2px #f03d37;
+          background-color: #ff6637;
+          -webkit-box-shadow: 0 2px 10px -2px #ff6637;
+          box-shadow: 0 2px 10px -2px #ff6637;
         }
       }
     }

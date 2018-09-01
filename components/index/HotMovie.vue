@@ -119,13 +119,10 @@
             border: 1px solid #efefef;
             margin: -1px;
             .movie-poster {
-              background-color: #fcfcfc;
-              height: 220px;
+              width: 351px;
+              height: 226px;
               overflow: hidden;
               position: relative;
-              &.movie-poster-long {
-                width: 345px;
-              }
               .poster-default {
                 top: 50%;
                 left: 50%;
@@ -138,8 +135,13 @@
                 .movie-info {
                   color: #fff;
                   position: absolute;
-                  bottom: 7px;
+                  bottom: -22px;
                   width: 100%;
+                  -webkit-transition: all .2s ease .2s;
+                  -moz-transition: all .2s ease .2s;
+                  -ms-transition: all .2s ease .2s;
+                  -o-transition: all .2s ease .2s;
+                  transition: all .2s ease .2s;
                   .movie-score {
                     color: #ffb400;
                     float: right;
@@ -165,6 +167,11 @@
                       height: 39px;
                       line-height: 39px;
                     }
+                  }
+                }
+                &:hover {
+                  .movie-info {
+                    bottom: 7px;
                   }
                 }
               }

@@ -53,6 +53,6 @@
 
 <style lang="scss" scoped>
   .container {
-    padding-top: 81px;
+    padding-top: 61px;
   }
 </style>

@@ -99,10 +99,10 @@
 </script>
 <style lang="scss" scoped>
   .container {
-    padding-top: 81px;
+    padding-top: 61px;
     background-color: #fff;
     .main-content-container {
-      margin: 80px auto;
+      margin: 40px auto;
       width: 1200px;
       &:after {
         content: '';

@@ -30,10 +30,8 @@
 </template>
 <style lang="scss" scoped>
   .tags-panel{
-    margin:0 auto;
-    margin-top:50px;
+    margin: 30px auto 0;
     width: 1120px;
-    height: 280px;
     border: 1px solid #ddd;
     .tags-title {
       height: 24px;
@@ -45,7 +43,10 @@
     .tags-line{
       margin: 0 20px;
       padding: 16px 0;
-      border-bottom: 1px dashed #ddd;
+      border-top: 1px dashed #ddd;
+      &:first-child {
+        border-top: 0;
+      }
       ul{
         width: 1000px;
         overflow: hidden;

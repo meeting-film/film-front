@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-inner">
       <!-- <a href="" class="meeting-logo"></a> -->
-      <a href="" class="logo" data-act="icon-click" style="font: 30px/80px 'arial'; color: #ff6637">Meeting</a>
+      <a href="" class="logo" data-act="icon-click" style="font: 30px/60px 'arial'; color: #ff6637">Meeting</a>
       <!--<div class="city-container">-->
         <!--<div class="city-selected">-->
           <!--<div class="city-name">-->
@@ -16,8 +16,8 @@
           <li><nuxt-link active-class="is-active" :to="{path: '/'}" class="link nav-item is-tab" exact>首页</nuxt-link></li>
           <li><nuxt-link active-class="is-active" :to="{path: '/films'}" class="link nav-item is-tab" exact>电影</nuxt-link></li>
           <li><nuxt-link active-class="is-active" :to="{path: '/cinemas'}" class="link nav-item is-tab" exact>影院</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" :to="{path: '/board'}" class="link nav-item is-tab" exact>榜单</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" :to="{path: '/news'}" class="link nav-item is-tab" exact>热点</nuxt-link></li>
+          <!--<li><nuxt-link active-class="is-active" :to="{path: '/board'}" class="link nav-item is-tab" exact>榜单</nuxt-link></li>-->
+          <!--<li><nuxt-link active-class="is-active" :to="{path: '/news'}" class="link nav-item is-tab" exact>热点</nuxt-link></li>-->
         </ul>
       </div>
       <div class="user-info">
@@ -38,14 +38,19 @@
         <input class="search" type="search" v-model="form.search" placeholder="找影视剧、影人、影院" autocomplete="off">
         <input class="submit" type="submit" value="">
       </form>
-      <!--<div class="app-download">-->
-        <!--<a href="">-->
-          <!--<span class="iphone-icon"></span>-->
-          <!--<span class="apptext">APP下载</span>-->
-          <!--<span class="caret"></span>-->
-          <!--&lt;!&ndash; <div class="download-icon"></div> &ndash;&gt;-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="app-download">
+        <a href="javaascript:;">
+          <span class="apptext">APP下载</span>
+          <div class="app-load-box clearfix js-load-box">
+            <img src="../../assets/img/appload.png" class="l">
+            <div class="r">
+              <p>扫描下载慕课网APP</p>
+              <a href="https://itunes.apple.com/cn/app/mu-ke-wang/id722179140?mt=8" target="_blank"><i class="icon-apple"></i>App Store下载</a>
+              <a href="//www.imooc.com/mobile/mukewang.apk" target="_blank"><i class="icon-android"></i>Android下载</a>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -98,11 +103,11 @@
     .header-inner {
       width: 1200px;
       margin: 0 auto;
-      height: 80px;
+      height: 60px;
       .logo {
         float: left;
         width: 133px;
-        height: 80px;
+        height: 60px;
         /*background: url(../../assets/img/logo.png) no-repeat 0;*/
         background-size: contain;
       }
@@ -121,8 +126,8 @@
           cursor: pointer;
           text-align: center;
           display: inline-block;
-          height: 80px;
-          line-height: 80px;
+          height: 60px;
+          line-height: 60px;
           width: 80px;
           font-size: 18px;
           &.active {
@@ -131,8 +136,8 @@
           }
           .nav-item{
             width: 80px;
-            height: 80px;
-            line-height: 80px;
+            height: 60px;
+            line-height: 60px;
             font-size: 20px;
             color: #000;
             display: inline-block;
@@ -154,7 +159,7 @@
     .meeting-logo {
       display: block;
       width: 280px;
-      height: 80px;
+      height: 60px;
       background-image: url("../../assets/img/Meeting-logo.jpg");
     }
     .user-info {
@@ -168,13 +173,13 @@
         height: 100%;
         .link {
           font-size: 14px;
-          line-height: 6;
+          line-height: 60px;
         }
       }
     }
     form {
       float: right;
-      margin: 20px 10px 0 0;
+      margin: 10px 0;
       position: relative;
       .search {
         display: inline-block;
@@ -237,51 +242,67 @@
   .app-download {
     float: right;
     width: 132px;
-    height: 80px;
+    height: 60px;
     margin-right: 10px;
     position: relative;
     > a {
       display: block;
-      padding-top: 28px;
-      padding-left: 14px;
+      padding: 18px 0;
       width: 100%;
       height: 100%;
+      text-align: center;
+      color: #000;
+      font-size: 16px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       border-left: 1px solid transparent;
       border-right: 1px solid transparent;
-      .iphone-icon {
-        float: left;
-        display: inline-block;
-        width: 20px;
-        height: 24px;
-        background-image: url('../../assets/img/phone.png');
-        background-size: cover;
-      }
-      .apptext {
-        float: left;
-        display: inline-block;
-        font-size: 16px;
-        color: #000;
-        height: 24px;
-        line-height: 24px;
-        margin: 0 7px;
-      }
-      .caret {
-        float: left;
-        position: relative;
-        top: 8px;
-      }
-      .download-icon {
+      .app-load-box {
         display: none;
-        width: 130px;
-        height: 165px;
         position: absolute;
+        top: 100%;
+        width: 304px;
         left: 0;
-        top: 80px;
+        padding: 22px 24px;
         background-color: #fff;
-        border: 1px solid #dcd4d7;
-        border-top: 0;
+        font-size: 12px;
+        color: #4D555D;
+        line-height: 16px;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
+        .l {
+          float: left;
+          width: 108px;
+          height: 108px;
+        }
+        .r {
+          float: right;
+          p {
+            margin-bottom: 12px;
+          }
+          a {
+            display: block;
+            font-size: 12px;
+            color: #fff;
+            width: 132px;
+            height: 36px;
+            margin-top: 8px;
+            line-height: 36px;
+            background-color: #4D555D;
+            border-radius: 18px;
+            text-align: center;
+            &:hover {
+              background-color: #333;
+            }
+          }
+        }
+      }
+      &:hover {
+        box-shadow: 0 4px 8px 0 rgba(7,17,27,.2);
+        .app-load-box {
+          display: block;
+        }
       }
     }
   }
