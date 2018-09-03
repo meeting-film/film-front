@@ -50,7 +50,7 @@
       return {
         top: {
           num: 1040.57,
-          name: '哆啦A梦：大雄的金银岛',
+          name: 'R语言入门与进阶',
           img: 'http://img.meetingshop.cn/films/index/dx.jpg'
 
         },

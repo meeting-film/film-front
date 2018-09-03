@@ -107,7 +107,7 @@
       .movie-list {
         dd {
           margin-top: 15px;
-          margin-left: 30px;
+          margin-left: 15px;
           display: inline-block;
           vertical-align: top;
           position: relative;
@@ -119,8 +119,8 @@
             border: 1px solid #efefef;
             margin: -1px;
             .movie-poster {
-              width: 351px;
-              height: 226px;
+              width: 240px;
+              height: 135px;
               overflow: hidden;
               position: relative;
               .poster-default {

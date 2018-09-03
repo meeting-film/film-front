@@ -3,7 +3,7 @@
     <div class="wrapper clearfix">
       <div class="cinema-left">
         <div class="avatar-shadow">
-          <img class="avatar" src="http://p1.meituan.net/deal/201108/05/5_0805163047.jpg@292w_292h_1e_1c">
+          <img class="avatar" src="http://img.meetingshop.cn/films/imgs/012ad8d605f1983543106f9adeab712b2631588.jpg">
           <div class="avatar-num">查看全部50张图片</div>
         </div>
       </div>

@@ -43,19 +43,14 @@
       .film-item{
         display: inline-block;
         vertical-align: middle;
-        height: 285px;
-        width: 160px;
-        margin: 30px 0 0 31px;
+        width: 240px;
+        margin: 30px 0 0 47px;
         a:visited{
           color: #333;
         }
-        img{
-          height: 220px;
-          width: 160px;
-        }
         .film-name{
           display: inline-block;
-          width: 160px;
+          width: 100%;
           height: 21px;
           line-height: 21px;
           margin-top: 10px;
@@ -68,7 +63,7 @@
         }
         .film-score{
           display: inline-block;
-          width: 160px;
+          width: 100%;
           height: 24px;
           line-height: 21px;
           margin-top: 10px;

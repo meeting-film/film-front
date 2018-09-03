@@ -8,8 +8,8 @@
         <dd class="news-item" data-act="new-click" data-val="{newsid:9615}">
           <div class="news-img">
             <a href="/films/news/9615" target="_blank">
-              <img class="news-img-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png">
-              <img class="news-img-detail" src="http://p1.meituan.net/movie/6b2a736571ae4e83f0ab62072e9dc5f143008.jpg@140w_86h_1e_1c">
+              <!--<img class="news-img-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png">-->
+              <img class="news-img-detail" src="http://img.meetingshop.cn/films/imgs/81c618559f2d01913c8f0116d7644e2b4695454.jpg">
             </a>
           </div>
           <div class="news-main">

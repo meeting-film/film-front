@@ -47,7 +47,7 @@
   import Banner from '~/components/filmItem/Banner'
   import FilmDetail from '~/components/filmItem/FilmDetail'
   import News from '~/components/filmItem/News'
-  import API from '../api/filmItem/filmItdm'
+  import API from '../api/filmItem/filmItem'
   export default {
     head () {
       return {

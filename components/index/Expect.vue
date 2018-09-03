@@ -23,7 +23,7 @@
               </div>
               <div class="ranking-top-right">
                 <div class="ranking-top-right-main">
-                  <span class="ranking-top-moive-name">摩天营救</span>
+                  <span class="ranking-top-moive-name">Redux数据流</span>
                   <p class="ranking-release-time">上映时间：2018-06-15</p>
                   <p class="ranking-top-wish">
                     <span class="stonefont">451999</span>人想看
@@ -39,7 +39,7 @@
               <span class="img-link">
                 <img class="ranking-img default-img" src="http://img.meetingshop.cn/films/imgs/710ae6c9176a9e543cc3f4142aaa8889292327.jpg">
               </span>
-              <div class="name-link ranking-movie-name">超大号美人</div>
+              <div class="name-link ranking-movie-name">游戏测试入门</div>
 
               <span class="ranking-num-info">
                 <span class="stonefont">219176</span>人想看</span>
@@ -51,7 +51,7 @@
               <span class="img-link">
                 <img class="ranking-img default-img" src="http://img.meetingshop.cn/films/imgs/2de435d9c1b2f1074c1e4c7da49b64a54338855.jpg">
               </span>
-              <div class="name-link ranking-movie-name">天下第一镖局</div>
+              <div class="name-link ranking-movie-name">Android打包</div>
 
               <span class="ranking-num-info">
                 <span class="stonefont">185156</span>人想看</span>
@@ -158,7 +158,8 @@
               border: 1px solid #efefef;
               .ranking-top-left {
                 width: 140px;
-                height: 194px;
+                height: 135px;
+                overflow: hidden;
                 float: left;
                 position: relative;
                 .ranking-top-icon {
@@ -169,14 +170,10 @@
                   width: 22px;
                   height: 25px;
                 }
-                .ranking-img {
-                  width: 100%;
-                  height: 194px;
-                }
               }
               .ranking-top-right {
-                height: 194px;
-                line-height: 194px;
+                height: 135px;
+                line-height: 135px;
                 .ranking-top-right-main {
                   display: inline-block;
                   line-height: 1;

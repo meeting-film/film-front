@@ -57,12 +57,11 @@
       return {
         top: {
           num: 9.6,
-          name: '那些女人',
+          name: 'web端功能自动化定位元素',
           img: 'http://img.meetingshop.cn/films/imgs/99496f80b15d064152f20bec9287f2e0967981.jpg'
         }
       }
     }
-
   }
 
 </script>

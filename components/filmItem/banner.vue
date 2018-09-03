@@ -108,12 +108,12 @@
         .avatar-shadow {
           position: relative;
           margin: 0 30px;
-          width: 240px;
-          height: 330px;
-          padding-bottom: 40px;
-          background: url(/assets/img/bg-shadow.png) no-repeat bottom;
+          /*width: 240px;*/
+          /*height: 330px;*/
+          /*padding-bottom: 40px;*/
+          border: 4px solid #fff;
+          /*background: url(/assets/img/bg-shadow.png) no-repeat bottom;*/
           .avatar {
-            border: 4px solid #fff;
             height: 322px;
             width: 232px;
           }

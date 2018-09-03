@@ -5,9 +5,9 @@
     </p>
     <p class="friendly-links">
       友情链接 :
-      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>美团网</nuxt-link>
-      <span style="margin:  0 10px;">|</span>
-      <nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>美团下载</nuxt-link>
+      <nuxt-link active-class="is-active" to="//www.imooc.com/" target="_blank" class="link nav-item is-tab" exact>慕课网</nuxt-link>
+      <!--<span style="margin:  0 10px;">|</span>-->
+      <!--<nuxt-link active-class="is-active" to="/" target="_blank" class="link nav-item is-tab" exact>美团下载</nuxt-link>-->
     </p>
     <p>
       ©2018 meetingshop.cn

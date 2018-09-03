@@ -2,10 +2,10 @@
   <div class="side">
     <div class="movie-info clearfix">
       <div class="poster">
-        <img src="http://p0.meituan.net/movie/9cf86d0cbd3861c9dbc3f1e3189b32251042527.jpg@115w_158h_1e_1c">
+        <img src="http://img.meetingshop.cn/films/imgs/091f305b0a415080d5cb3a0a470d0763431429.jpg">
       </div>
       <div class="content">
-        <p class="name text-ellipsis">西虹市首富</p>
+        <p class="name text-ellipsis">MAYA-材质基础入门</p>
         <div class="info-item">
           <span>类型 :</span>
           <span class="value">喜剧</span>
@@ -152,7 +152,7 @@
       overflow: hidden;
       .poster {
         width: 115px;
-        height: 158px;
+        height: 135px;
         border: 2px solid #fff;
         -webkit-box-shadow: 0 2px 7px 0 hsla(0, 0%, 53%, .5);
         box-shadow: 0 2px 7px 0 hsla(0, 0%, 53%, .5);

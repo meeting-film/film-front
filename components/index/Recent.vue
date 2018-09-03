@@ -129,7 +129,7 @@
               .movie-poster {
                 background-color: #fcfcfc;
                 width: 160px;
-                height: 220px;
+                height: 135px;
                 overflow: hidden;
                 position: relative;
                 .poster-default {
@@ -139,6 +139,7 @@
                   height: 62px;
                   margin-top: -31px;
                   margin-left: -34px;
+                  opacity: 0;
                 }
                 .movie-overlay {
                   .movie-info {
@@ -147,7 +148,7 @@
                     bottom: 7px;
                     width: 100%;
                     .movie-score {
-                      color: #fdc735;
+                      color: #ffb400;
                       float: right;
                       margin-right: 10px;
                       .integer {
@@ -175,14 +176,20 @@
                   }
                 }
                 .movie-overlay, img {
-                  width: 100%;
-                  height: 100%;
                   position: absolute;
                   top: 0;
                   left: 0;
                 }
+                .movie-overlay {
+                  width: 100%;
+                  height: 100%;
+                }
+                img {
+                  left: 50%;
+                  margin-left: -120px;
+                }
                 .movie-overlay-bg {
-                  background: linear-gradient(rgba(0,0,0,0) 70%, rgba(0,0,0,1));
+                background: linear-gradient(rgba(0,0,0,0) 70%, rgba(0,0,0,1));
                 }
               }
               .movie-detail {

@@ -124,7 +124,7 @@
               .movie-poster {
                 background-color: #fcfcfc;
                 width: 160px;
-                height: 220px;
+                height: 180px;
                 overflow: hidden;
                 position: relative;
                 .poster-default {
@@ -134,10 +134,11 @@
                   height: 62px;
                   margin-top: -31px;
                   margin-left: -34px;
+                  opacity: 0;
                 }
                 .movie-overlay {
                   .movie-info {
-                    color: #fff;
+                    color: #666;
                     position: absolute;
                     bottom: 7px;
                     width: 100%;
@@ -170,15 +171,21 @@
                   }
                 }
                 .movie-overlay, img {
-                  width: 100%;
-                  height: 100%;
                   position: absolute;
                   top: 0;
                   left: 0;
                 }
-                .movie-overlay-bg {
-                  background: linear-gradient(rgba(0,0,0,0) 70%, rgba(0,0,0,1));
+                .movie-overlay {
+                  width: 100%;
+                  height: 100%;
                 }
+                img {
+                  left: 50%;
+                  margin-left: -120px;
+                }
+                /*.movie-overlay-bg {*/
+                  /*background: linear-gradient(rgba(0,0,0,0) 70%, rgba(0,0,0,1));*/
+                /*}*/
               }
               .movie-detail {
                 height: 34px;
