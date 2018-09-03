@@ -36,6 +36,7 @@
               </div>
             </a>
           </div>
+          <nuxt-link :to="{path: '/cinemas', query: { movieId: routerParamsId }}" class="btn-buy" target="_blank">特惠购票</nuxt-link>
         </div>
 
         <div class="movie-stats-container">
@@ -76,7 +77,15 @@
         type: Object,
         default: () => {}
       }
-    }
+    },
+    data () {
+        return {
+            routerParamsId: ''
+        }
+    },
+      created () {
+          this.routerParamsId = this.$router.history.current.params.id;
+      }
   }
 </script>
 <style lang="scss" scoped>
@@ -190,6 +199,19 @@
                 }
               }
             }
+          }
+          .btn-buy {
+            margin-top: 10px;
+            width: 250px;
+            height: 40px;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 2px;
+            padding: 0;
+            display: inline-block;
+            color: #fff;
+            background-color: #ff6637;
           }
         }
         .movie-stats-container {

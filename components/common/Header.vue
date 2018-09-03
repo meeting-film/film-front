@@ -13,11 +13,11 @@
       <!--</div>-->
       <div class="nav">
         <ul class="navbar">
-          <li><nuxt-link active-class="is-active" :to="{path: '/'}" class="link nav-item is-tab" exact>首页</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" :to="{path: '/films'}" class="link nav-item is-tab" exact>电影</nuxt-link></li>
-          <li><nuxt-link active-class="is-active" :to="{path: '/cinemas'}" class="link nav-item is-tab" exact>影院</nuxt-link></li>
-          <!--<li><nuxt-link active-class="is-active" :to="{path: '/board'}" class="link nav-item is-tab" exact>榜单</nuxt-link></li>-->
-          <!--<li><nuxt-link active-class="is-active" :to="{path: '/news'}" class="link nav-item is-tab" exact>热点</nuxt-link></li>-->
+          <li @click="tab('/')"><nuxt-link :to="{path: '/'}" class="link nav-item is-tab" :class="{'is-active': active == '/'}" exact>首页</nuxt-link></li>
+          <li @click="tab('/films')"><nuxt-link :to="{path: '/films'}" class="link nav-item is-tab" :class="{'is-active': active == '/films'}" exact>电影</nuxt-link></li>
+          <li @click="tab('/cinemas')"><nuxt-link :to="{path: '/cinemas'}" class="link nav-item is-tab" :class="{'is-active': active == '/cinemas'}" exact>影院</nuxt-link></li>
+          <!--<li @click="tab('/board')"><nuxt-link :to="{path: '/board'}" class="link nav-item is-tab" :class="{'is-active': active == '/board'}" exact>影院</nuxt-link></li>-->
+          <!--<li @click="tab('/news')"><nuxt-link :to="{path: '/news'}" class="link nav-item is-tab" :class="{'is-active': active == '/news'}" exact>影院</nuxt-link></li>-->
         </ul>
       </div>
       <div class="user-info">
@@ -39,17 +39,17 @@
         <input class="submit" type="submit" value="">
       </form>
       <div class="app-download">
-        <a href="javaascript:;">
+        <a href="javascript:;" class="app-download-link">
           <span class="apptext">APP下载</span>
-          <div class="app-load-box clearfix js-load-box">
-            <img src="../../assets/img/appload.png" class="l">
-            <div class="r">
-              <p>扫描下载慕课网APP</p>
-              <a href="https://itunes.apple.com/cn/app/mu-ke-wang/id722179140?mt=8" target="_blank"><i class="icon-apple"></i>App Store下载</a>
-              <a href="//www.imooc.com/mobile/mukewang.apk" target="_blank"><i class="icon-android"></i>Android下载</a>
-            </div>
-          </div>
         </a>
+        <div class="app-load-box clearfix js-load-box">
+          <img src="../../assets/img/appload.png" class="l">
+          <div class="r">
+            <p>扫描下载慕课网APP</p>
+            <a href="https://itunes.apple.com/cn/app/mu-ke-wang/id722179140?mt=8" target="_blank"><i class="icon-apple"></i>App Store下载</a>
+            <a href="//www.imooc.com/mobile/mukewang.apk" target="_blank"><i class="icon-android"></i>Android下载</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -63,12 +63,19 @@
     },
     data() {
       return {
+          active: '/',
         form: {
           search:''
         }
       }
     },
+    created() {
+      this.tab(this.$router.history.current.path)
+    },
     methods: {
+      tab (router) {
+        this.active = router;
+      },
       getFilms() {
         // let params = {
         //   "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
@@ -257,52 +264,52 @@
       box-sizing: border-box;
       border-left: 1px solid transparent;
       border-right: 1px solid transparent;
-      .app-load-box {
-        display: none;
-        position: absolute;
-        top: 100%;
-        width: 304px;
-        left: 0;
-        padding: 22px 24px;
-        background-color: #fff;
-        font-size: 12px;
-        color: #4D555D;
-        line-height: 16px;
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-        box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
-        .l {
-          float: left;
-          width: 108px;
-          height: 108px;
+    }
+    .app-load-box {
+      display: none;
+      position: absolute;
+      top: 100%;
+      width: 304px;
+      left: 0;
+      padding: 22px 24px;
+      background-color: #fff;
+      font-size: 12px;
+      color: #4D555D;
+      line-height: 16px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
+      .l {
+        float: left;
+        width: 108px;
+        height: 108px;
+      }
+      .r {
+        float: right;
+        p {
+          margin-bottom: 12px;
         }
-        .r {
-          float: right;
-          p {
-            margin-bottom: 12px;
-          }
-          a {
-            display: block;
-            font-size: 12px;
-            color: #fff;
-            width: 132px;
-            height: 36px;
-            margin-top: 8px;
-            line-height: 36px;
-            background-color: #4D555D;
-            border-radius: 18px;
-            text-align: center;
-            &:hover {
-              background-color: #333;
-            }
+        a {
+          display: block;
+          font-size: 12px;
+          color: #fff;
+          width: 132px;
+          height: 36px;
+          margin-top: 8px;
+          line-height: 36px;
+          background-color: #4D555D;
+          border-radius: 18px;
+          text-align: center;
+          &:hover {
+            background-color: #333;
           }
         }
       }
-      &:hover {
-        box-shadow: 0 4px 8px 0 rgba(7,17,27,.2);
-        .app-load-box {
-          display: block;
-        }
+    }
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(7,17,27,.2);
+      .app-load-box {
+        display: block;
       }
     }
   }

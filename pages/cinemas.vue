@@ -1,6 +1,5 @@
 <template>
   <section class="cinema-div">
-    <div class="header-placeholder" style="height: 81px;"></div>
     <div class="cinema-panel">
       <QuickSearch />
       <CinemasItems :cinemasData="cinemasData"/>
@@ -10,6 +9,7 @@
 <style>
   .cinema-div{
     background-color: #fff;
+    padding: 61px 0;
   }
   .cinema-panel{
     margin: 0 auto;
