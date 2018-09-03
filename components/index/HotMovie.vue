@@ -135,7 +135,7 @@
                 .movie-info {
                   color: #fff;
                   position: absolute;
-                  bottom: -22px;
+                  bottom: 7px;
                   width: 100%;
                   -webkit-transition: all .2s ease .2s;
                   -moz-transition: all .2s ease .2s;
@@ -167,11 +167,6 @@
                       height: 39px;
                       line-height: 39px;
                     }
-                  }
-                }
-                &:hover {
-                  .movie-info {
-                    bottom: 7px;
                   }
                 }
               }

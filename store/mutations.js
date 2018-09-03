@@ -25,12 +25,11 @@ export const mutations = {
           state.selectedSingleSeatList.splice(index, 1);
         }
       });
-      //如果单个座大于3弹出提示框
-      //如果情侣座大于3弹出提示框
-      //如果情侣座大于3并且情侣座加单个座也大于3
+      //如果单个座大于3
+      //或者单个座加情侣座也大于3弹出提示框
       if (state.selectedSingleSeatList.length > 3 ||
-        (state.selectedSingleSeatList.length + state.selectedCoupleSeatList.length > 3)) {
-        state.showDialogFlag = true;
+          (state.selectedSingleSeatList.length + state.selectedCoupleSeatList.length > 3)) {
+          state.showDialogFlag = true;
       }
     }
   },
@@ -52,7 +51,10 @@ export const mutations = {
           }
         })
       })
-      if (state.selectedCoupleSeatList.length > 3 || (state.selectedSingleSeatList.length + state.selectedCoupleSeatList.length > 3)) {
+      //如果情侣座大于3
+      //或者情侣座加单个座也大于3弹出提示框
+      if (state.selectedCoupleSeatList.length > 3 ||
+          (state.selectedSingleSeatList.length + state.selectedCoupleSeatList.length > 3)) {
         state.showDialogFlag = true;
       }
     }

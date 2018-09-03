@@ -67,6 +67,9 @@
         height: 100%;
         max-width: 1600px;
         position: relative;
+        img {
+          width: 100%;
+        }
         .swiper-pagination {
           width: 100%;
           position: absolute;

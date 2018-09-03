@@ -57,8 +57,8 @@
       return {
         top: {
           num: 9.6,
-          name: '霸王别姬',
-          img: 'http://p0.meituan.net/movie/2d52f6932ca2f47871ca27801c71e4cf98763.jpg@120w_80h_1e_1c'
+          name: '那些女人',
+          img: 'http://img.meetingshop.cn/films/imgs/99496f80b15d064152f20bec9287f2e0967981.jpg'
         }
       }
     }
@@ -133,12 +133,13 @@
               .ranking-top-left {
                 width: 120px;
                 height: 78px;
+                overflow: hidden;
                 float: left;
                 position: relative;
-                .ranking-img {
-                  width: 100%;
-                  height: 100%;
-                }
+                /*.ranking-img {*/
+                  /*width: 100%;*/
+                  /*height: 100%;*/
+                /*}*/
               }
               .ranking-top-right {
                 height: 78px;

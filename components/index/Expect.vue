@@ -19,11 +19,11 @@
             <a href="">
               <div class="ranking-top-left">
                 <i class="ranking-top-icon"></i>
-                <img class="ranking-img  default-img" src="http://p1.meituan.net/movie/3d17aa5ee07f5d66239d8393bcb8fe5196556.jpg@140w_194h_1e_1c">
+                <img class="ranking-img  default-img" src="http://img.meetingshop.cn/films/imgs/ee2e68492504b2390ce246f1e8e6d8ba1550779.jpg">
               </div>
               <div class="ranking-top-right">
                 <div class="ranking-top-right-main">
-                  <span class="ranking-top-moive-name">侏罗纪世界2</span>
+                  <span class="ranking-top-moive-name">摩天营救</span>
                   <p class="ranking-release-time">上映时间：2018-06-15</p>
                   <p class="ranking-top-wish">
                     <span class="stonefont">451999</span>人想看
@@ -37,9 +37,9 @@
               <i class="ranking-index" style="color: #fff!important">2</i>
 
               <span class="img-link">
-                <img class="ranking-img default-img" src="http://img.meetingshop.cn/films/index/aqgy.jpg">
+                <img class="ranking-img default-img" src="http://img.meetingshop.cn/films/imgs/710ae6c9176a9e543cc3f4142aaa8889292327.jpg">
               </span>
-              <div class="name-link ranking-movie-name">爱情公寓</div>
+              <div class="name-link ranking-movie-name">超大号美人</div>
 
               <span class="ranking-num-info">
                 <span class="stonefont">219176</span>人想看</span>
@@ -49,9 +49,9 @@
             <a href="/films/341516" target="_blank" data-act="mostExpect-movie-click" data-val="{movieid:341516}">
               <i class="ranking-index" style="color: #fff!important">3</i>
               <span class="img-link">
-                <img class="ranking-img default-img" src="http://p0.meituan.net/movie/f232635cbac883b04a3dd555740ed58d195151.jpg@170w_118h_1e_1c">
+                <img class="ranking-img default-img" src="http://img.meetingshop.cn/films/imgs/2de435d9c1b2f1074c1e4c7da49b64a54338855.jpg">
               </span>
-              <div class="name-link ranking-movie-name">狄仁杰之四大天王</div>
+              <div class="name-link ranking-movie-name">天下第一镖局</div>
 
               <span class="ranking-num-info">
                 <span class="stonefont">185156</span>人想看</span>

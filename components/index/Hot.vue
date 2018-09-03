@@ -24,7 +24,6 @@
                     <div class="movie-score">
                       <i class="integer">{{item.filmScore}}</i>
                     </div>
-                    <div class="movie-title movie-title-padding" >小猪佩奇</div>
                     <div class="movie-title movie-title-padding" :title=item.filmName>{{item.filmName}}</div>
                   </div>
                 </div>
@@ -172,6 +171,7 @@
                 }
                 .movie-overlay, img {
                   width: 100%;
+                  height: 100%;
                   position: absolute;
                   top: 0;
                   left: 0;
