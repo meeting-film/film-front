@@ -67,23 +67,23 @@
     </div>
 
     <div class="confirm-order">
-      <form class="login-form">
-        <input type="text" class="input-phone" placeholder="输入手机号">
-        <div class="captcha" style="display:none">
-          <input type="text" class="input-captcha" placeholder="验证码">
-          <img class="captcha-pic" src="http://www.meituan.com/account/appcaptcha?uuid=BE3F13A0946611E8B0D39564008C52497973942AF35240E19D0CEB9EF2B39E60&amp;captchaHash=1533199343605">
-          <span class="change-captcha">看不清楚？换一张</span>
-        </div>
-        <div class="code-inputer">
-          <input type="text" class="input-code" placeholder="填写验证码">
-          <span class="send-code disable">获取验证码</span>
-        </div>
-      </form>
+      <!--<form class="login-form">-->
+        <!--<input type="text" class="input-phone" placeholder="输入手机号">-->
+        <!--<div class="captcha" style="display:none">-->
+          <!--<input type="text" class="input-captcha" placeholder="验证码">-->
+          <!--<img class="captcha-pic" src="http://www.meituan.com/account/appcaptcha?uuid=BE3F13A0946611E8B0D39564008C52497973942AF35240E19D0CEB9EF2B39E60&amp;captchaHash=1533199343605">-->
+          <!--<span class="change-captcha">看不清楚？换一张</span>-->
+        <!--</div>-->
+        <!--<div class="code-inputer">-->
+          <!--<input type="text" class="input-code" placeholder="填写验证码">-->
+          <!--<span class="send-code disable">获取验证码</span>-->
+        <!--</div>-->
+      <!--</form>-->
 
       <div class="confirm-btn" v-if="($store.state.selectedSingleSeatList && $store.state.selectedSingleSeatList.length > 0) ||
            ($store.state.selectedCoupleSeatList && $store.state.selectedCoupleSeatList.length > 0)"
            @click="handleConfirmSelectSeat">确认选座</div>
-      <div class="confirm-btn disable">确认选座</div>
+      <div class="confirm-btn disable" v-else>确认选座</div>
     </div>
     <div class="modal-container" v-show="$store.state.showDialogFlag">
       <div class="modal">

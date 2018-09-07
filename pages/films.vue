@@ -33,12 +33,12 @@
     data () {
       return {
         isActive: 1,
-          navbarItem: [
-              {name: '正在热映'},
-              {name: '即将上映'},
-              {name: '经典影片'},
-          ],
-          showType: 1,
+        navbarItem: [
+            {name: '正在热映'},
+            {name: '即将上映'},
+            {name: '经典影片'},
+        ],
+        showType: 1,
         quickSearchData: {
           catInfo:[],
           sourceInfo:[],
@@ -56,24 +56,24 @@
             sourceId: 99,
             yearId: 99,
         };
-
-      return API.getConditionList(parmas).then((res) => {
-        if (res) {
-          if (res.status == 0) {
-            if (res.data) {
-              return { quickSearchData: res.data }
+        return API.getConditionList(parmas).then((res) => {
+            if (res) {
+                if (res.status == 0) {
+                    if (res.data) {
+                        return { quickSearchData: res.data }
+                    }
+                }
             }
-          }
-        }
-      })
+        })
         .catch((e) => {
-          // error({ statusCode: 404, message: 'Post not found' })
+            // error({ statusCode: 404, message: 'Post not found' })
         })
     },
-      created() {
-          this.showType = this.$router.history.current.query.showType;
-      },
+    created() {
+        this.showType = this.$router.history.current.query.showType;
+    },
     methods: {
+
       tab (index) {
         this.isActive = index;
       }
