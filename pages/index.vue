@@ -25,7 +25,12 @@
     data (){
       return {
         homeData:{
-          banners: []
+          banners: [],
+          boxRanking: {},
+          expectRanking: {},
+          top100:{},
+          hotFilms:{},
+          soonFilms:{}
         }
       }
     },
