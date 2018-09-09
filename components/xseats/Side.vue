@@ -2,10 +2,10 @@
   <div class="side">
     <div class="movie-info clearfix">
       <div class="poster">
-        <img src="http://img.meetingshop.cn/films/imgs/091f305b0a415080d5cb3a0a470d0763431429.jpg">
+        <img src="http://img.meetingshop.cn/films/imgs/5709b4f83a669c0dd8c78461da4ece33208095.jpg">
       </div>
       <div class="content">
-        <p class="name text-ellipsis">MAYA-材质基础入门</p>
+        <p class="name text-ellipsis">基于SpringBoot 十分钟搞定后台管理平台</p>
         <div class="info-item">
           <span>类型 :</span>
           <span class="value">喜剧</span>
@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="no-ticket" v-else>
-        <p class="buy-limit">座位：一次最多选4个座位</p>
+        <p class="buy-limit">座位：一次最多选{{$store.state.seatInfo.seatCharts.limit}}个座位</p>
         <p class="no-selected">请<span>点击左侧</span>座位图选择座位</p>
       </div>
 
@@ -82,19 +82,20 @@
 
       <div class="confirm-btn" v-if="($store.state.selectedSingleSeatList && $store.state.selectedSingleSeatList.length > 0) ||
            ($store.state.selectedCoupleSeatList && $store.state.selectedCoupleSeatList.length > 0)"
-           @click="handleConfirmSelectSeat">确认选座</div>
+           @click="handleConfirm">确认选座</div>
       <div class="confirm-btn disable" v-else>确认选座</div>
     </div>
     <div class="modal-container" v-show="$store.state.showDialogFlag">
       <div class="modal">
         <span class="icon"></span>
-        <p class="tip">一次最多购买4张票</p>
+        <p class="tip">一次最多购买{{$store.state.seatInfo.seatCharts.limit}}张票</p>
         <div class="ok-btn btn" @click="hideDialog">我知道了</div>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import API from '../../api/order/order'
   export default {
     data () {
       return {
@@ -108,9 +109,9 @@
     },
     methods: {
       //确认选座
-      handleConfirmSelectSeat () {
-        let params = {};
-      },
+        handleConfirm () {
+          this.$emit('handleConfirmXseat');
+        },
       //删除单个座位
       handleDeleteSingleSeat (params) {
         this.$store.dispatch('deleteSingleSeat', params);
@@ -337,6 +338,11 @@
         background-color: #ff6637;
         -webkit-box-shadow: 0 2px 10px -2px #ff6637;
         box-shadow: 0 2px 10px -2px #ff6637;
+        &:hover {
+          background-color: #f35d2f;
+          -webkit-box-shadow: 0 2px 10px -2px #f35d2f;
+          box-shadow: 0 2px 10px -2px #f35d2f;
+        }
         &.disable {
           background-color: #dedede;
           -webkit-box-shadow: none;

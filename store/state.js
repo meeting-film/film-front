@@ -6,38 +6,67 @@ export const state = () => ({
     price: 80,
     quantity: 1,
     seatCharts: {//座位分布图
+      limit:5,
       single: [
         [
           {
+            column:1,
+            row:1,
+            isSold: false,
+          }, {
+            column:2,
+            row:1,
             isSold: false
           }, {
+            column:3,
+            row:1,
             isSold: false
           }, {
+            column:4,
+            row:1,
             isSold: false
           }, {
+            column:5,
+            row:1,
             isSold: false
           }, {
+            column:6,
+            row:1,
             isSold: false
           }, {
-            isSold: false
-          }, {
+            column:7,
+            row:1,
             isSold: true
           }
         ],
         [
           {
+            column:1,
+            row:2,
             isSold: false
           }, {
+            column:2,
+            row:2,
             isSold: false
           }, {
+            column:3,
+            row:2,
             isSold: false
           }, {
+            column:4,
+            row:2,
             isSold: false
           }, {
+            column:5,
+            row:2,
             isSold: false
           }, {
+            column:6,
+            row:2,
             isSold: false
           }, {
+            column:7,
+            row:2,
             isSold: true
           }
         ]
@@ -45,31 +74,55 @@ export const state = () => ({
       couple: [
         [
           {
-            isSold: true
-          }, {
+            column:1,
+            row:1,
             isSold: false
           }, {
+            column:2,
+            row:1,
             isSold: false
           }, {
+            column:3,
+            row:1,
             isSold: false
           }, {
+            column:4,
+            row:1,
             isSold: false
           }, {
+            column:5,
+            row:1,
+            isSold: false
+          }, {
+            column:6,
+            row:1,
             isSold: false
           }
         ],
         [
           {
-            isSold: true
-          }, {
+            column:1,
+            row:2,
             isSold: false
           }, {
+            column:2,
+            row:2,
             isSold: false
           }, {
+            column:3,
+            row:2,
             isSold: false
           }, {
+            column:4,
+            row:2,
             isSold: false
           }, {
+            column:5,
+            row:2,
+            isSold: false
+          }, {
+            column:6,
+            row:2,
             isSold: false
           }
         ]
@@ -78,7 +131,7 @@ export const state = () => ({
   },
   selectedSingleSeatList:[],//选中的单个座位列表
   selectedCoupleSeatList:[],//选中的情侣座位列表
-  setSeatSelected: false,
-  showDialogFlag: false
+  showDialogFlag: false,//显示座位超出提示信息
+    xSeatList:[],
 });
 export default state

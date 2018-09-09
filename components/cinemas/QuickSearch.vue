@@ -67,19 +67,16 @@
       margin-bottom: 5px;
       padding: 0 10px 5px 10px;
       border-radius:10px 10px;
-      &.active{
-        background-color: #ff6637;
-        a{
-          color:#fff;
-        }
-      }
       a {
         display:inline-block;
         width:100%;
         height:100%;
         color: #333;
-        &:hover {
-          color: #ff6637;
+      }
+      &:hover, &.active {
+        background-color: #f35d2f;
+        a {
+          color: #fff;
         }
       }
     }

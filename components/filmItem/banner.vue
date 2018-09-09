@@ -212,6 +212,9 @@
             display: inline-block;
             color: #fff;
             background-color: #ff6637;
+            &:hover {
+              background-color: #f35d2f;
+            }
           }
         }
         .movie-stats-container {

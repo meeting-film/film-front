@@ -69,6 +69,31 @@ export const actions = {
   deleteCoupleSeat ({commit}, params) {
     commit('DELETE_COUPLE_SEAT', params)
   },
+    //确认选座
+    confirmXseat({commit}, params) {
+        fetch(process.env.baseUrl + '/order/confirm', {
+            method: 'POST'
+        },params)
+            .then((res) => {
+                if (res.status === 401) {
+                    throw new Error('Bad credentials')
+                } else {
+                    return res.json()
+                }
+            })
+            .then((res) => {
+                if (res) {
+                    if (res.status == 0) {
+                        Cookies.set('xSeatList', JSON.stringify(params));
+                        this.$router.push({path: '/order/confirm'});
+                    } else {
+                        if (res.msg) {
+                            alert(res.msg)
+                        }
+                    }
+                }
+            })
+    },
   //登录
   login: ({commit}, {username, password}) => {
     fetch(process.env.baseUrl + '/auth',

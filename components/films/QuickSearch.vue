@@ -4,30 +4,54 @@
       <li class="tags-line">
         <div class="tags-title">类型</div>
         <ul class="tags">
-          <li v-for="(cat,index) in quickSearchData.catInfo" :key="index+'-cat'"  @click="setCurrentFlag(index)">
-            <nuxt-link :to="{path:'/films', query: {showType: showType, catId: cat.catId}}">{{cat.catName}}</nuxt-link>
+          <li v-for="(cat,index) in quickSearchData.catInfo" :key="index+'-cat'" :class=active @click="setCurrentFlag">
+            <nuxt-link :class="{'nuxt-link-exact-active' : index== 0}" :to="{path:'/films', query: {showType: showType, catId: cat.catId}}">{{cat.catName}}</nuxt-link>
           </li>
         </ul>
       </li>
       <li class="tags-line">
         <div class="tags-title">区域</div>
         <ul class="tags">
-          <li v-for="(source,index) in quickSearchData.sourceInfo" :key="index+'-source'"  @click="setCurrentFlag(index)">
-            <nuxt-link :to="{path:'/films', query: {showType: showType, sourceId: source.sourceId}}">{{source.sourceName}}</nuxt-link>
+          <li v-for="(source,index) in quickSearchData.sourceInfo" :key="index+'-source'">
+            <nuxt-link :class="{'nuxt-link-exact-active' : index== 0}" @click="setCurrentFlag" :to="{path:'/films', query: {showType: showType, sourceId: source.sourceId}}">{{source.sourceName}}</nuxt-link>
           </li>
         </ul>
       </li>
       <li class="tags-line">
         <div class="tags-title">年代</div>
         <ul class="tags">
-          <li v-for="(year,index) in quickSearchData.yearInfo" :key="index+'-year'"  @click="setCurrentFlag(index)">
-            <nuxt-link :to="{path:'/films', query: {showType: showType, yearId: year.yearId}}">{{year.yearName}}</nuxt-link>
+          <li v-for="(year,index) in quickSearchData.yearInfo" :key="index+'-year'" :class=active @click="setCurrentFlag">
+            <nuxt-link :class="{'nuxt-link-exact-active' : index== 0}" :to="{path:'/films', query: {showType: showType, yearId: year.yearId}}">{{year.yearName}}</nuxt-link>
           </li>
         </ul>
       </li>
     </ul>
   </div>
 </template>
+<script>
+    export default {
+        props: {
+            quickSearchData: {
+                type: Object,
+                default: () => {}
+            }
+        },
+        data () {
+            return {
+                active: 'nuxt-link-exact-active',
+                showType:''
+            }
+        },
+        created() {
+            this.showType = this.$router.history.current.query.showType;
+        },
+        methods:{
+            setCurrentFlag: function () {
+                this.active = !this.active;
+            },
+        }
+    }
+</script>
 <style lang="scss" scoped>
   .tags-panel{
     margin: 30px auto 0;
@@ -55,17 +79,21 @@
           padding: 3px 9px;
           display: inline-block;
           margin-left: 12px;
-          &.active{
-            background:red;
-            a{
-              color:#fff;
-            }
-          }
           a {
             color: #333;
             font-size: 14px;
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
             &:hover {
-              color: #f00;
+              color: #ff6637;
+            }
+            &.nuxt-link-exact-active {
+              background-color: #ff6637;
+              color:#fff;
+              &:hover {
+                background-color: #f35d2f;
+              }
             }
           }
         }
@@ -73,27 +101,3 @@
     }
   }
 </style>
-<script>
-export default {
-  props: {
-    quickSearchData: {
-      type: Object,
-      default: () => {}
-    }
-  },
-  data () {
-    return {
-      isActive: '',
-        showType:''
-    }
-  },
-  created() {
-    this.showType = this.$router.history.current.query.showType;
-  },
-  methods:{
-    setCurrentFlag: function (index) {
-      this.isActive = index
-    },
-  }
-}
-</script>

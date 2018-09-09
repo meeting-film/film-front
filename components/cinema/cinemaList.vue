@@ -178,8 +178,8 @@
                 &.normal {
                   -webkit-box-shadow: 0 2px 10px -2px #ff6637;
                   box-shadow: 0 2px 10px -2px #ff6637;
-                  &:hover{
-                    background-color:#f73f41
+                  &:hover {
+                    background-color: #f35d2f;
                   }
                 }
                 &.full {

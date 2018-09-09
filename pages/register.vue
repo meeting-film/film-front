@@ -76,15 +76,15 @@
         };
         API.check(params).then(res => {
           if (res) {
-            if (res.status == 0) {
+            if (res.status == 1) {
               _this.showErrorTip = true;
               _this.errorMsg = res.msg;
             } else {
               _this.showErrorTip = false;
               _this.errorMsg = '';
-              if (res.msg) {
-                alert(res.msg);
-              }
+              // if (res.msg) {
+              //   alert(res.msg);
+              // }
             }
           }
         })
@@ -106,8 +106,8 @@
                 if (res.status == 0) {
                   _this.$router.push({path: '/login'});
                 }else {
-                  if (res.msg) {
-                    alert(res.msg);
+                  if (res.message) {
+                    alert(res.message);
                   }
                 }
               }

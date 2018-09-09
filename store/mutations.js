@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 export const mutations = {
   //设置token
   SET_TOKEN: (state, token) => {
@@ -85,7 +86,7 @@ export const mutations = {
         })
       })
     })
-  }
+  },
 };
 
 export default mutations

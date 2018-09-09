@@ -77,7 +77,7 @@
       params = {
         id: context.route.params.id,
         searchType: searchType
-      }
+      };
       return API.films(params).then((res) => {
         if (res) {
           if (res.status == 0) {

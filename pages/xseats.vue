@@ -26,7 +26,7 @@
 
       <div class="main clearfix">
         <Hall></Hall>
-        <Side></Side>
+        <Side @handleConfirmXseat="handleConfirmXseat"></Side>
       </div>
     </div>
   </div>
@@ -55,12 +55,21 @@ export default {
 
   },
   methods: {
+      //确认选座
+      handleConfirmXseat () {
+          let totalSeatsArr = [];
+          totalSeatsArr = totalSeatsArr.concat(this.$store.state.selectedSingleSeatList, this.$store.state.selectedCoupleSeatList);
+          let params = {
+              "totalSeatsArr":totalSeatsArr
+          };
+          this.$store.dispatch('confirmXseat', params);
+      },
   }
 }
 </script>
 <style lang="scss" scoped>
   .checked {
-    color: #f00;
+    color: #ff6637;
   }
   .xseats-wrapper {
     background-color: #fff;
@@ -109,13 +118,13 @@ export default {
         }
         &.done {
           .step-num {
-            background-color: #f03d37;
+            background-color: #ff6637;
           }
           .bar {
-            border-color: #f03d37;
+            border-color: #ff6637;
           }
           .step-text {
-            color: #f03d37;
+            color: #ff6637;
           }
         }
       }
