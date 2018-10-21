@@ -5,7 +5,7 @@
       <div class="main-content-container clearfix">
         <FilmDetail :filmItem="filmItem"></FilmDetail>
         <div class="related">
-          <News :filmItem="filmItem"></News>
+          <News></News>
         </div>
       </div>
       <script id="comment-form-container" type="text/template">
@@ -47,7 +47,7 @@
   import Banner from '~/components/filmItem/Banner'
   import FilmDetail from '~/components/filmItem/FilmDetail'
   import News from '~/components/filmItem/News'
-  import API from '../api/filmItem/filmItem'
+  import { getData } from '../plugins/axios'
   export default {
     head () {
       return {
@@ -59,7 +59,19 @@
     },
     data () {
       return {
-        filmItem: {}
+        filmItem: {
+            info04: {
+                actors: {
+                    director: {
+
+                    },
+                    actors: {
+
+                    }
+                }
+            },
+            imgs: {}
+        }
       }
     },
     components: {
@@ -67,34 +79,34 @@
       FilmDetail,
       News
     },
-    asyncData (context) {
-      let searchType,params;
-      if (context.route.params.id) {
-        searchType = 0;
-      } else {
-        searchType = 1;
-      }
-      params = {
-        id: context.route.params.id,
-        searchType: searchType
-      };
-      return API.films(params).then((res) => {
-        if (res) {
-          if (res.status == 0) {
-            if (res.data) {
-              return { filmItem: res.data }
-            }
-          } else {
-            if (res.msg) {
-              alert(res.msg)
-            }
-          }
-        }
-      })
-        .catch((e) => {
-          // error({ statusCode: 404, message: 'Post not found' })
-        })
+    created () {
+      this.getFilmsItem();
     },
+    methods: {
+      getFilmsItem () {
+        let searchType, params, filmId = this.$router.history.current.params.id;
+        if (filmId) {
+          searchType = 0;
+        } else {
+          searchType = 1;
+        }
+        params = {
+          id: filmId,
+          searchType: searchType
+        };
+        getData(process.env.baseUrl + '/film/films/' + params.id + '?searchType=' + params.searchType, 'get', params).then((res) => {
+            if (res && res.status == 0) {
+                this.filmItem = res;
+            } else {
+                if (res.message) {
+                    alert(res.message)
+                }
+            }
+        }, (err) => {
+            console.log(err);
+        })
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>

@@ -6,34 +6,34 @@
         <button class="submit" type="submit"></button>
       </form>
     </div>
-    <div class="subnav">
-      <ul class="navbar">
-        <li>
-          <nuxt-link active-class="is-active" to="/query?kw=11&amp;type=0" target="_blank" class="link nav-item is-tab"
-                     exact>影视剧 (0)
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link active-class="is-active" to="/query?kw=11&amp;type=1" target="_blank" class="link nav-item is-tab"
-                     exact>影人 (0)
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link active-class="is-active" to="/query?kw=11&amp;type=2" target="_blank" class="link nav-item is-tab"
-                     exact>影院 (0)
-          </nuxt-link>
-        </li>
-      </ul>
-    </div>
+    <!--<div class="subnav">-->
+      <!--<ul class="navbar">-->
+        <!--<li>-->
+          <!--<nuxt-link active-class="is-active" to="/query?kw=11&amp;type=0" target="_blank" class="link nav-item is-tab"-->
+                     <!--exact>影视剧 (0)-->
+          <!--</nuxt-link>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<nuxt-link active-class="is-active" to="/query?kw=11&amp;type=1" target="_blank" class="link nav-item is-tab"-->
+                     <!--exact>影人 (0)-->
+          <!--</nuxt-link>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<nuxt-link active-class="is-active" to="/query?kw=11&amp;type=2" target="_blank" class="link nav-item is-tab"-->
+                     <!--exact>影院 (0)-->
+          <!--</nuxt-link>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
     <div class="search-container">
       <div class="search-result-box">
-        <dl class="movie-list" v-if="$store.state.filmList && $store.state.filmList.length > 0">
-          <dd v-for="(item, index) in $store.state.filmList" :key="index">
+        <dl class="movie-list" v-if="$store.state.filmList.data && $store.state.filmList.data.length > 0">
+          <dd v-for="(item, index) in $store.state.filmList.data" :key="index">
             <div class="movie-item">
               <nuxt-link :to="{path:'/filmItem/'+item.filmId}" target="_blank">
                 <div class="movie-poster">
-                  <img class="poster-default" :src=item.imgAddress>
-                  <img :src=item.imgAddress>
+                  <img class="poster-default" :src="$store.state.filmList.imgPre+item.imgAddress">
+                  <img :src="$store.state.filmList.imgPre+item.imgAddress">
                 </div>
               </nuxt-link>
               <div class="movie-ver"></div>
@@ -93,9 +93,9 @@
         let params = {
           "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
           "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
-          "catId": "",
-          "sourceId": "",
-          "yearId": "",
+          "catId": this.$router.history.current.query.catId || 99,
+          "sourceId": this.$router.history.current.query.sourceId || 99,
+          "yearId": this.$router.history.current.query.yearId || 99,
           "offset": 0
         };
         this.$store.dispatch('getFilms', params);
@@ -116,7 +116,7 @@
     min-width: 1200px;
     background: #47464a;
     padding-bottom: 60px;
-    margin-bottom: -60px;
+    //margin-bottom: -60px;
     form {
       width: 630px;
       margin: 0 auto;

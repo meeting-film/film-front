@@ -1,11 +1,83 @@
 <template>
   <section class="cinema-div">
     <div class="cinema-panel">
-      <QuickSearch />
-      <CinemasItems :cinemasData="cinemasData"/>
+      <QuickSearch :cinemaTags="cinemaTags"/>
+      <CinemasItems :cinemasData="cinemasData" @getCinemaList="getCinemaList"/>
     </div>
   </section>
 </template>
+<script>
+    import CinemasItems from '~/components/cinemas/CinemasItems.vue'
+    import QuickSearch from '~/components/cinemas/QuickSearch.vue'
+    import {getData} from '../plugins/axios'
+
+    export default {
+        head() {
+            return {
+                title: '影院',
+                meta: [
+                    {hid: '影院', name: '影院', content: '影院'}
+                ]
+            }
+        },
+        components: {
+            CinemasItems,
+            QuickSearch
+        },
+        data() {
+            return {
+                cinemaTags: {},
+                cinemasData: {},
+                nowPage: 1
+            }
+        },
+        mounted() {
+            this.getCinemaTags();
+        },
+        methods: {
+            getCinemaTags() {
+                let _this = this;
+                let params = {
+                    "brandId": this.$router.history.current.query.brandId || 99,//影院编号
+                    "hallType": this.$router.history.current.query.halltypeId || 99,//影厅类型
+                    "areaId": this.$router.history.current.query.areaId || 99,//行政区编号
+                };
+                getData(process.env.baseUrl + '/cinema/getCondition', 'get', params).then((res) => {
+                    if (res && res.status == 0) {
+                        _this.cinemaTags = res.data;
+                        _this.getCinemaList(_this.nowPage);
+                    } else {
+                        if (res.message) {
+                            alert(res.message)
+                        }
+                    }
+                }, (err) => {
+                    console.log(err);
+                })
+            },
+            getCinemaList(nowPage) {
+                let params = {
+                    "brandId": this.$router.history.current.query.brandId || 99,//影院编号
+                    "hallType": this.$router.history.current.query.halltypeId || 99,//影厅类型
+                    "districtId": this.$router.history.current.query.areaId || 99,//行政区编号
+                    "pageSize": 12,//每页条数
+                    "nowPage": nowPage//当前页数
+                };
+                getData(process.env.baseUrl + '/cinema/getCinemas', 'get', params).then((res) => {
+                    if (res && res.status == 0) {
+                        this.cinemasData = res.data;
+                    } else {
+                        if (res.message) {
+                            alert(res.message)
+                        }
+                    }
+                }, (err) => {
+                    console.log(err);
+                });
+            }
+        }
+    }
+</script>
 <style>
   .cinema-div{
     background-color: #fff;
@@ -19,61 +91,3 @@
     margin: 50px 0;
   }
 </style>
-<script>
-  import API from '../api/cinemas/cinemas'
-  import CinemasItems from '~/components/cinemas/CinemasItems.vue'
-  import QuickSearch from '~/components/cinemas/QuickSearch.vue'
-
-  export default {
-    head () {
-      return {
-        title: '影院',
-        meta: [
-          { hid: '影院', name: '影院', content: '影院' }
-        ]
-      }
-    },
-    components: {
-      CinemasItems,
-      QuickSearch
-    },
-    data () {
-      return {
-        cinemasData:{}
-      }
-    },
-    asyncData () {
-      let params = {
-        "movieId": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
-        "showDate": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
-        "brandId": "",
-        "hallType": "",
-        "districtId": ""
-      };
-      return API.cinemas(params).then((res) => {
-        if (res) {
-          if (res.status == 0) {
-            if (res.data) {
-              return { cinemasData: res.data }
-            }
-          } else {
-            if (res.msg) {
-              alert(res.msg)
-            }
-          }
-        }
-      })
-        .catch((e) => {
-          // error({ statusCode: 404, message: 'Post not found' })
-        });
-    },
-    mounted () {
-      this.getCinemaTags();
-    },
-    methods: {
-      getCinemaTags() {
-        this.$store.dispatch('getCinemaTags');
-      }
-    }
-  }
-</script>

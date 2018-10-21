@@ -1,59 +1,59 @@
 <template>
   <section class="container">
-    <Banner :banners="homeData.banners"></Banner>
+    <Banner :homeBanner="homeData.data"></Banner>
     <Container :homeData="homeData"></Container>
   </section>
 </template>
 <script>
-  import Container from '~/components/index/Container.vue'
-  import Banner from '~/components/index/Banner.vue'
-  import API from '../api/home/home'
+    import Container from '~/components/index/Container.vue'
+    import Banner from '~/components/index/Banner.vue'
+    import {getData} from '../plugins/axios'
 
-  export default {
-    head () {
-      return {
-        title: '首页',
-        meta: [
-          { hid: '首页', name: '首页', content: '首页' }
-        ]
-      }
-    },
-    components: {
-      Banner,
-      Container,
-    },
-    data (){
-      return {
-        homeData:{
-          banners: [],
-          boxRanking: {},
-          expectRanking: {},
-          top100:{},
-          hotFilms:{},
-          soonFilms:{}
-        }
-      }
-    },
-    asyncData () {
-      return API.getIndex().then((res) => {
-        if (res) {
-          if (res.status == 0) {
-            if (res.data) {
-              return { homeData: res.data }
+    export default {
+        head() {
+            return {
+                title: '首页',
+                meta: [
+                    {hid: '首页', name: '首页', content: '首页'}
+                ]
             }
-          } else {
-            if (res.msg) {
-              alert(res.msg)
+        },
+        components: {
+            Banner,
+            Container,
+        },
+        middleware: "auth",
+        data() {
+            return {
+                homeData: {
+                    banners: [],
+                    boxRanking: [],
+                    expectRanking: {},
+                    top100: {},
+                    hotFilms: {},
+                    soonFilms: {}
+                }
             }
-          }
+        },
+        created() {
+            this.getIndex();
+        },
+        methods: {
+            getIndex() {
+                getData(process.env.baseUrl + '/film/getIndex', 'get').then((res) => {
+                    if (res && res.status == 0) {
+                        this.homeData = res;
+                    } else {
+                        if (res.msg) {
+                            alert(res.msg)
+                        }
+                    }
+                }, (err) => {
+                    console.log(err);
+                })
+            }
         }
-      })
-      .catch((e) => {
-        // error({ statusCode: 404, message: 'Post not found' })
-      })
     }
-  }
-
 </script>
 
 <style lang="scss" scoped>

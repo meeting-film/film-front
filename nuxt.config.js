@@ -63,16 +63,10 @@ module.exports = {
     proxy: true
   },
   env: {
-    baseUrl: 'https://www.easy-mock.com/mock/5b52fdd00a35bc5c5ece0613/film' || 'http://localhost:3000'
-    // baseUrl: '//www.meetingshop.cn' || 'http://localhost:3000'
+    // baseUrl: 'https://www.easy-mock.com/mock/5b52fdd00a35bc5c5ece0613/film' || 'http://localhost:3000'
+    baseUrl: '//www.meetingshop.cn'
   },
-  proxyTable: {
-    '/api': {
-      target: '',
-      changeOrigin: true,
-      pathRewrite: {
-        '/api': '/'
-      }
-    }
-  }
+  proxyTable: [
+      '~/api'
+  ],
 };

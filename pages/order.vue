@@ -56,9 +56,9 @@
                     <!--<span class="hall">7号厅</span>-->
                     <div class="seats">
                         <div>
-                            <span v-for="(item, index) in seatData.totalSeatsArr" :key="index" class="">
-                                <i>{{item.row + 1}}</i>排<i>{{item.column + 1}}</i>座
-                            </span>
+                            <!--<span v-for="(item, index) in seatData.totalSeatsArr" :key="index" class="">-->
+                                <!--<i>{{item.row + 1}}</i>排<i>{{item.column + 1}}</i>座-->
+                            <!--</span>-->
                         </div>
                     </div>
                 </td>
@@ -70,12 +70,12 @@
         <div class="right">
             <div class="price-wrapper">
                 <span>实际支付 :</span>
-                <span class="price">132</span>
+                <span class="price">120</span>
             </div>
             <div class="order-pay">
                 <div class="pay-btn" @click="confirmOrder">扫码支付</div>
                 <a href="javascript:;" class="qrcode" v-show="showQrcode">
-                    <img src="../assets/img/order.png" alt="">
+                    <img :src=qrcodeImg alt="">
                 </a>
             </div>
         </div>
@@ -102,6 +102,7 @@
 </template>
 <script>
     import Cookies from 'js-cookie'
+    import { getData } from '../plugins/axios'
     export default {
         head () {
             return {
@@ -114,8 +115,10 @@
         data () {
             return {
                 showModal: false,
-                seatData: {},
                 showQrcode: false,
+                seatData: {},
+                totalNum: 0,
+                qrcodeImg: '',
             }
         },
         mounted () {
@@ -124,15 +127,32 @@
         methods: {
             getSeatList () {
                 // this.seatData = JSON.parse((Cookies.get('xSeatList')));
-                this.seatData = JSON.parse(Cookies.get('xSeatList'));
             },
             confirmOrder () {
-                this.showQrcode = true;
-                let timer = null, _this = this;
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    _this.$router.push({path: '/myorder'});
-                }, 5000);
+                let timer = null,
+                    params = {
+                        orderId: '001'
+                    },
+                    _this = this;
+                getData(process.env.baseUrl + '/order/getPayInfo', 'post', params).then((res) => {
+                    if (res && res.status == 0) {
+                        console.log(res)
+                        _this.totalNum++;
+                        _this.showQrcode = true;
+                        _this.qrcodeImg = res;
+                        console.log(this.totalNum)
+                        // clearTimeout(timer);
+                        // timer = setTimeout(function () {
+                        //     _this.$router.push({path: '/myorder'});
+                        // }, 5000);
+                    } else {
+                        if (res.msg) {
+                            alert(res.msg)
+                        }
+                    }
+                }, (err) => {
+                    console.log(err);
+                })
             }
         }
     }

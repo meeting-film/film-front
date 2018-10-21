@@ -22,7 +22,7 @@
                     <div class="order-header">
                         <span class="order-date">2018-07-08</span>
                         <span class="order-id">订单号:3233291685</span>
-                        <span class="del-order" data-orderid="3233291685"></span>
+                        <!--<span class="del-order" data-orderid="3233291685"></span>-->
                     </div>
 
                     <div class="order-body">
@@ -42,7 +42,7 @@
                             <div class="show-time">周日 7月8日 18:50</div>
                         </div>
 
-                        <div class="order-price">￥31.9</div>
+                        <div class="order-price">￥120</div>
 
                         <div class="order-status">
                             已完成
@@ -65,7 +65,7 @@
     </section>
 </template>
 <script>
-    import Cookies from 'js-cookie'
+    import { getData } from '../plugins/axios'
     export default {
         head () {
             return {
@@ -81,11 +81,25 @@
             }
         },
         mounted () {
-            this.getSeatList();
+            this.getPayResult();
         },
         methods: {
-            getSeatList () {
-                this.seatData = JSON.parse(Cookies.get('xSeatList'));
+            getPayResult () {
+                let params = {
+                    orderId: '1',
+                    tryNums: 1//重试次数
+                };
+                getData(process.env.baseUrl + '/order/getOrderInfo', 'post', params).then((res) => {
+                    if (res && res.status == 0) {
+                        console.log(res)
+                    } else {
+                        if (res.msg) {
+                            alert(res.msg)
+                        }
+                    }
+                }, (err) => {
+                    console.log(err);
+                })
             }
         }
     }

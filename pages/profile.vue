@@ -100,7 +100,8 @@
     </section>
 </template>
 <script>
-    import API from '../api/profile/profile'
+    import Cookies from 'js-cookie'
+    import {getData} from '../plugins/axios'
     export default {
         head () {
             return {
@@ -142,42 +143,42 @@
         methods: {
             getUserInfo () {
                 let _this = this;
-                API.getUserInfo().then(res => {
-                    if (res) {
-                        if (res.status == 0) {
-                            if (res.data) {
-                                _this.form.uuid = res.data.uuid;
-                                _this.form.username = res.data.username;
-                                _this.form.nickname = res.data.nickname;
-                                _this.form.email = res.data.email;
-                                _this.form.phone = res.data.phone;
-                                _this.form.sex = res.data.sex;
-                                _this.form.birthday = res.data.birthday;
-                                _this.form.lifeState = res.data.lifeState;
-                                _this.form.biography = res.data.biography;
-                                _this.form.address = res.data.address;
-                                _this.form.headAddress = res.data.headAddress;
-                                _this.form.createTime = res.data.createTime;
-                                _this.form.updateTime = res.data.updateTime;
-                            }
-                        }else {
-                            if (res.msg) {
-                                alert(res.msg)
-                            }
+                getData(process.env.baseUrl + '/user/getUserInfo', 'get').then(res => {
+                    if (res && res.status == 0) {
+                    _this.form.uuid = res.data.uuid;
+                    _this.form.username = res.data.username;
+                    _this.form.nickname = res.data.nickname;
+                    _this.form.email = res.data.email;
+                    _this.form.phone = res.data.phone;
+                    _this.form.sex = res.data.sex;
+                    _this.form.birthday = res.data.birthday;
+                    _this.form.lifeState = res.data.lifeState;
+                    _this.form.biography = res.data.biography;
+                    _this.form.address = res.data.address;
+                    _this.form.headAddress = res.data.headAddress;
+                    _this.form.createTime = res.data.createTime;
+                    _this.form.updateTime = res.data.updateTime;
+                    }else {
+                        if (res.message) {
+                            alert(res.message)
                         }
                     }
+                }, (err) => {
+                    console.log(err);
                 })
             },
             updateUserInfo () {
                 let params = this.form, _this = this;
-                API.updateUserInfo(params).then(res => {
-                    if (res) {
-                        console.log(res)
-                        if (res.msg) {
-                            alert(res.msg);
+                getData(process.env.baseUrl + '/user/updateUserInfo', 'post', params).then(res => {
+                    if (res && _data) {
+                        let _data = res.data;
+                        if (_data.message) {
+                            alert(_data.message);
                             _this.$router.push('/');
                         }
                     }
+                }, (err) => {
+                    console.log(err);
                 })
             }
         }
