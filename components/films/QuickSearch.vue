@@ -35,49 +35,55 @@
     </div>
 </template>
 <script>
+    function getConditionListQueryParams (content) {
+        return {
+            catId: content.catActive || 99,
+            sourceId: content.sourceActive || 99,
+            yearId: content.yearActive || 99
+        }
+    }
+    function getFilmsQueryParams (content) {
+        return {
+            showType: content.$router.history.current.query.showType || 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
+            sortId: 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
+            catId: content.catActive || 99,
+            sourceId: content.sourceActive || 99,
+            yearId: content.yearActive || 99,
+            nowPage: content.currentPage,
+            pageSize: 18,
+            offset: 0
+        }
+    }
     export default {
-        props: {
-            quickSearch: {
-                type: Object,
-                default: () => {
-                }
-            }
-        },
+        props: [
+            'quickSearch',
+            'showType'
+        ],
         data() {
             return {
-                catActive: 99,
-                sourceActive: 99,
-                yearActive: 99,
+                catActive: this.$router.history.current.query.catId || 99,
+                sourceActive: this.$router.history.current.query.sourceId || 99,
+                yearActive: this.$router.history.current.query.yearId || 99,
             }
         },
         methods: {
-            getFilms() {
-                let params = {
-                    "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
-                    "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
-                    "catId": this.catActive || 99,
-                    "sourceId": this.sourceActive || 99,
-                    "yearId": this.yearActive || 99,
-                    "nowPage": 1,
-                    "pageSize": 18,
-                    "offset": 0
-                };
-                this.$store.dispatch('getFilms', params);
-            },
             selectCat: function (catId) {
                 this.catActive = catId;
-                this.$router.push({path: '/films', query: {catId: catId, sourceId: this.sourceActive, yearId: this.yearActive}});
-                this.getFilms();
+                this.$router.push({path: '/films', query: {showType: this.showType, catId: catId, sourceId: this.sourceActive, yearId: this.yearActive}});
+                const params = getFilmsQueryParams(this);
+                this.$emit('getFilms', params);
             },
             selectSource: function (sourceId) {
                 this.sourceActive = sourceId;
-                this.$router.push({path: '/films', query: {catId: this.catActive, sourceId: sourceId, yearId: this.yearActive}});
-                this.getFilms();
+                this.$router.push({path: '/films', query: {showType: this.showType, catId: this.catActive, sourceId: sourceId, yearId: this.yearActive}});
+                const params = getFilmsQueryParams(this);
+                this.$emit('getFilms', params);
             },
             selectYear: function (yearId) {
                 this.yearActive = yearId;
-                this.$router.push({path: '/films', query: {catId: this.catActive, sourceId: this.sourceActive, yearId: yearId}});
-                this.getFilms();
+                this.$router.push({path: '/films', query: {showType: this.showType, catId: this.catActive, sourceId: this.sourceActive, yearId: yearId}});
+                const params = getFilmsQueryParams(this);
+                this.$emit('getFilms', params);
             },
         }
     }

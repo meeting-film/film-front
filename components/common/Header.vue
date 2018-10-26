@@ -37,15 +37,23 @@
                 <!--否则显示登录-->
                 <!--{{$store.getters}}-->
                 <!--{{isGuest}}-->
-                <div class="user-avatar" v-if="!username">
+                <div v-if="!username" class="user-avatar">
                     <nuxt-link active-class="is-active" to="/login" class="link" exact>登陆</nuxt-link>
                     |
                     <nuxt-link active-class="is-active" to="/register" class="link" exact>注册</nuxt-link>
                 </div>
                 <div class="user-avatar" v-else>
-                    <nuxt-link to="/profile" class="link" exact>{{username}}</nuxt-link>
-                    ,
-                    <a href="javascript:;" @click="logout" class="link">退出</a>
+                    <!--<nuxt-link to="/profile" class="link" exact>{{username}}</nuxt-link>-->
+                    <!--,-->
+                    <!--<a href="javascript:;" @click="logout" class="link">退出</a>-->
+                    <div class="userinfo">
+                        <nuxt-link to="/profile" class="link username">{{username}}</nuxt-link>
+                        <div class="dropdown-menu">
+                            <p><nuxt-link to="/profile" class="link" exact>个人信息</nuxt-link></p>
+                            <p><nuxt-link to="/myorder" class="link" exact>我的订单</nuxt-link></p>
+                            <p><a href="javascript:;" @click="logout" class="link">退出</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <form @submit.prevent="getFilms" class="search-form">
@@ -99,14 +107,6 @@
                 this.active = router;
             },
             getFilms() {
-                // let params = {
-                //   "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
-                //   "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
-                //   "catId": "",
-                //   "sourceId": "",
-                //   "yearId": "",
-                //   "offset": 0,
-                // };
                 let params = {
                     "kw": this.form.search,
                 };
@@ -119,6 +119,7 @@
                     if (res && res.status == 0) {
                         Cookies.remove('token');
                         Cookies.remove('username');
+                        Cookies.remove('cinemaNowPage');
                         // _this.$router.push('/login');
                         window.location.href = '/login';
                     } else {
@@ -342,6 +343,57 @@
         &:hover {
             box-shadow: 0 4px 8px 0 rgba(7, 17, 27, .2);
             .app-load-box {
+                display: block;
+            }
+        }
+    }
+    .userinfo {
+        display: inline-block;
+        vertical-align: middle;
+        min-width: 80px;
+        height: 60px;
+        position: relative;
+        > .username{
+            display: block;
+            padding: 18px 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            color: #000;
+            font-size: 16px;
+            line-height: 26px !important;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 58px;
+            width: 104px;
+            right: 0;
+            padding: 10px 0;
+            background-color: #fff;
+            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            box-shadow: 0 8px 16px 0 rgba(7, 17, 27, .2);
+            p {
+                padding: 0 12px;
+                .link {
+                    display: block;
+                    text-align: center;
+                    color: #4D555D;
+                    line-height: 36px !important;
+                }
+                &:hover {
+                    background-color: #f8f8f8;
+                }
+            }
+        }
+        &:hover {
+            box-shadow: 0 4px 8px 0 rgba(7, 17, 27, .2);
+            .dropdown-menu {
                 display: block;
             }
         }

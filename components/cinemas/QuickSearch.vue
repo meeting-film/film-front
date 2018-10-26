@@ -44,38 +44,49 @@
     </div>
 </template>
 <script>
+    import Cookies from 'js-cookie'
+    function getCinemaListQueryParams (content) {
+        return {
+            brandId: content.brandActive || 99,
+            areaId: content.areaActive || 99,
+            halltypeId: content.halltypeActive || 99,
+            pageSize: 12,
+            nowPage: Cookies.get('cinemaNowPage') || 1
+        }
+    }
     export default {
         props: {
             cinemaTags: {
                 type: Object,
                 default: () => {
                 }
-            }
+            },
         },
         data() {
             return {
-                brandActive: 99,
-                areaActive: 99,
-                halltypeActive: 99,
-                currentPage: 1
+                brandActive: this.$router.history.current.query.brandId || 99,
+                areaActive: this.$router.history.current.query.areaId || 99,
+                halltypeActive: this.$router.history.current.query.halltypeId || 99,
             }
         },
         methods: {
             selectBrand(brandId) {
-                debugger
                 this.brandActive = brandId;
                 this.$router.push({path: '/cinemas', query: {brandId: brandId, areaId: this.areaActive, halltypeId: this.halltypeActive}});
-                this.$emit('getCinemaList', this.currentPage);
+                const params = getCinemaListQueryParams(this);
+                this.$emit('getCinemaList', params);
             },
             selectArea(areaId) {
                 this.areaActive = areaId;
                 this.$router.push({path: '/cinemas', query: {brandId: this.brandActive, areaId: areaId, halltypeId: this.halltypeActive}});
-                this.$emit('getCinemaList', this.currentPage);
+                const params = getCinemaListQueryParams(this);
+                this.$emit('getCinemaList', params);
             },
             selectHalltype(halltypeId) {
                 this.halltypeActive = halltypeId;
                 this.$router.push({path: '/cinemas', query: {brandId: this.brandActive, areaId: this.areaActive, halltypeId: halltypeId}});
-                this.$emit('getCinemaList', this.currentPage);
+                const params = getCinemaListQueryParams(this);
+                this.$emit('getCinemaList', params);
             },
         }
     }

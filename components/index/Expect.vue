@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li class="ranking-item ranking-index-2">
-                        <a href="/films/1175253" target="_blank" data-act="mostExpect-movie-click"
+                        <a href="/filmItem/1175253" target="_blank" data-act="mostExpect-movie-click"
                            data-val="{movieid:1175253}">
                             <i class="ranking-index" style="color: #fff!important">2</i>
 
@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li class="ranking-item ranking-index-3">
-                        <a href="/films/341516" target="_blank" data-act="mostExpect-movie-click"
+                        <a href="/filmItem/341516" target="_blank" data-act="mostExpect-movie-click"
                            data-val="{movieid:341516}">
                             <i class="ranking-index" style="color: #fff!important">3</i>
                             <span class="img-link">

@@ -1,8 +1,7 @@
 <template>
     <div class="film-panel">
-        <ul class="film-items">
-            <li v-if="$store.state.filmList.data && $store.state.filmList.data.length > 0"
-                v-for="(film,index) in $store.state.filmList.data" :key="index" class="film-item">
+        <ul class="film-items" v-if="$store.state.filmList.data && $store.state.filmList.data.length > 0">
+            <li v-for="(film,index) in $store.state.filmList.data" :key="index" class="film-item">
                 <nuxt-link :to="{path:'/filmItem/'+film.filmId}" target="_blank">
                     <img :src=" $store.state.filmList.imgPre + film.imgAddress " :alt="film.filmName"/>
                     <span class="film-name">{{ film.filmName }}</span>
@@ -10,27 +9,64 @@
                 <span class="film-score">{{ film.filmScore }}</span>
             </li>
         </ul>
+        <div class="no-cinemas" v-else>
+            抱歉，没有找到相关结果，请尝试用其他条件筛选。
+        </div>
     </div>
 </template>
 <script>
+    import Cookies from 'js-cookie'
     export default {
-        mounted() {
-            this.getFilms();
+        props: [
+            'showType'
+        ],
+        data () {
+            return {
+                currentPage: 1
+            }
         },
         methods: {
-            getFilms() {
-                let params = {
-                    "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
-                    "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
-                    "catId": this.$router.history.current.query.catId || 99,
-                    "sourceId": this.$router.history.current.query.sourceId || 99,
-                    "yearId": this.$router.history.current.query.yearId || 99,
-                    "nowPage": 1,
-                    "pageSize": 18,
-                    "offset": 0
-                };
-                this.$store.dispatch('getFilms', params);
+            btnClick: function (data) {//页码点击事件
+                const params = getCinemaListQueryParams(this);
+                if (data != params.nowPage) {
+                    params.nowPage = data
+                }
+                Cookies.set('cinemaNowPage', params.nowPage);
+                this.$emit('getCinemaList', params);
+            },
+            pageClick: function () {
+                // console.log('现在在' + this.currentPage + '页');
+                const params = getCinemaListQueryParams(this);
+                Cookies.set('cinemaNowPage', params.nowPage);
+                this.$emit('getCinemaList', params);
+            },
+        },
+        computed: {
+            indexs: function () {
+                let left = 1;
+                let right = this.totalPage;
+                let array = [];
+                if (this.totalPage >= 5) {
+                    if (this.currentPage > 3 && this.currentPage < this.totalPage - 2) {
+                        left = this.currentPage - 2;
+                        right = this.currentPage + 2;
+                    } else {
+                        if (this.currentPage <= 3) {
+                            left = 1;
+                            right = 5;
+                        } else {
+                            right = this.totalPage;
+                            left = this.totalPage - 4;
+                        }
+                    }
+                }
+                while (left <= right) {
+                    array.push(left);
+                    left++
+                }
+                return array
             }
+
         }
     }
 </script>
@@ -76,6 +112,11 @@
                     color: rgb(255, 180, 0);
                 }
             }
+        }
+        .no-cinemas {
+            margin: 40px 30px;
+            font-size: 16px;
+            color: #333;
         }
     }
 </style>

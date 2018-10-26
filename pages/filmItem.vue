@@ -91,10 +91,9 @@
           searchType = 1;
         }
         params = {
-          id: filmId,
           searchType: searchType
         };
-        getData(process.env.baseUrl + '/film/films/' + params.id + '?searchType=' + params.searchType, 'get', params).then((res) => {
+        getData(process.env.baseUrl + '/film/films/' + filmId, 'get', params).then((res) => {
             if (res && res.status == 0) {
                 this.filmItem = res;
             } else {

@@ -91,7 +91,7 @@
     methods: {
       getFilms() {
         let params = {
-          "showType": 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
+          "showType": this.$router.history.current.query.showType || 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
           "sortId": 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
           "catId": this.$router.history.current.query.catId || 99,
           "sourceId": this.$router.history.current.query.sourceId || 99,

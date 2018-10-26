@@ -3,7 +3,7 @@
         <div class="subnav">
             <ul class="navbar">
                 <li @click="tab(index+1)" v-for="(item, index) in navbarItem" :key="index">
-                    <nuxt-link :class="{active: isActive == index + 1}"
+                    <nuxt-link :class="{active: showType == index + 1}"
                                :to="{path: '/films', query: {showType: index+1}}">{{item.name}}
                     </nuxt-link>
                 </li>
@@ -11,8 +11,8 @@
         </div>
         <section class="container">
             <div>
-                <quick-search :quickSearch="quickSearch"/>
-                <FilmItems/>
+                <quick-search :quickSearch="quickSearch" :showType="showType" @getFilms="getFilms"/>
+                <FilmItems :showType="showType"/>
             </div>
         </section>
     </div>
@@ -23,6 +23,25 @@
     import FilmItems from '~/components/films/FilmItems.vue'
     import {getData} from '../plugins/axios'
 
+    function getConditionListQueryParams (content) {
+        return {
+            catId: content.$router.history.current.query.catId || 99,
+            sourceId: content.$router.history.current.query.sourceId || 99,
+            yearId: content.$router.history.current.query.yearId || 99
+        }
+    }
+    function getFilmsQueryParams (content) {
+        return {
+            showType: content.$router.history.current.query.showType || 1,//查询类型，1-正在热映，2-即将上映，3-经典影片
+            sortId: 1,//排序方式，1-按热门搜索，2-按时间搜索，3-按评价搜索
+            catId: content.$router.history.current.query.catId || 99,
+            sourceId: content.$router.history.current.query.sourceId || 99,
+            yearId: content.$router.history.current.query.yearId || 99,
+            nowPage: content.currentPage,
+            pageSize: 18,
+            offset: 0
+        }
+    }
     export default {
         head() {
             return {
@@ -34,18 +53,18 @@
         },
         data() {
             return {
-                isActive: 1,
                 navbarItem: [
                     {name: '正在热映'},
                     {name: '即将上映'},
                     {name: '经典影片'},
                 ],
-                showType: 1,
+                showType: this.$router.history.current.query.showType || 1,
                 quickSearch: {
                     catInfo: [],
                     sourceInfo: [],
                     yearInfo: []
-                }
+                },
+                currentPage: 1
             }
         },
         components: {
@@ -53,29 +72,30 @@
             FilmItems
         },
         created() {
-            this.showType = this.$router.history.current.query.showType;
-            this.getConditionList();
+            this.tab(1);
         },
         methods: {
             tab(index) {
-                this.isActive = index;
-                this.getConditionList();
+                this.showType = index;
+                const params = getConditionListQueryParams(this);
+                this.getConditionList(params);
             },
-            getConditionList() {
-                let parmas = {
-                    catId: this.$router.history.current.query.catId || 99,
-                    sourceId: this.$router.history.current.query.sourceId || 99,
-                    yearId: this.$router.history.current.query.yearId || 99,
-                };
+            getConditionList(parmas) {
+                let _this = this;
+                const params = getFilmsQueryParams(this);
                 getData(process.env.baseUrl + '/film/getConditionList', 'get', parmas).then((res) => {
                     if (res && res.status == 0) {
                         if (res.data) {
-                            this.quickSearch = res.data;
+                            _this.quickSearch = res.data;
+                            _this.getFilms(params);
                         }
                     }
                 }, (err) => {
                     console.log(err);
                 })
+            },
+            getFilms(params) {
+                this.$store.dispatch('getFilms', params);
             },
         }
     }

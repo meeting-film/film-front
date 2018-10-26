@@ -45,12 +45,11 @@ export function fetch(config) {
 }
 
 // 封装调用的接口 getData
-export function getData(url, type, data) {
+export function getData(url, type, params) {
     //如果type为空，默认为get方法，也可以自己改成post
-    if (type === '') type = 'get';
     return fetch({
         url: url,
         method: type,
-        data: data,
+        params: params,
     })
 }

@@ -2,21 +2,26 @@
     <div class="cinema-wrapper">
         <div class="cinema-list">
             <h2 class="cinema-list-header">影院列表</h2>
-            <div v-for="(cinema,index) in cinemasData" :key="index" class="cinema-cell">
-                <div class="cinema-info">
-                    <nuxt-link :to="{path:'/cinema/'+cinema.uuid}" class="cinema-name">{{cinema.cinemaName}}</nuxt-link>
-                    <p class="cinema-address">地址：{{cinema.address}}</p>
-                </div>
-                <div class="buy-btn">
-                    <nuxt-link :to="{path:'/cinema', query: {cinemaId:cinema.uuid}}" class="cinema-name">选座购票
-                    </nuxt-link>
-                </div>
-                <div class="price">
-                    <span>￥{{cinema.minimumPrice}}</span>起
+            <div class="has-movies" v-if="cinemasData.length > 0">
+                <div v-for="(cinema,index) in cinemasData" :key="index" class="cinema-cell">
+                    <div class="cinema-info">
+                        <nuxt-link :to="{path:'/cinema', query: {cinemaId:cinema.uuid}}" class="cinema-name">{{cinema.cinemaName}}</nuxt-link>
+                        <p class="cinema-address">地址：{{cinema.address}}</p>
+                    </div>
+                    <div class="buy-btn">
+                        <nuxt-link :to="{path:'/cinema', query: {cinemaId:cinema.uuid}}" class="cinema-name">选座购票
+                        </nuxt-link>
+                    </div>
+                    <div class="price">
+                        <span>￥{{cinema.minimumPrice}}</span>起
+                    </div>
                 </div>
             </div>
+            <div class="no-cinemas" v-else>
+                抱歉，没有找到相关结果，请尝试用其他条件筛选。
+            </div>
         </div>
-        <div class="cinema-pager">
+        <div class="cinema-pager" v-if="cinemasData && cinemasData.length > 0">
             <ul class="list-pager">
                 <li v-if="currentPage > 1"><a v-on:click="currentPage--, pageClick()">上一页</a></li>
                 <li v-if="currentPage == 1"><a class="banclick">上一页</a></li>
@@ -31,32 +36,47 @@
     </div>
 </template>
 <script>
+    import Cookies from 'js-cookie'
+    function getCinemaListQueryParams (content) {
+        return {
+            brandId: content.$router.history.current.query.brandId || 99,
+            areaId: content.$router.history.current.query.areaId || 99,
+            halltypeId: content.$router.history.current.query.halltypeId || 99,
+            pageSize: 12,
+            nowPage: content.currentPage
+        }
+    }
     export default {
-        props: {
-            cinemasData: {}
-        },
+        props: [
+            'cinemasData',
+            'totalPage'
+        ],
         data() {
             return {
-                totalPage: 8, //总页数
-                currentPage: 1//当前页码
+                currentPage: 1
             }
         },
-
         watch: {
             currentPage: function (oldValue, newValue) {
-                this.$emit('getCinemaList', oldValue)
+                const params = getCinemaListQueryParams(this);
+                Cookies.set('cinemaNowPage', params.nowPage);
+                this.$emit('getCinemaList', params);
             }
         },
-
         methods: {
             btnClick: function (data) {//页码点击事件
-                if (data != this.currentPage) {
-                    this.currentPage = data
+                const params = getCinemaListQueryParams(this);
+                if (data != params.nowPage) {
+                    params.nowPage = data
                 }
+                Cookies.set('cinemaNowPage', params.nowPage);
+                this.$emit('getCinemaList', params);
             },
             pageClick: function () {
-                console.log('现在在' + this.currentPage + '页');
-                this.$emit('getCinemaList', this.currentPage)
+                // console.log('现在在' + this.currentPage + '页');
+                const params = getCinemaListQueryParams(this);
+                Cookies.set('cinemaNowPage', params.nowPage);
+                this.$emit('getCinemaList', params);
             }
         },
 
@@ -161,6 +181,11 @@
                     margin-right: 10px;
                 }
             }
+        }
+        .no-cinemas {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #333;
         }
     }
 
