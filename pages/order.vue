@@ -38,7 +38,7 @@
 
         <p class="warning">请仔细核对场次信息，出票后将<span class="attention">无法退票和改签</span></p>
 
-        <table class="order-table">
+        <table class="order-table" v-if="cinemaInfo">
             <thead>
             <tr>
                 <th>影片</th>
@@ -49,9 +49,9 @@
             </thead>
             <tbody>
             <tr>
-                <td class="movie-name">基于SpringBoot 十分钟搞定后台管理平台</td>
-                <td class="showtime">今天 9月8日 10:10</td>
-                <td class="cinema-name">北京泛影城</td>
+                <td class="movie-name">{{cinemaInfo.cinemaName}}</td>
+                <td class="showtime">{{cinemaInfo.fieldTime}}</td>
+                <td class="cinema-name">{{cinemaInfo.filmName}}</td>
                 <td>
                     <!--<span class="hall">7号厅</span>-->
                     <div class="seats">
@@ -59,6 +59,7 @@
                             <!--<span v-for="(item, index) in seatData.totalSeatsArr" :key="index" class="">-->
                                 <!--<i>{{item.row + 1}}</i>排<i>{{item.column + 1}}</i>座-->
                             <!--</span>-->
+                            <span>{{cinemaInfo.seatsName}}</span>
                         </div>
                     </div>
                 </td>
@@ -68,9 +69,9 @@
 
 
         <div class="right">
-            <div class="price-wrapper">
+            <div class="price-wrapper" v-if="cinemaInfo && cinemaInfo.orderPrice">
                 <span>实际支付 :</span>
-                <span class="price">120</span>
+                <span class="price">{{cinemaInfo.orderPrice}}</span>
             </div>
             <div class="order-pay">
                 <div class="pay-btn" @click="confirmOrder">扫码支付</div>
@@ -116,8 +117,8 @@
             return {
                 showModal: false,
                 showQrcode: false,
-                seatData: {},
-                totalNum: 0,
+                cinemaInfo: {},
+                tryNums: 0,
                 qrcodeImg: '',
             }
         },
@@ -126,28 +127,57 @@
         },
         methods: {
             getSeatList () {
-                // this.seatData = JSON.parse((Cookies.get('xSeatList')));
+                this.cinemaInfo = JSON.parse((Cookies.get('cinemaInfo')));
             },
             confirmOrder () {
                 let timer = null,
                     params = {
-                        orderId: '001'
+                        orderId: this.$router.history.current.query.orderId
                     },
                     _this = this;
                 getData(process.env.baseUrl + '/order/getPayInfo', 'post', params).then((res) => {
-                    if (res && res.status == 0) {
-                        console.log(res)
-                        _this.totalNum++;
-                        _this.showQrcode = true;
-                        _this.qrcodeImg = res;
-                        console.log(this.totalNum)
-                        // clearTimeout(timer);
-                        // timer = setTimeout(function () {
-                        //     _this.$router.push({path: '/myorder'});
-                        // }, 5000);
-                    } else {
-                        if (res.msg) {
-                            alert(res.msg)
+                    if (!res) return;
+                    if (res) {
+                        if (res.status == 0) {
+                            _this.showQrcode = true;
+                            _this.qrcodeImg = res.imgPre + res.data.qRCodeAddress;
+                            _this.tryNums++;
+                            if (_this.qrcodeImg) {
+                                clearTimeout(timer);
+                                let resultParams = {
+                                    orderId: res.data.orderId,
+                                    tryNums: _this.tryNums,
+                                };
+                                timer = setTimeout(() => {
+                                    getData(process.env.baseUrl + '/order/getPayResult', 'post', resultParams).then((res1) => {
+                                        if (!res1) return;
+                                        if (res1 && res1.data) {
+                                            if (res1.data.orderStatus == 0) {
+                                                if (res1.data.orderMsg) {
+                                                    alert(res1.data.orderMsg);
+                                                    _this.showQrcode = false;
+                                                }
+                                            } else if (res1.data.orderStatus == 1) {
+                                                if (res1.data.orderMsg) {
+                                                    alert(res1.data.orderMsg);
+                                                    _this.$router.push({path: '/myorder', query: {orderId: res.data.orderId, tryNums: _this.tryNums}});
+                                                }
+                                            } else {
+                                                if (res1.msg) {
+                                                    alert(res1.msg);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }, 5000);
+                            }
+                        } else {
+                            if (res.msg) {
+                                alert(res.msg);
+                                if (res.status && res.status == 700) {
+                                    this.$router.push({path: '/login'});
+                                }
+                            }
                         }
                     }
                 }, (err) => {

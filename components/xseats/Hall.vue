@@ -24,7 +24,6 @@
                 <!--:key="index">{{index + 1}}-->
                 <!--</span>-->
             </div>
-            {{fieldInfo}}
             <div class="seats-container">
                 <div class="screen-container">
                     <div class="screen">银幕中央</div>
@@ -52,8 +51,8 @@
                   item.selected == true ? 'seat lover lover-right selected' : 'seat lover lover-right selectable'"
                   v-for="(item, columnIndex) in items"
                   :key="columnIndex"
-                  @click="selectCoupleSeat(($store.state.seatInfo.seatCharts.single.length + rowIndex),columnIndex,items, $store.state.seatInfo.seatCharts.limit)">
-              {{item.status}}
+                  @click="selectCoupleSeat(($store.state.seatInfo.seatCharts.single.length + rowIndex),columnIndex, item.seatId, items, $store.state.seatInfo.seatCharts.limit)">
+              {{item}}
             </span>
                     </div>
                 </div>
@@ -110,6 +109,7 @@
                     params = {
                         row: rowIndex,
                         column: columnIndex,
+                        seatId: item.seatId,
                         selected: item.selected
                     };
                     //调用添加事件
@@ -122,7 +122,7 @@
              * columnIndex：座位号
              * items：第几排
              * */
-            selectCoupleSeat(rowIndex, columnIndex, items, limit) {
+            selectCoupleSeat(rowIndex, columnIndex, seatId, items, limit) {
                 let params = {};
                 // 给当前选中的元素设置样式
                 this.setSelectedFlag(items[columnIndex], limit);
@@ -135,9 +135,11 @@
                         coupleSelected: items[columnIndex].selected || items[columnIndex + 1].selected,
                         seatArr: [{
                             row: rowIndex,
+                            seatId: seatId,
                             column: columnIndex
                         }, {
                             row: rowIndex,
+                            seatId: seatId + 1,
                             column: columnIndex + 1
                         }]
                     };
@@ -147,9 +149,11 @@
                         coupleSelected: items[columnIndex].selected || items[columnIndex - 1].selected,
                         seatArr: [{
                             row: rowIndex,
+                            seatId: seatId - 1,
                             column: columnIndex - 1
                         }, {
                             row: rowIndex,
+                            seatId: seatId,
                             column: columnIndex
                         }]
                     };

@@ -5,7 +5,6 @@ import qs from 'qs'
 export function fetch(config) {
     //返回promise对象
     return new Promise((resolve, reject) => {
-        // debugger
         //创建axios实例，把基本的配置放进去
         const instance = axios.create();
         // POST 传参序列化

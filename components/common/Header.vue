@@ -47,10 +47,10 @@
                     <!--,-->
                     <!--<a href="javascript:;" @click="logout" class="link">退出</a>-->
                     <div class="userinfo">
-                        <nuxt-link to="/profile" class="link username">{{username}}</nuxt-link>
+                        <span class="username">{{username}}</span>
                         <div class="dropdown-menu">
-                            <p><nuxt-link to="/profile" class="link" exact>个人信息</nuxt-link></p>
-                            <p><nuxt-link to="/myorder" class="link" exact>我的订单</nuxt-link></p>
+                            <p><a href="/profile" class="link">个人信息</a></p>
+                            <p><a href="/myorder" class="link">我的订单</a></p>
                             <p><a href="javascript:;" @click="logout" class="link">退出</a></p>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                 username: '',
             }
         },
-        created() {
+        mounted() {
             this.tab(this.$router.history.current.path);
             this.username = Cookies.get('username');
         },

@@ -7,10 +7,10 @@ export const getters = {
     totalPrice: (state) => {
         let totalSingle = 0, totalCouple = 0, total = 0;
         state.selectedSingleSeatList.forEach((item, index) => {
-            totalSingle = state.seatInfo.price * (index + 1);
+            totalSingle = state.ticketPrice * (index + 1);
         });
         state.selectedCoupleSeatList.forEach((item, index) => {
-            totalCouple = state.seatInfo.price * (index + 1);
+            totalCouple = state.ticketPrice * (index + 1);
         });
         total = totalSingle + totalCouple;
         return total;

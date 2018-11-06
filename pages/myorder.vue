@@ -15,38 +15,36 @@
             </div>
             <!-- 个人中心 end -->
             <!-- 我的订单 start -->
-            <div class="orders-container">
+            <div class="orders-container" v-if="orderInfo">
                 <div class="profile-title">我的订单</div>
 
-                <div class="order-box" data-orderid="3233291685">
+                <div class="order-box" v-for="(item, index) in orderInfo" :key="index">
                     <div class="order-header">
-                        <span class="order-date">2018-07-08</span>
-                        <span class="order-id">订单号:3233291685</span>
+                        <span class="order-date">{{item.orderTimestamp}}</span>
+                        <span class="order-id">订单号:{{item.orderId}}</span>
                         <!--<span class="del-order" data-orderid="3233291685"></span>-->
                     </div>
 
                     <div class="order-body">
                         <div class="poster">
-                            <img width="100" height="95" src="http://img.meetingshop.cn/films/imgs/5709b4f83a669c0dd8c78461da4ece33208095.jpg">
+                            <img width="100" height="95" :src=item.src>
                         </div>
 
                         <div class="order-content">
-                            <div class="movie-name">基于SpringBoot 十分钟搞定后台管理平台</div>
-                            <div class="cinema-name">青春光线电影院</div>
+                            <div class="movie-name">{{item.filmName}}</div>
+                            <div class="cinema-name">{{item.cinemaName}}</div>
                             <div class="hall-ticket">
-                                <span>1号厅</span>
-                                <span v-for="(item, index) in seatData.totalSeatsArr" :key="index" class="">
-                                    {{item.row + 1}}排{{item.column + 1}}座
-                                </span>
+                                <!--<span>1号厅</span>-->
+                                <!--<span v-for="(item, index) in seatData.totalSeatsArr" :key="index" class="">-->
+                                    <!--{{item.row + 1}}排{{item.column + 1}}座-->
+                                <!--</span>-->
                             </div>
-                            <div class="show-time">周日 7月8日 18:50</div>
+                            <div class="show-time">{{item.fieldTime}}</div>
                         </div>
 
-                        <div class="order-price">￥120</div>
+                        <div class="order-price">￥{{item.orderPrice}}</div>
 
-                        <div class="order-status">
-                            已完成
-                        </div>
+                        <div class="order-status">{{item.orderStatus}}</div>
 
                         <div class="actions">
                             <div>
@@ -77,21 +75,34 @@
         },
         data () {
             return {
-                seatData: {}
+                orderInfo: {}
             }
         },
         mounted () {
             this.getPayResult();
         },
         methods: {
+            formatDate(timestamp) {
+                var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = date.getDate() + ' ';
+                var h = date.getHours() + ':';
+                var m = date.getMinutes() + ':';
+                var s = date.getSeconds();
+                return Y+M+D+h+m+s;
+            },
             getPayResult () {
                 let params = {
-                    orderId: '1',
-                    tryNums: 1//重试次数
-                };
+                    nowPage: 1,
+                    pageSize: 5
+                }, _this = this;
                 getData(process.env.baseUrl + '/order/getOrderInfo', 'post', params).then((res) => {
                     if (res && res.status == 0) {
-                        console.log(res)
+                        _this.orderInfo = res.data;
+                        _this.orderInfo.map((item) => {
+                            item.orderTimestamp = _this.formatDate(item.orderTimestamp);
+                        })
                     } else {
                         if (res.msg) {
                             alert(res.msg)

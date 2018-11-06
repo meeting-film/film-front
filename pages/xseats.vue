@@ -34,16 +34,8 @@
 <script>
     import Hall from '../components/xseats/Hall'
     import Side from '../components/xseats/Side'
-    import { getData } from '../plugins/axios'
     import Cookies from 'js-cookie'
-    import  Vue  from  'vue'
-
-    import  VueJsonp  from  'vue-jsonp'
-
-    Vue.use(VueJsonp)
-
-    // const jsonp = require('jsonp');
-
+    import { getData } from '../plugins/axios'
     export default {
         data() {
             return {
@@ -73,32 +65,66 @@
             this.getFieldInfo();
         },
         methods: {
+            readTextFile(file, callback) {
+                let rawFile = new XMLHttpRequest();
+                rawFile.overrideMimeType("application/json");
+                rawFile.open("GET", file, true);
+                rawFile.onreadystatechange = function() {
+                    if (rawFile.readyState === 4 && rawFile.status == "200") {
+                        callback(rawFile.responseText);
+                    }
+                }
+                rawFile.send(null);
+            },
             getFieldInfo () {
                 let params = {
                     "cinemaId": this.$router.history.current.query.cinemaId,//影院编号
                     "fieldId": this.$router.history.current.query.fieldId//场次编号
                 };
-                let _this = this;
+                let _this = this, soldSeats = '';
+
                 getData(process.env.baseUrl + '/cinema/getFieldInfo', 'post', params).then((res) => {
                     if (res && res.status == 0) {
-                        this.fieldInfo = res;
-                        // getData('//img.meetingshop.cn/seats/imax.json', 'post').then((json) => {
-                        //     if (json) {
-                        //         this.fieldInfo.data.seatCharts = json;
-                        //     }
-                        // })
-                        //
-                        // jsonp('//img.meetingshop.cn/seats/imax.json',{prefix:'aa',name:'aa'},(err, data) => {
-                        //     if (err) {
-                        //         console.error(err.message);
-                        //     } else {
-                        //         that.articles=data.subjects
-                        //     }
-                        // });
-                        this.$jsonp('//img.meetingshop.cn/seats/imax.json',
-                            {callbackQuery: 'callback', callbackName: 'getSeats'}).then((res) => {
-                            console.log(res)
-                        })
+                        _this.fieldInfo = res;
+                        _this.$store.state.ticketPrice = res.data.hallInfo.price;
+                        soldSeats = res.data.hallInfo.soldSeats;
+                        soldSeats = soldSeats.split(',');
+                        //nuxt脚手架会自动生成static文件夹，将json文件放在此目录下可以直接访问，如：('/4d.json')
+                        //https://segmentfault.com/q/1010000013913258
+                        _this.readTextFile("/json/4dx.json", function(text){
+                            res.data.hallInfo.seatFile = JSON.parse(text);
+                            if (res.data.hallInfo.seatFile) {
+                                //卖掉的座添加一个isSold标识
+                                //单排座
+                                if (res.data.hallInfo.seatFile.single) {
+                                    _this.$store.state.seatInfo.seatCharts.single = res.data.hallInfo.seatFile.single;
+                                    for (let i = 0, len = soldSeats.length; i < len; i++) {
+                                        for (let j = 0, len1 = res.data.hallInfo.seatFile.single.length; j < len1; j++) {
+                                            for (let k = 0, len2 = res.data.hallInfo.seatFile.single[j].length; k < len2; k++) {
+                                                if (soldSeats[i] == res.data.hallInfo.seatFile.single[j][k].seatId) {
+                                                    res.data.hallInfo.seatFile.single[j][k].isSold = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                //双排座
+                                if (res.data.hallInfo.seatFile.couple) {
+                                    _this.$store.state.seatInfo.seatCharts.couple = res.data.hallInfo.seatFile.couple;
+                                    for (let i = 0, len = soldSeats.length; i < len; i++) {
+                                        for (let j = 0, len1 = res.data.hallInfo.seatFile.couple.length; j < len1; j++) {
+                                            for (let k = 0, len2 = res.data.hallInfo.seatFile.couple[j].length; k < len2; k++) {
+                                                if (soldSeats[i] == res.data.hallInfo.seatFile.couple[j][k].seatId) {
+                                                    res.data.hallInfo.seatFile.couple[j][k].isSold = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
                     } else {
                         if (res.msg) {
                             alert(res.msg);
@@ -110,23 +136,40 @@
             },
             //确认选座
             confirmXseat() {
-                let totalSeatsArr = [];
-                totalSeatsArr = totalSeatsArr.concat(this.$store.state.selectedSingleSeatList, this.$store.state.selectedCoupleSeatList);
+                let _this = this,
+                    totalSeatsArr = [],
+                    singleList = this.$store.state.selectedSingleSeatList,
+                    coupleList = this.$store.state.selectedCoupleSeatList,
+                    soldSeats = [],
+                    seatsName = [];
+                    totalSeatsArr = totalSeatsArr.concat(singleList, coupleList);
+                if (totalSeatsArr.length > 0) {
+                    for (let i = 0, len = totalSeatsArr.length; i < len; i++) {
+                        soldSeats.push(totalSeatsArr[i].seatId);
+                    }
+                }
+                if (singleList.length > 0) {
+                    seatsName.push('单排座');
+                }
+                if (coupleList.length > 0) {
+                    seatsName.push('双排座');
+                }
                 let params = {
                     fieldId: this.$router.history.current.query.fieldId,
-                    soldSeats: "10,12",
-                    seatsName: "单排座"
+                    soldSeats: soldSeats.join(','),//购买的座位编号
+                    seatsName: seatsName.join(',')//购买的座位名称
                 };
                 getData(process.env.baseUrl + '/order/buyTickets', 'post', params).then((res) => {
                     if (!res) return;
                     if (res.status == 0) {
-                        this.$router.push({path: '/order/confirm'});
+                        Cookies.set('cinemaInfo', res.data);
+                        _this.$router.push({path: '/order/confirm', query: {orderId: res.data.orderId}});
                     } else {
                         if (res.msg) {
                             alert(res.msg);
                         }
                         if (res.status == 700) {
-                            this.$router.push({path: '/login'});
+                            _this.$router.push({path: '/login'});
                         }
                     }
                 }, (err) => {

@@ -59,7 +59,12 @@
                 </div>
             </div>
             <div class="no-ticket" v-else>
-                <p class="buy-limit">座位：一次最多选{{$store.state.seatInfo.seatCharts.limit}}个座位</p>
+                <p class="buy-limit" v-if="fieldInfo && fieldInfo.data
+                                            && fieldInfo.data.hallInfo
+                                            && fieldInfo.data.hallInfo.seatFile
+                                            && fieldInfo.data.hallInfo.seatFile.limit">
+                    座位：一次最多选{{fieldInfo.data.hallInfo.seatFile.limit}}个座位
+                </p>
                 <p class="no-selected">请<span>点击左侧</span>座位图选择座位</p>
             </div>
 
@@ -92,7 +97,12 @@
         <div class="modal-container" v-show="$store.state.showDialogFlag">
             <div class="modal">
                 <span class="icon"></span>
-                <p class="tip">一次最多购买{{$store.state.seatInfo.seatCharts.limit}}张票</p>
+                <p class="tip" v-if="fieldInfo && fieldInfo.data
+                                    && fieldInfo.data.hallInfo
+                                    && fieldInfo.data.hallInfo.seatFile
+                                    && fieldInfo.data.hallInfo.seatFile.limit">
+                    一次最多购买{{fieldInfo.data.hallInfo.seatFile.limit}}张票
+                </p>
                 <div class="ok-btn btn" @click="hideDialog">我知道了</div>
             </div>
         </div>
